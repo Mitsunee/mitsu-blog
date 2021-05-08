@@ -12,18 +12,13 @@
     "ecmaVersion": 12,
     "sourceType": "module"
   },
-  "plugins": ["prettier", "react-hooks", "@emotion"],
+  "plugins": ["prettier", "react-hooks"],
   "rules": {
     "no-unused-vars": "warn",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "react/prop-types": "off",
-    "react/react-in-jsx-scope": "off",
-    "@emotion/jsx-import": "off",
-    "@emotion/no-vanilla": "error",
-    "@emotion/import-from-emotion": "error",
-    "@emotion/styled-import": "error",
-    "@emotion/syntax-preference": [2, "string"]
+    "react/react-in-jsx-scope": "off"
   },
   "settings": {
     "react": {

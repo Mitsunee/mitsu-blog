@@ -4,9 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "lint": "eslint && prettier --write",
-    "prebuild": "yarn run lint",
+    "prebuild": "eslint ./components/**/*.js ./pages/**/*.js",
     "build": "next build",
+    "postbuild": "next export",
     "start": "next start"
   },
   "dependencies": {
