@@ -1,8 +1,8 @@
 const Meta = props => {
   const title = props.title || "Mitsunee";
+  // TODO favicon
   return (
     <>
-      <meta charset="utf-8" />
       <link rel="shortcut icon" href="/favicon.ico" />
 
       <title>{title}</title>
