@@ -1,8 +1,8 @@
-import Head from "next/head";
-import Meta from "@components/Meta";
-import TestComponent from "@components/test/test";
 import { stylesheet, css } from "astroturf";
 import Link from "next/link";
+
+import Meta from "@components/Meta";
+import TestComponent from "@components/test/test";
 
 // TEMP test astroturf-loader
 const styles = stylesheet`
@@ -19,16 +19,13 @@ const styles = stylesheet`
 const Index = () => {
   return (
     <>
-      <Head>
-        <Meta
-          title={"Mitsunee"}
-          description={
-            "Freelance Frontend Dev | Weeb | Linux user | Music-Addict | rants too much"
-          }
-          image={"assets/avi_small.jpg"}
-          route={""}
-        />
-      </Head>
+      <Meta
+        description={
+          "Freelance Frontend Dev | Weeb | Linux user | Music-Addict | rants too much"
+        }
+        image={"assets/avi_small.jpg"}
+        route={""}
+      />
       <main>
         <h1 className={styles.header}>Hello, world!</h1>
         <p

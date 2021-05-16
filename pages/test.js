@@ -1,13 +1,24 @@
-import Head from "next/head";
+import Link from "next/link";
+
+import getPostPropsBySlug from "@lib/blog/getPostPropsBySlug";
+
 import Meta from "@components/Meta";
 
-export default function Test() {
+export default function Test({ data, content }) {
   return (
     <>
-      <Head>
-        <Meta route={"test"} />
-      </Head>
-      <h1>TEST</h1>
+      <Meta {...data} />
+      <main>
+        <div dangerouslySetInnerHTML={{ __html: content }} />
+        <Link href="/">
+          <a>Return whence you came</a>
+        </Link>
+      </main>
     </>
   );
+}
+
+export async function getStaticProps() {
+  const { props } = await getPostPropsBySlug("test");
+  return { props };
 }

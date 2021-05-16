@@ -1,12 +1,14 @@
+import Head from "next/head";
+
 const Meta = props => {
-  const title = props.title || "Mitsunee";
+  const title = props.title ? `${props.title} | Mitsunee` : "Mitsunee";
   const image = props.image || "assets/avi_small.jpg"; // PLACEHOLDER
   const description = props.description || "Mitsunee";
   // TODO favicon
   // TODO default image
 
   return (
-    <>
+    <Head>
       <link rel="shortcut icon" href="/favicon.ico" />
       <meta
         property="og:site_name"
@@ -26,10 +28,7 @@ const Meta = props => {
         key={"og:image"}
       />
       <meta name="twitter:image:alt" content={title} />
-      <meta
-        name="twitter:card"
-        content={props.twitterCard || "summary_large_image"}
-      />
+      <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:creator" content="@Mitsunee" />
       <meta property="og:type" content="website" key={"og:type"} />
       <link
@@ -37,7 +36,7 @@ const Meta = props => {
         href={`https://www.mitsunee.com/${props.route}/`}
         key={"canonical"}
       />
-    </>
+    </Head>
   );
 };
 
