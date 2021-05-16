@@ -12,6 +12,7 @@ module.exports = () => ({
 
     return config;
   },
+  trailingSlash: true,
   reactStrictMode: true,
   poweredByHeader: false,
   future: { webpack5: true }

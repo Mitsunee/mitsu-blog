@@ -2,7 +2,7 @@ import Head from "next/head";
 import Meta from "@components/Meta";
 import TestComponent from "@components/test/test";
 import { stylesheet, css } from "astroturf";
-//import Image from 'next/image'
+import Link from "next/link";
 
 // TEMP test astroturf-loader
 const styles = stylesheet`
@@ -26,6 +26,7 @@ const Index = () => {
             "Freelance Frontend Dev | Weeb | Linux user | Music-Addict | rants too much"
           }
           image={"assets/avi_small.jpg"}
+          route={""}
         />
       </Head>
       <main>
@@ -41,6 +42,9 @@ const Index = () => {
           I should be using the accent color via astroturf&#39;s css prop
         </p>
         <TestComponent />
+        <Link href="/test">
+          <a>Go to test</a>
+        </Link>
       </main>
     </>
   );
