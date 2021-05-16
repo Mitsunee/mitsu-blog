@@ -1,5 +1,6 @@
 import Head from "next/head";
-import Meta from "../components/Meta";
+import Meta from "@components/Meta";
+import TestComponent from "@components/test/test";
 import { stylesheet, css } from "astroturf";
 //import Image from 'next/image'
 
@@ -22,7 +23,7 @@ const Index = () => {
         <Meta
           title={"Mitsunee"}
           description={
-            "Nonbinary | Weeb | Linux user | Frontend Dev | Music-Addict | rants too much"
+            "Freelance Frontend Dev | Weeb | Linux user | Music-Addict | rants too much"
           }
           image={"assets/avi_small.jpg"}
         />
@@ -39,6 +40,7 @@ const Index = () => {
           `}>
           I should be using the accent color via astroturf&#39;s css prop
         </p>
+        <TestComponent />
       </main>
     </>
   );
