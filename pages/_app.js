@@ -1,7 +1,7 @@
 import "modern-normalize/modern-normalize.css";
 import "@styles/globals.css"; // TODO global stylesheet
 import "@styles/prism.css"; // TODO adjust to match site design
-import { useRouterLoading } from "@lib/hooks/useRouterLoading";
+import { useRouterLoading } from "@utils/hooks/useRouterLoading";
 
 /* TODO:
   - fonts (Exo 2 as sans, ??? as alt, Fira Code as monospace)

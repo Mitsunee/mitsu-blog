@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import getPostPropsBySlug from "@lib/blog/getPostPropsBySlug";
+import getPostPropsBySlug from "@utils/blog/getPostPropsBySlug";
 
 import Meta from "@components/Meta";
 

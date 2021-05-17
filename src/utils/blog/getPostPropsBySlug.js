@@ -1,7 +1,7 @@
 import { readFileSync } from "fs";
-import joinPath from "@lib/joinPath";
+import joinPath from "@utils/joinPath";
 import matter from "gray-matter";
-import parseMarkdown from "@lib/blog/parseMarkdown";
+import parseMarkdown from "@utils/blog/parseMarkdown";
 
 export default async function getPostPropsBySlug(slug) {
   const file = readFileSync(joinPath("assets/blog/posts", `${slug}.md`));

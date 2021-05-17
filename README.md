@@ -24,9 +24,10 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 ## Directory Structure
 
 - **assets**: Assets that do not get shipped (in this form) such as Markdown files and GIMP Projects
-- **components** _(@components)_: React components
-- **lib** _(@lib)_: functions and utilities
+  - **assets/styles** _(@styles)_: global stylesheets
+- **src**
+  - **src/components** _(@components)_: React components
+  - **src/utils** _(@utils)_: functions and utilities
+  - **src/stores** _(@stores)_: zustand stores should go here
 - **pages**: NextJS pages directory (see docs above)
 - **public**: Static assets that will get copied into the built site
-- **stores** _(@stores)_: zustand stores should go here
-- **styles** _(@styles)_: global stylesheets
