@@ -1,5 +1,5 @@
 const chalk = require("chalk");
-const theme = require("./styles/theme");
+const theme = require("./assets/theme");
 
 const plugins = [
   "postcss-nested",

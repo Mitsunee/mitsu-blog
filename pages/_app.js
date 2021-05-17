@@ -1,6 +1,7 @@
 import "modern-normalize/modern-normalize.css";
 import "@styles/globals.css"; // TODO global stylesheet
 import "@styles/prism.css"; // TODO adjust to match site design
+import { useRouterLoading } from "@lib/hooks/useRouterLoading";
 
 /* TODO:
   - fonts (Exo 2 as sans, ??? as alt, Fira Code as monospace)
@@ -11,7 +12,9 @@ import "@styles/prism.css"; // TODO adjust to match site design
 */
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />;
+  const loading = useRouterLoading();
+  const Loading = () => <>LOADING</>; // PLACEHOLDER loading component goes here
+  return loading ? <Loading /> : <Component {...pageProps} />;
 }
 
 export default MyApp;
