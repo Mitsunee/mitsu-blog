@@ -1,0 +1,25 @@
+/** TEMP
+
+TESTING STYLES
+
+- tests nesting
+- tests theme-ui support
+- tests automatically added :focus rule
+
+**/
+
+body {
+  background: #211f1f;
+}
+
+main {
+  color: primary;
+  max-width: 1400px;
+  margin: auto;
+  & h1 {
+    color: accent;
+    &:hover {
+      color: red;
+    }
+  }
+}
