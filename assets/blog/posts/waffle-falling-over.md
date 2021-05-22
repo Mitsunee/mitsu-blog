@@ -1,5 +1,5 @@
 ---
-title: "Bread Falling Over"
+title: "Waffle Falling Over"
 description: "Wow! This Waffle stands and then falls over!!!"
 image: "/temp/waffle-falling-over.jpg"
 showImage: false
