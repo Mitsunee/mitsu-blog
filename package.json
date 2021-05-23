@@ -9,9 +9,7 @@
   ],
   "scripts": {
     "dev": "next dev",
-    "lint": "eslint ./components/**/*.js ./pages/**/*.js",
-    "test": "jest tests",
-    "prebuild": "yarn lint && yarn test",
+    "prebuild": "eslint ./components/**/*.js ./pages/**/*.js",
     "build": "next build",
     "postbuild": "next export",
     "start": "next start"
@@ -31,7 +29,6 @@
     "eslint-plugin-react": "^7.23.2",
     "eslint-plugin-react-hooks": "^4.2.0",
     "gray-matter": "^4.0.3",
-    "jest": "^26.6.3",
     "modern-normalize": "^1.1.0",
     "postcss": "^8.2.14",
     "postcss-focus": "^5.0.1",
