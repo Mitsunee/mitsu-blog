@@ -16,7 +16,7 @@ const styles = stylesheet`
   }
 `;
 
-const Index = () => {
+export default function Index() {
   return (
     <>
       <Meta
@@ -45,6 +45,4 @@ const Index = () => {
       </main>
     </>
   );
-};
-
-export default Index;
+}

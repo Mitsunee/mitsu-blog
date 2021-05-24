@@ -12,9 +12,12 @@ export default async function getPostList() {
     dir.map(async post => {
       let { data } = await parsePost(getPost(post), false);
       data.filename = post;
+      data.slug = post.replace(/\.md/g, "");
       return data;
     })
   );
+
+  // TODO: filter posts with incomplete data (like: empty tags, no image)
 
   return postsData;
 }
