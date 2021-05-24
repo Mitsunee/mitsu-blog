@@ -4,6 +4,7 @@ import Link from "next/link";
 
 import Meta from "@components/Meta";
 import getPostList from "@utils/blog/getPostList";
+import filterUnique from "@utils/filter.unique";
 
 function handleSearch(postList, searchQuery) {
   if (searchQuery === "") return postList;
@@ -14,7 +15,7 @@ function handleSearch(postList, searchQuery) {
   );
 }
 
-export default function BlogIndex({ postList }) {
+export default function BlogIndex({ postList, tagList }) {
   const [search, setSearch] = useState("");
   const filteredList = handleSearch(postList, search);
   return (
@@ -26,6 +27,7 @@ export default function BlogIndex({ postList }) {
         route={"blog"}
       />
       <main>
+        <h1>POSTS</h1>
         <input
           type="text"
           value={search}
@@ -35,16 +37,23 @@ export default function BlogIndex({ postList }) {
         {filteredList.length > 0 ? (
           <ul>
             {filteredList.map(post => (
-              <li key={post.slug} title={post.slug}>
+              <li key={post.slug}>
                 <Link href={`/blog/${post.slug}/`}>
-                  <a>{post.title}</a>
+                  <a title={post.slug}>{post.title}</a>
                 </Link>
+                <ul>
+                  {JSON.parse(post.tags).map(tag => (
+                    <li key={tag}>{tag}</li>
+                  ))}
+                </ul>
               </li>
             ))}
           </ul>
         ) : (
           <p>No Posts found for query {`"${search}"`}</p>
         )}
+        <h2>Known Tags</h2>
+        <p>{tagList.join(", ")}</p>
       </main>
     </>
   );
@@ -52,7 +61,12 @@ export default function BlogIndex({ postList }) {
 
 export async function getStaticProps() {
   const postList = await getPostList();
-  // TODO: sort by date
-  // TODO: tags
-  return { props: { postList } };
+
+  // TODO: sort posts by date
+
+  const tagList = postList
+    .reduce((list, post) => list.concat(JSON.parse(post.tags)), [])
+    .filter(filterUnique)
+    .sort(); // sort alphabetically
+  return { props: { postList, tagList } };
 }

@@ -5,7 +5,7 @@ image: "/assets/avi_small.jpg"
 showImage: false
 date: null
 youTubeVideo: null
-tags: "Testing, No Image, Filename"
+tags: "Testing, No Image"
 ---
 
 No Image should display above
