@@ -1,12 +1,13 @@
 import getPostList from "@utils/blog/getPostList";
 import getPost from "@utils/blog/getPost";
 import parsePost from "@utils/blog/parsePost";
+import buildPostData from "@utils/blog/buildPostData";
 
 import Meta from "@components/Meta";
 
 export default function BlogPost({ data, content }) {
-  // TODO: proper header section for blog posts (title, ?)
-  // TODO: proper footer section for blog posts (date, tags)
+  // TODO: proper header section for blog posts (title, date)
+  // TODO: proper footer section for blog posts (permalink)
   // TODO: handle optional image and youtube video
 
   return (
@@ -33,6 +34,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params: { slug } }) {
   const postRaw = await getPost(slug);
-  const { data, content } = await parsePost(postRaw);
+  const { data: rawData, content } = await parsePost(postRaw);
+  const data = buildPostData(rawData, `${slug}.md`);
   return { props: { data, content } };
 }
