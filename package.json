@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "dev": "next dev",
-    "prebuild": "eslint ./components/**/*.js ./pages/**/*.js",
+    "prebuild": "eslint ./src/**/*.js ./pages/**/*.js",
     "build": "next build",
     "postbuild": "next export",
     "start": "next start"
