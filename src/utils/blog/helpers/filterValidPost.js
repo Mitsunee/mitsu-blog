@@ -17,12 +17,9 @@ export default function filterValidPost(post) {
   }
 
   // check converted date
-  if (
-    isNaN(post.date) ||
-    post.hasTime != null ||
-    typeof post.hasTime !== "boolean"
-  ) {
+  if (isNaN(post.date) || typeof post.hasTime !== "boolean") {
     console.warn(`Date was not properly converted for ${post.slug}`);
+    return false;
   }
 
   // check that at least one tag exists
