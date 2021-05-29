@@ -3,7 +3,7 @@ title: "Lorem Ipsum Part 2"
 description: "Enim facilisis gravida neque convallis a cras semper auctor"
 image: "/assets/avi_small.jpg"
 showImage: false
-date: null
+date: "29.5.2021 15:18 +2"
 tags: "Testing, No Image, Lorem Ipsum"
 ---
 

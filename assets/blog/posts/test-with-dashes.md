@@ -3,7 +3,7 @@ title: "Test with Dashes in Filename"
 description: "This blog post tests having dashes in the filename"
 image: "/assets/avi_small.jpg"
 showImage: false
-date: null
+date: "22.5.2021 17:26 +2"
 youTubeVideo: null
 tags: "Testing, No Image"
 ---

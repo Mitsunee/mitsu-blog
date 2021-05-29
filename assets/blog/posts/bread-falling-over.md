@@ -2,7 +2,7 @@
 title: "Bread Falling Over"
 description: "Wow! This Bread stands and then falls over! CONTENT!"
 image: "/temp/bread-falling-over.jpg"
-date: null
+date: "7.1.2021"
 youTubeVideo: "298gcJkdk2E"
 tags: "Video, Things falling over"
 ---

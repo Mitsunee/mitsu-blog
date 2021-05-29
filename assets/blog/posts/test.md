@@ -3,7 +3,7 @@ title: "Test"
 description: "I am testing my implementation of markdown and prism for my blog"
 image: "/assets/avi_small.jpg"
 showImage: true
-date: null
+date: "19.5.2021 17:32 +2"
 youTubeVideo: null
 tags: "Testing, Image, Tag With Spaces In Name"
 ---

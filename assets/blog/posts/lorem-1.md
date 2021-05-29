@@ -3,7 +3,7 @@ title: "Lorem Ipsum Part 1"
 description: "Lorem ipsum dolor sit amet"
 image: "/assets/avi_small.jpg"
 showImage: false
-date: null
+date: "29.5.2021 15:18 +2"
 youTubeVideo: null
 tags: "Testing, No Image, Lorem Ipsum"
 ---

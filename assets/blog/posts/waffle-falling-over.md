@@ -3,7 +3,7 @@ title: "Waffle Falling Over"
 description: "Wow! This Waffle stands and then falls over!!!"
 image: "/temp/waffle-falling-over.jpg"
 showImage: false
-date: null
+date: "14.8.2013"
 youTubeVideo: "sDj72zqZakE"
 tags: "Video, Things falling over"
 ---

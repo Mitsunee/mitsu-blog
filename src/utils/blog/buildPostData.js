@@ -1,4 +1,5 @@
 import buildTags from "./helpers/buildTags";
+import dateStringToUnix from "./helpers/dateStringToUnix";
 
 const postDataDefaults = {
   showImage: true,
@@ -14,11 +15,16 @@ export default function buildPostData(data, post) {
 
   const slug = post.replace(/\.md$/, "");
   const tags = buildTags(data.tags);
+  const date = dateStringToUnix(data.date);
+
+  // throw in case of unparsable date
+  if (date === false) throw new Error(`Could not convert date for ${post}`);
 
   return {
-    ...postDataDefaults,
-    ...data,
-    slug,
-    tags
+    ...postDataDefaults, // default values for optional props showImage and youTubeVideo
+    ...data, // parsed matter
+    ...date, // contains props: date (as timestamp), hasTime
+    slug, // slug as string
+    tags // tags as stringified array
   };
 }

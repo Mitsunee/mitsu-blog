@@ -16,6 +16,15 @@ export default function filterValidPost(post) {
     }
   }
 
+  // check converted date
+  if (
+    isNaN(post.date) ||
+    post.hasTime != null ||
+    typeof post.hasTime !== "boolean"
+  ) {
+    console.warn(`Date was not properly converted for ${post.slug}`);
+  }
+
   // check that at least one tag exists
   if (typeof post.tags !== "string" || JSON.parse(post.tags).length < 1) {
     console.warn(
