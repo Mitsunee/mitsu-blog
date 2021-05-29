@@ -3,6 +3,7 @@ import { useState } from "react";
 import Link from "next/link";
 
 import Meta from "@components/Meta";
+import PostDate from "@components/blog/PostDate";
 import getPostList from "@utils/blog/getPostList";
 import filterUnique from "@utils/filter.unique";
 
@@ -10,9 +11,9 @@ function handleSearch(postList, searchQuery) {
   if (searchQuery === "") return postList;
   const sanitizedQuery = searchQuery.toLowerCase().replace(/[^a-z0-9 ]/g, "");
   if (sanitizedQuery === "") return postList;
-  return postList.filter(({ title }) =>
-    title.toLowerCase().includes(sanitizedQuery)
-  );
+  return postList
+    .filter(({ title }) => title.toLowerCase().includes(sanitizedQuery))
+    .sort(({ date: a }, { date: b }) => a - b);
 }
 
 export default function BlogIndex({ postList, tagList }) {
@@ -42,9 +43,10 @@ export default function BlogIndex({ postList, tagList }) {
                   <a title={post.slug}>{post.title}</a>
                 </Link>
                 <ul>
-                  {JSON.parse(post.tags).map(tag => (
-                    <li key={tag}>{tag}</li>
-                  ))}
+                  <li>
+                    <PostDate date={post.date} hasTime={post.hasTime} />
+                  </li>
+                  <li>{JSON.parse(post.tags).join(", ")}</li>
                 </ul>
               </li>
             ))}
