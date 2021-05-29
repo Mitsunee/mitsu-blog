@@ -2,7 +2,6 @@ import { stylesheet, css } from "astroturf";
 import Link from "next/link";
 
 import Meta from "@components/Meta";
-import TestComponent from "@components/test/test";
 
 // TEMP test astroturf-loader
 const styles = stylesheet`
@@ -16,7 +15,7 @@ const styles = stylesheet`
   }
 `;
 
-const Index = () => {
+export default function Index() {
   return (
     <>
       <Meta
@@ -38,13 +37,10 @@ const Index = () => {
           `}>
           I should be using the accent color via astroturf&#39;s css prop
         </p>
-        <TestComponent />
-        <Link href="/test">
-          <a>Go to test</a>
+        <Link href="/blog">
+          <a>Go to blog</a>
         </Link>
       </main>
     </>
   );
-};
-
-export default Index;
+}
