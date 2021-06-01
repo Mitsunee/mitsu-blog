@@ -7,7 +7,14 @@ module.exports = () => ({
   webpack: config => {
     config.module.rules.push({
       test: /\.js$/,
-      use: ["astroturf/loader"]
+      use: [
+        {
+          loader: "astroturf/loader",
+          options: {
+            useAltLoader: true
+          }
+        }
+      ]
     });
 
     return config;
