@@ -7,19 +7,48 @@ TESTING STYLES
 - tests automatically added :focus rule
 
 **/
+html,
+body {
+  min-height: 100%;
+}
 
 body {
-  background: #211f1f;
+  background-color: #222;
+  background-image: linear-gradient(to top, #141414d9, transparent),
+    linear-gradient(45deg, #141414ff 25%, transparent 25%),
+    linear-gradient(-45deg, #141414ff 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #141414ff 75%),
+    linear-gradient(-45deg, transparent 75%, #141414ff 75%),
+    radial-gradient(ellipse at top, #232323d9, transparent);
+  background-size: cover, 48px 48px, 48px 48px, 48px 48px, 48px 48px, cover;
+  background-position: 0 0, 0 0, 0 24px, 24px -24px, -24px 0px, 0 0;
 }
 
 main {
   color: primary;
-  max-width: 1400px;
-  margin: auto;
-  & h1 {
-    color: accent;
-    &:hover {
-      color: red;
+  font-family: sans;
+  font-size: 16px;
+  line-height: normal;
+  width: 100%;
+  padding: 0px [15px, 20px, 40px, 40px];
+  display: flex;
+  flex-direction: column;
+
+  a {
+    &:link,
+    &:visited {
+      color: inherit;
     }
+    &:hover {
+      color: accent;
+    }
+    &:active {
+      color: accent-pink;
+    }
+  }
+
+  p {
+    font-size: inherit;
+    line-height: 1.2em;
   }
 }

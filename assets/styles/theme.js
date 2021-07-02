@@ -5,11 +5,15 @@ module.exports = {
   colors: {
     primary: "#fffffd",
     accent: "#ff8833",
-    red: "#ff3333"
+    "accent-orange": "#ff8833",
+    "accent-purple": "#8832ff",
+    "accent-yellow": "#ffee32",
+    "accent-pink": "#ff3277"
   },
   fonts: {
-    sans: '"Exo 2", sans-serif' // TODO import fonts in globals.css
+    sans: '"Exo 2", sans-serif'
     // TODO add title font
+    // TODO add code font
   },
   sizes: [
     "23.5%", // 4 col
