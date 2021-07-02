@@ -21,6 +21,5 @@ module.exports = () => ({
   },
   trailingSlash: true,
   reactStrictMode: true,
-  poweredByHeader: false,
-  future: { webpack5: true }
+  poweredByHeader: false
 });
