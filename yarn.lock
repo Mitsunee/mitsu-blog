@@ -1549,6 +1549,14 @@ encoding@0.1.13:
   dependencies:
     iconv-lite "^0.6.2"
 
+enhanced-resolve@^5.7.0:
+  version "5.8.2"
+  resolved "https://registry.yarnpkg.com/enhanced-resolve/-/enhanced-resolve-5.8.2.tgz#15ddc779345cbb73e97c611cd00c01c1e7bf4d8b"
+  integrity sha512-F27oB3WuHDzvR2DOGNTaYy0D5o0cnrv8TeI482VM4kYgQd/FT9lUQwuNsJ0oOHtBUq7eiW5ytqzp7nBFknL+GA==
+  dependencies:
+    graceful-fs "^4.2.4"
+    tapable "^2.2.0"
+
 enhanced-resolve@^5.8.0:
   version "5.8.0"
   resolved "https://registry.yarnpkg.com/enhanced-resolve/-/enhanced-resolve-5.8.0.tgz#d9deae58f9d3773b6a111a5a46831da5be5c9ac0"
@@ -2868,6 +2876,11 @@ nanoid@^3.1.22, nanoid@^3.1.23:
   resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.1.23.tgz#f744086ce7c2bc47ee0a8472574d5c78e4183a81"
   integrity sha512-FiB0kzdP0FFVGDKlRLEQ1BgDzU87dy5NnzjeW9YZNt+/c3+q82EQDUwniSAUxp/F0gFNI1ZhKU1FqYsMuqZVnw==
 
+nanostores@^0.3.3:
+  version "0.3.3"
+  resolved "https://registry.yarnpkg.com/nanostores/-/nanostores-0.3.3.tgz#3f6a858d3e2700c70c7942301380550f66a8e9ee"
+  integrity sha512-+MemxV/HzzTPJQCvzEmwfIFMAIcDEiod37A5F1ERyKQqtm6hbEfuNokfmJfecYM2gjunlPdPHA5lQ9cwHHSYNg==
+
 native-url@0.3.4:
   version "0.3.4"
   resolved "https://registry.yarnpkg.com/native-url/-/native-url-0.3.4.tgz#29c943172aed86c63cee62c8c04db7f5756661f8"
@@ -2884,6 +2897,14 @@ neo-async@^2.6.2:
   version "2.6.2"
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.2.tgz#b4aafb93e3aeb2d8174ca53cf163ab7d7308305f"
   integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
+
+next-transpile-modules@^8.0.0:
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/next-transpile-modules/-/next-transpile-modules-8.0.0.tgz#56375cdc25ae5d23a834195f277fc2737b26cb97"
+  integrity sha512-Q2f2yB0zMJ8KJbIYAeZoIxG6cSfVk813zr6B5HzsLMBVcJ3FaF8lKr7WG66n0KlHCwjLSmf/6EkgI6QQVWHrDw==
+  dependencies:
+    enhanced-resolve "^5.7.0"
+    escalade "^3.1.1"
 
 next@^11.0.1:
   version "11.0.1"
@@ -4974,11 +4995,6 @@ yocto-queue@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/yocto-queue/-/yocto-queue-0.1.0.tgz#0294eb3dee05028d31ee1a5fa2c556a6aaf10a1b"
   integrity sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==
-
-zustand@^3.5.1:
-  version "3.5.1"
-  resolved "https://registry.yarnpkg.com/zustand/-/zustand-3.5.1.tgz#28970280e830924b185ce064061231957398c1d0"
-  integrity sha512-7J56Ve814z4zap71iaKFD+t65LFI//jEq/Vf55BTSVqJZCm+w9rov8OMBg+YSwIPQk54bfoIWHTrOWuAbpEDMw==
 
 zwitch@^1.0.0:
   version "1.0.5"
