@@ -20,8 +20,10 @@ body {
     linear-gradient(45deg, transparent 75%, #141414ff 75%),
     linear-gradient(-45deg, transparent 75%, #141414ff 75%),
     radial-gradient(ellipse at top, #232323d9, transparent);
-  background-size: cover, 48px 48px, 48px 48px, 48px 48px, 48px 48px, cover;
+  background-size: 100% 100vh, 48px 48px, 48px 48px, 48px 48px, 48px 48px,
+    100% 100vh;
   background-position: 0 0, 0 0, 0 24px, 24px -24px, -24px 0px, 0 0;
+  background-attachment: fixed, scroll, scroll, scroll, scroll, fixed;
 }
 
 main {
