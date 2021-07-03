@@ -47,6 +47,18 @@ export default function Index({ themeDebug }) {
         <Link href="/blog">
           <a>Go to blog</a>
         </Link>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
       </main>
     </>
   );

@@ -25,14 +25,16 @@ body {
 }
 
 main {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  padding: 0px [15px, 20px, 40px, 40px];
   color: primary;
   font-family: sans;
   font-size: 16px;
   line-height: normal;
-  width: 100%;
-  padding: 0px [15px, 20px, 40px, 40px];
-  display: flex;
-  flex-direction: column;
 
   a {
     &:link,
