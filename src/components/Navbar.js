@@ -3,6 +3,8 @@ import { useRouter } from "next/router";
 
 import { useInView } from "@utils/hooks/useInView";
 import { useThemeBreakpoint } from "@utils/hooks/useThemeBreakpoint";
+import routes from "@utils/routes";
+import NavItem from "@components/NavItem";
 
 const styles = stylesheet`
   .nav {
@@ -11,8 +13,9 @@ const styles = stylesheet`
     align-items: center;
     position: sticky;
     top: -1px;
-    height: 50px;
     z-index: 1000;
+    height: 50px;
+    padding: 0px [15px, 20px, 40px, 40px];
     color: primary;
     background-color: #121212F0;
     box-shadow: 0px 3px 12px 4px #121212CC;
@@ -24,16 +27,29 @@ const styles = stylesheet`
     justify-content: center;
     align-items: center;
     height: 100%;
-
   }
 
   .logo {
     display: block;
-    margin: 0px [5px, 10px, 15px, 20px];
+    margin: 0px [15px, 20px, 40px, 40px] 0px 0px;
     width: 100%;
     max-width: 25vw;
     height: auto;
     transition: width 0.25s ease-in-out;
+  }
+
+  .navItemsWrapper {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .navSpacer {
+    flex-grow: 1;
+    height: 100%;
   }
 `;
 
@@ -55,12 +71,23 @@ export default function Navbar({ headerRef }) {
           }}
         />
       </div>
-      {
-        // DEBUG
-        `${currentBreakpoint > breakpoints[1] ? "desktop" : "mobile"} ${
-          router.asPath
-        }`
-      }
+      {currentBreakpoint > breakpoints[hideLogo ? 1 : 2] ? (
+        <ul className={styles.navItemsWrapper}>
+          {routes.map(({ name, path, test }) => (
+            <NavItem
+              key={name}
+              name={name}
+              path={path}
+              isCurrentRoute={test.test(router.asPath)}
+            />
+          ))}
+        </ul>
+      ) : (
+        <>
+          <div className={styles.navSpacer} />
+          <button>PLACEHOLDER BUTTON</button>
+        </>
+      )}
     </nav>
   );
 }
