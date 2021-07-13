@@ -17,7 +17,8 @@ const styles = stylesheet`
     height: 50px;
     padding: 0px [15px, 20px, 40px, 40px];
     color: primary;
-    background-color: #121212F0;
+    background-color: #10101075;
+    backdrop-filter: blur(5px);
     box-shadow: 0px 3px 12px 4px #121212CC;
     user-select: none;
   }
