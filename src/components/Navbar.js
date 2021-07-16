@@ -15,7 +15,7 @@ const styles = stylesheet`
     top: -1px;
     z-index: 1000;
     height: 50px;
-    padding: 0px [15px, 20px, 40px, 40px];
+    padding: 0px 20px;
     color: primary;
     background-color: #10101075;
     backdrop-filter: blur(5px);
