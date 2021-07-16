@@ -15,12 +15,10 @@ import Header from "@components/Header";
 function MyApp({ Component, pageProps }) {
   const loading = useRouterLoading();
   const Loading = () => <>LOADING</>; // PLACEHOLDER loading component goes here
-  return loading ? (
-    <Loading />
-  ) : (
+  return (
     <>
       <Header />
-      <Component {...pageProps} />
+      {loading ? <Loading /> : <Component {...pageProps} />}
     </>
   );
 }
