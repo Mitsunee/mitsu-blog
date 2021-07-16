@@ -3,6 +3,7 @@ import "@styles/globals.css"; // TODO global stylesheet
 import "@styles/prism.css"; // TODO adjust to match site design
 import { useRouterLoading } from "@utils/hooks/useRouterLoading";
 import Header from "@components/Header";
+import Loading from "@components/Loading";
 
 /* TODO:
   - fonts (Exo 2 as sans, ??? as alt, Fira Code as monospace)
@@ -14,7 +15,6 @@ import Header from "@components/Header";
 
 function MyApp({ Component, pageProps }) {
   const loading = useRouterLoading();
-  const Loading = () => <>LOADING</>; // PLACEHOLDER loading component goes here
   return (
     <>
       <Header />
