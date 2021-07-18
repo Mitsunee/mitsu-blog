@@ -21,45 +21,41 @@ export default function BlogIndex({ postList, tagList }) {
   const [search, setSearch] = useState("");
   const filteredList = handleSearch(postList, search);
   return (
-    <>
+    <MainContent>
       <Meta
         title={"Blog"}
         description={"Mitsunee's Blog"}
         // TODO: BlogIndex meta image
       />
-      <main>
-        <MainContent>
-          <h1>POSTS</h1>
-          <input
-            type="text"
-            value={search}
-            placeholder={"Search"}
-            onChange={e => setSearch(e.target.value)}
-          />
-          {filteredList.length > 0 ? (
-            <ul>
-              {filteredList.map(post => (
-                <li key={post.slug}>
-                  <Link href={`/blog/${post.slug}/`}>
-                    <a title={post.slug}>{post.title}</a>
-                  </Link>
-                  <ul>
-                    <li>
-                      <PostDate date={post.date} hasTime={post.hasTime} />
-                    </li>
-                    <li>{JSON.parse(post.tags).join(", ")}</li>
-                  </ul>
+      <h1>POSTS</h1>
+      <input
+        type="text"
+        value={search}
+        placeholder={"Search"}
+        onChange={e => setSearch(e.target.value)}
+      />
+      {filteredList.length > 0 ? (
+        <ul>
+          {filteredList.map(post => (
+            <li key={post.slug}>
+              <Link href={`/blog/${post.slug}/`}>
+                <a title={post.slug}>{post.title}</a>
+              </Link>
+              <ul>
+                <li>
+                  <PostDate date={post.date} hasTime={post.hasTime} />
                 </li>
-              ))}
-            </ul>
-          ) : (
-            <p>No Posts found for query {`"${search}"`}</p>
-          )}
-          <h2>Known Tags</h2>
-          <p>{tagList.join(", ")}</p>
-        </MainContent>
-      </main>
-    </>
+                <li>{JSON.parse(post.tags).join(", ")}</li>
+              </ul>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>No Posts found for query {`"${search}"`}</p>
+      )}
+      <h2>Known Tags</h2>
+      <p>{tagList.join(", ")}</p>
+    </MainContent>
   );
 }
 

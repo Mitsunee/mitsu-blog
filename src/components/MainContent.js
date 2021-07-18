@@ -2,40 +2,55 @@ import { stylesheet } from "astroturf";
 
 const styles = stylesheet`
   .main {
-    width: [98%, 95%, 90%];
+    width: [95%, 95%, 90%];
     max-width: [450px, 600px, 800px, 1200px];
-    margin: 1.5em auto 3em;
-    padding: 2em;
-    padding-bottom: 3em;
+    margin: 1.5rem auto 3rem;
+    padding-bottom: 3rem;
     color: primary;
-    background-color: #10101075;
+    background: linear-gradient(to bottom, #28282875, #1B1B1B75);
+    border: 1px solid black;
+    border-radius: 0.5rem;
     backdrop-filter: blur(5px);
     box-shadow: 3px 3px 12px 4px #121212CC;
     color: primary;
     font-family: sans;
-    font-size: 16px;
+    font-size: 1rem;
     line-height: normal;
 
-    & :first-child {
-      margin-top: 0px;
+    p, h1, h2, h3, & > img, & figure > figcaption {
+      padding-right: 2rem;
+      padding-left: 2rem;
     }
 
-    & :last-child {
-      margin-bottom: 0px;
+    figure, & > img, div[class="remark-highlight"] {
+      width: 90%;
+      margin: 1.5rem auto;
+    }
+
+    & > img, & figure > img {
+      object-fit: contain;
+      height: auto;
     }
 
     a {
       transition: color 250ms ease-in-out;
+
       &:link,
       &:visited {
         color: inherit;
       }
-      &:hover {
+
+      &:hover, &:focus {
         color: accent;
       }
+
       &:active {
         color: accent-pink;
       }
+    }
+
+    h1, h2, h3 {
+      font-family: title;
     }
 
     p {
@@ -43,9 +58,18 @@ const styles = stylesheet`
       line-height: 1.2em;
     }
 
-    div[class="remark-highlight"] {
-      width: 90%;
-      margin: 1.5em auto;
+    figure {
+      display: flex;
+      flex-direction: column;
+
+      img {
+        width: 100%;
+      }
+
+      figcaption {
+        margin: 1.5rem 0px;
+        font-size: 0.8em;
+      }
     }
   }
 `;
@@ -56,10 +80,10 @@ export default function MainContent({
   style = undefined
 }) {
   return (
-    <section
+    <main
       className={className ? `${styles.main} ${className}` : styles.main}
       style={style}>
       {children}
-    </section>
+    </main>
   );
 }

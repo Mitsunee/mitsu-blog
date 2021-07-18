@@ -16,18 +16,3 @@ body {
   background-position: 0 0, 0 0, 0 24px, 24px -24px, -24px 0px, 0 0;
   background-attachment: fixed, scroll, scroll, scroll, scroll, fixed;
 }
-
-main {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  padding: 0px 20px;
-}
-
-h1,
-h2,
-h3 {
-  font-family: title;
-}

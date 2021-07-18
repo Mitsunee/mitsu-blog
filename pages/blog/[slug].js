@@ -13,25 +13,21 @@ export default function BlogPost({ data, content }) {
   // TODO: handle optional image and youtube video
 
   return (
-    <>
+    <MainContent>
       <Meta
         title={data.title}
         description={data.description}
         image={data.image}
       />
-      <main>
-        <MainContent>
-          <h1>{data.title}</h1>
-          <PostDate date={data.date} hasTime={data.hasTime} />
-          <div dangerouslySetInnerHTML={{ __html: content }} />
-          <h3>Tags (temp)</h3>
-          <p>{JSON.parse(data.tags).join(", ")}</p>
-          <p>
-            <a href={`/blog/${data.slug}/`}>Permalink</a>
-          </p>
-        </MainContent>
-      </main>
-    </>
+      <h1>{data.title}</h1>
+      <PostDate date={data.date} hasTime={data.hasTime} />
+      <div dangerouslySetInnerHTML={{ __html: content }} />
+      <h3>Tags (temp)</h3>
+      <p>{JSON.parse(data.tags).join(", ")}</p>
+      <p>
+        <a href={`/blog/${data.slug}/`}>Permalink</a>
+      </p>
+    </MainContent>
   );
 }
 
