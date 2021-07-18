@@ -1,12 +1,12 @@
 import { createStore } from "nanostores";
 
 export const clientStore = createStore(() => {
-  try {
+  if (typeof window !== "undefined") {
     clientStore.set({
       width: window.innerWidth,
       height: window.innerHeight
     });
-  } catch {
+  } else {
     clientStore.set({
       width: 0,
       height: 0
@@ -15,19 +15,15 @@ export const clientStore = createStore(() => {
 });
 
 function updateClient() {
-  try {
+  if (typeof window !== "undefined") {
     clientStore.set({
       width: window.innerWidth,
       height: window.innerHeight
     });
-  } catch {
-    // do nothing on server
   }
 }
 
-try {
+if (typeof window !== "undefined") {
   window.addEventListener("resize", updateClient);
   updateClient();
-} catch {
-  // do nothing on server
 }
