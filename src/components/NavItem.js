@@ -7,6 +7,7 @@ const styles = stylesheet`
     max-width: 250px;
     border-bottom: 3px solid transparent;
     list-style: none;
+    transition: border-color 250ms ease-in-out;
 
     a {
       display: flex;
@@ -16,6 +17,7 @@ const styles = stylesheet`
       height: 100%;
       text-decoration: none;
       font-weight: 700;
+      transition: color 250ms ease-in-out;
     }
 
     &:not(:last-of-type) {

@@ -25,6 +25,7 @@ const styles = stylesheet`
     }
 
     a {
+      transition: color 250ms ease-in-out;
       &:link,
       &:visited {
         color: inherit;

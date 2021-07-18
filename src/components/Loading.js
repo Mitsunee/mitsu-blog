@@ -6,9 +6,10 @@ const styles = stylesheet`
     font-size: 16px;
     color: primary;
     h1 {
+      margin: 1em auto 1.5em;
+      font-family: title;
       font-size: 3em;
       text-align: center;
-      margin: 1em auto 1.5em;
     }
   }
 

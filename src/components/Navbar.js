@@ -21,6 +21,7 @@ const styles = stylesheet`
     backdrop-filter: blur(5px);
     box-shadow: 0px 3px 12px 4px #121212CC;
     user-select: none;
+    font-family: title;
   }
 
   .logoWrapper {
