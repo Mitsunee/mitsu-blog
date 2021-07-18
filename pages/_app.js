@@ -4,6 +4,7 @@ import "@styles/prism.css"; // TODO adjust to match site design
 import { useRouterLoading } from "@utils/hooks/useRouterLoading";
 import Header from "@components/Header";
 import Loading from "@components/Loading";
+import Footer from "@components/Footer";
 
 /* TODO:
   - fonts (Exo 2 as sans, ??? as alt, Fira Code as monospace)
@@ -19,6 +20,7 @@ function MyApp({ Component, pageProps }) {
     <>
       <Header />
       {loading ? <Loading /> : <Component {...pageProps} />}
+      <Footer />
     </>
   );
 }
