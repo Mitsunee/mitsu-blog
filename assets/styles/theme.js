@@ -11,9 +11,9 @@ module.exports = {
     "accent-pink": "#ff3277"
   },
   fonts: {
-    sans: '"Exo 2", sans-serif'
-    // TODO add title font
-    // TODO add code font
+    sans: '"Open Sans", sans-serif',
+    title: '"Exo 2", sans-serif',
+    code: '"Fira Code", monospace'
   },
   sizes: [
     "23.5%", // 4 col

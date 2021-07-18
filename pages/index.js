@@ -21,7 +21,6 @@ export default function Index({ themeDebug }) {
           "Freelance Frontend Dev | Weeb | Linux user | Music-Addict | rants too much"
         }
         image={"assets/avi_small.jpg"}
-        route={""}
       />
       <main>
         <MainContent className={styles.main}>

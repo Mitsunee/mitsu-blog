@@ -26,7 +26,6 @@ export default function BlogIndex({ postList, tagList }) {
         title={"Blog"}
         description={"Mitsunee's Blog"}
         // TODO: BlogIndex meta image
-        route={"blog"}
       />
       <main>
         <MainContent>

@@ -18,7 +18,6 @@ export default function BlogPost({ data, content }) {
         title={data.title}
         description={data.description}
         image={data.image}
-        route={`blog/${data.slug}`}
       />
       <main>
         <MainContent>
