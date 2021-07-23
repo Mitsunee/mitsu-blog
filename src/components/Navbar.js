@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 
 import { useInView } from "@utils/hooks/useInView";
 import { useThemeBreakpoint } from "@utils/hooks/useThemeBreakpoint";
-import routes from "@utils/routes";
+import { navRoutes } from "@utils/routes";
 import NavItem from "@components/NavItem";
 
 const styles = stylesheet`
@@ -75,7 +75,7 @@ export default function Navbar({ headerRef }) {
       </div>
       {currentBreakpoint > breakpoints[hideLogo ? 1 : 2] ? (
         <ul className={styles.navItemsWrapper}>
-          {routes.map(({ name, path, test }) => (
+          {navRoutes.map(({ name, path, test }) => (
             <NavItem
               key={name}
               name={name}

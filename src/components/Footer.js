@@ -1,26 +1,28 @@
 import { stylesheet } from "astroturf";
+import Link from "next/link";
 
-//import { useThemeBreakpoint } from "@utils/hooks/useThemeBreakpoint";
+import { useThemeBreakpoint } from "@utils/hooks/useThemeBreakpoint";
 import { useFooterFixed } from "@utils/hooks/useFooterFixed";
+import { footerRoutes } from "@utils/routes";
 import { IconGithub, IconTwitter } from "@components/icons";
 
 const styles = stylesheet`
   .footer {
     display: flex;
-    flex-direction: [column, column, row];
+    flex-direction: [column, row];
     justify-content: space-between;
     align-items: center;
     grid-gap: 1.5rem;
     width: 100%;
-    height: 50px;
+    height: [unset, 50px];
     margin-top: 1.5rem;
-    padding: [1.5rem, 1.5rem, 0px] 20px 0px;
+    padding: [1.5rem, 0px] 20px;
     color: primary;
     background-color: #10101075;
     backdrop-filter: blur(5px);
     box-shadow: 0px -3px 12px 4px #121212CC;
     user-select: none;
-    font-family: sans;
+    font-family: title;
 
     &.fixed {
       position: fixed;
@@ -30,7 +32,7 @@ const styles = stylesheet`
     }
   }
 
-  .socials {
+  .socials, .links {
     display: flex;
     flex-direction: row;
     grid-gap: 1em;
@@ -39,6 +41,7 @@ const styles = stylesheet`
   .socialIcon {
     width: 1.5em;
     height: 1.5em;
+    transition: fill 250ms ease-in-out;
   }
 
   .iconGithub {
@@ -59,10 +62,22 @@ const styles = stylesheet`
     flex-grow: 1;
     height: 100%;
   }
+
+  .links > a {
+    color: primary;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 250ms ease-in-out;
+
+    &:hover {
+      color: accent;
+      text-decoration: underline;
+    }
+  }
 `;
 
 export default function Footer() {
-  //const [currentBreakpoint, breakpoints] = useThemeBreakpoint();
+  const [currentBreakpoint, breakpoints] = useThemeBreakpoint();
   const footerFixed = useFooterFixed();
 
   return (
@@ -70,7 +85,7 @@ export default function Footer() {
       className={
         footerFixed ? `${styles.footer} ${styles.fixed}` : styles.footer
       }>
-      <div>© {new Date().getUTCFullYear()} Mitsunee</div>
+      <section>© {new Date().getUTCFullYear()} Mitsunee</section>
       <section className={styles.socials}>
         <IconTwitter
           href="https://twitter.com/Mitsunee"
@@ -81,7 +96,16 @@ export default function Footer() {
           className={`${styles.socialIcon} ${styles.iconGithub}`}
         />
       </section>
-      <div className={styles.footerSpacer} />
+      {currentBreakpoint >= breakpoints[1] && (
+        <div className={styles.footerSpacer} />
+      )}
+      <section className={styles.links}>
+        {footerRoutes.map(({ name, path }) => (
+          <Link key={name} href={path}>
+            <a>{name}</a>
+          </Link>
+        ))}
+      </section>
     </footer>
   );
 }
