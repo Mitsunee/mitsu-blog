@@ -2,6 +2,7 @@ import { stylesheet } from "astroturf";
 
 //import { useThemeBreakpoint } from "@utils/hooks/useThemeBreakpoint";
 import { useFooterFixed } from "@utils/hooks/useFooterFixed";
+import { IconGithub, IconTwitter } from "@components/icons";
 
 const styles = stylesheet`
   .footer {
@@ -29,6 +30,31 @@ const styles = stylesheet`
     }
   }
 
+  .socials {
+    display: flex;
+    flex-direction: row;
+    grid-gap: 1em;
+  }
+
+  .socialIcon {
+    width: 1.5em;
+    height: 1.5em;
+  }
+
+  .iconGithub {
+    fill: white;
+    &:hover {
+      fill: #bbb;
+    }
+  }
+
+  .iconTwitter {
+    fill: white;
+    &:hover {
+      fill: #009ef7;
+    }
+  }
+
   .footerSpacer {
     flex-grow: 1;
     height: 100%;
@@ -45,6 +71,16 @@ export default function Footer() {
         footerFixed ? `${styles.footer} ${styles.fixed}` : styles.footer
       }>
       <div>© {new Date().getUTCFullYear()} Mitsunee</div>
+      <section className={styles.socials}>
+        <IconTwitter
+          href="https://twitter.com/Mitsunee"
+          className={`${styles.socialIcon} ${styles.iconTwitter}`}
+        />
+        <IconGithub
+          href="https://www.github.com/Mitsunee"
+          className={`${styles.socialIcon} ${styles.iconGithub}`}
+        />
+      </section>
       <div className={styles.footerSpacer} />
     </footer>
   );
