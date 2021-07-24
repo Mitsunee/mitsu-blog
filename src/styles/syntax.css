@@ -6,7 +6,7 @@ code {
 code,
 pre[class*="language-"] {
   background: background-code;
-  color: #f8f8f2;
+  color: primary;
   text-align: left;
   white-space: pre;
   word-spacing: normal;
@@ -37,11 +37,11 @@ pre[class*="language-"] {
 .token.prolog,
 .token.doctype,
 .token.cdata {
-  color: #8292a2;
+  color: #828282;
 }
 
 .token.punctuation {
-  color: #f8f8f2;
+  color: primary;
 }
 
 .token.namespace {
@@ -53,12 +53,12 @@ pre[class*="language-"] {
 .token.constant,
 .token.symbol,
 .token.deleted {
-  color: #f92672;
+  color: accent;
 }
 
 .token.boolean,
 .token.number {
-  color: #ae81ff;
+  color: accent-yellow;
 }
 
 .token.selector,
@@ -67,7 +67,7 @@ pre[class*="language-"] {
 .token.char,
 .token.builtin,
 .token.inserted {
-  color: #a6e22e;
+  color: accent-yellow;
 }
 
 .token.operator,
@@ -76,23 +76,23 @@ pre[class*="language-"] {
 .language-css .token.string,
 .style .token.string,
 .token.variable {
-  color: #f8f8f2;
+  color: primary;
 }
 
 .token.atrule,
 .token.attr-value,
 .token.function,
 .token.class-name {
-  color: #e6db74;
+  color: accent;
 }
 
 .token.keyword {
-  color: #66d9ef;
+  color: accent-purple;
 }
 
 .token.regex,
 .token.important {
-  color: #fd971f;
+  color: accent-pink;
 }
 
 .token.important,

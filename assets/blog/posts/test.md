@@ -16,11 +16,15 @@ I **am** using [Next] with [Remark] and [Prism] :)
 import remark from "remark";
 import html from "remark-html";
 import prism from "remark-prism";
+// TODO: add plugin for image figures
 
 export default async function parseMarkdown(markdown) {
   const result = await remark().use(html).use(prism).process(markdown);
   return result.toString();
 }
+
+const foobar = true;
+const reg = /foo[bar]+/g;
 ```
 
 [next]: https://nextjs.org

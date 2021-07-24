@@ -6,7 +6,7 @@ module.exports = {
     primary: "#fffffd",
     accent: "#ff8833",
     "accent-orange": "#ff8833",
-    "accent-purple": "#8832ff",
+    "accent-purple": "#8872ff",
     "accent-yellow": "#ffee32",
     "accent-pink": "#ff3277",
     "background-code": "#3a3a3a99",
