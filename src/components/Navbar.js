@@ -17,7 +17,7 @@ const styles = stylesheet`
     height: 50px;
     padding: 0px 20px;
     color: primary;
-    background-color: #10101075;
+    background-color: background-black;
     backdrop-filter: blur(5px);
     box-shadow: 0px 3px 12px 4px #121212CC;
     user-select: none;

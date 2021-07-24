@@ -1,5 +1,5 @@
 const chalk = require("chalk");
-const theme = require("./assets/styles/theme");
+const theme = require("./src/styles/theme");
 
 const plugins = [
   "postcss-color-hex-alpha",

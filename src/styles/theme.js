@@ -8,18 +8,13 @@ module.exports = {
     "accent-orange": "#ff8833",
     "accent-purple": "#8832ff",
     "accent-yellow": "#ffee32",
-    "accent-pink": "#ff3277"
+    "accent-pink": "#ff3277",
+    "background-code": "#3a3a3a99",
+    "background-black": "#10101075"
   },
   fonts: {
     sans: '"Open Sans", sans-serif',
     title: '"Exo 2", sans-serif',
     code: '"Fira Code", monospace'
-  },
-  sizes: [
-    "23.5%", // 4 col
-    "32.5%", // 3 col
-    "48.5%", // 2 col
-    "98%" // 1 col
-  ],
-  space: [0] // TODO figure out common spacings?
+  }
 };
