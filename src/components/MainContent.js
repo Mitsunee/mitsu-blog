@@ -17,19 +17,13 @@ const styles = stylesheet`
     font-size: 1rem;
     line-height: normal;
 
-    p, h1, h2, h3, & > img, & figure > figcaption {
-      padding-right: 2rem;
-      padding-left: 2rem;
-    }
-
-    figure, & > img, div[class="remark-highlight"] {
-      width: 90%;
-      margin: 1.5rem auto;
-    }
-
-    & > img, & figure > img {
-      object-fit: contain;
-      height: auto;
+    p,
+    h1, h2, h3,
+    & > img, & figure > figcaption {
+      margin-right: 2rem;
+      margin-left: 2rem;
+      margin-top: 0.75em;
+      margin-bottom: 0.75em;
     }
 
     a {
@@ -49,13 +43,31 @@ const styles = stylesheet`
       }
     }
 
+    p {
+      font-size: inherit;
+      line-height: 1.2em;
+    }
+
     h1, h2, h3 {
       font-family: title;
     }
 
-    p {
-      font-size: inherit;
-      line-height: 1.2em;
+    hr {
+      margin: 1rem auto;
+      height: 0px;
+      width: 90%;
+      border: 0px;
+      border-bottom: 1px solid theme(colors.primary);
+      opacity: 0.25;
+    }
+
+    figure, & > img, div[class="remark-highlight"] {
+      width: 90%;
+      margin: 1.5rem auto;
+    }
+
+    & > img, & figure > img {
+      height: auto;
     }
 
     figure {
@@ -63,6 +75,7 @@ const styles = stylesheet`
       flex-direction: column;
 
       img {
+        object-fit: contain;
         width: 100%;
       }
 
@@ -70,6 +83,20 @@ const styles = stylesheet`
         margin: 1.5rem 0px;
         font-size: 0.8em;
       }
+    }
+
+    ul, ol {
+      margin: 0.75em 2rem;
+      padding: 0px;
+
+    }
+
+    :not(li) > ul, :not(li) > ol {
+      margin-left: 3rem;
+    }
+
+    li > ul, li > ol {
+      margin: 0.1em 1.5em;
     }
   }
 `;

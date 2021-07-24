@@ -23,6 +23,9 @@ export default function Index({ themeDebug }) {
         image={"assets/avi_small.jpg"}
       />
       <h1>Hello, world!</h1>
+      <h2>Hello Hello!</h2>
+      <h3>Foobar</h3>
+      <hr />
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Morbi tristique
@@ -35,6 +38,7 @@ export default function Index({ themeDebug }) {
         nisi porta. Tortor aliquam nulla facilisi cras fermentum. Vitae proin
         sagittis nisl rhoncus mattis rhoncus urna.
       </p>
+      <hr />
       <div dangerouslySetInnerHTML={{ __html: themeDebug }} />
     </MainContent>
   );
