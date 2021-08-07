@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { stylesheet } from "astroturf";
+import { useRouter } from "next/router";
 
 const styles = stylesheet`
   .navItem {
@@ -46,7 +47,11 @@ const styles = stylesheet`
   }
 `;
 
-export default function NavItem({ name, path, isCurrentRoute = false }) {
+export default function NavItem({ route }) {
+  const router = useRouter();
+  const { path, name, test } = route;
+  const isCurrentRoute = test.test(router.asPath);
+
   return (
     <li
       className={`${styles.navItem}${

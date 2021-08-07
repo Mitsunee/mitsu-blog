@@ -1,10 +1,12 @@
+import { useState } from "react";
 import { stylesheet } from "astroturf";
-import { useRouter } from "next/router";
 
 import { useInView } from "@utils/hooks/useInView";
 import { useThemeBreakpoint } from "@utils/hooks/useThemeBreakpoint";
 import { navRoutes } from "@utils/routes";
 import NavItem from "@components/NavItem";
+import MobileNav from "@components/MobileNav";
+import { IconHamburger } from "@components/icons";
 
 const styles = stylesheet`
   .nav {
@@ -40,7 +42,7 @@ const styles = stylesheet`
     transition: width 0.25s ease-in-out;
   }
 
-  .navItemsWrapper {
+  .itemsWrapper {
     display: flex;
     flex-direction: row;
     flex-grow: 1;
@@ -49,47 +51,68 @@ const styles = stylesheet`
     padding: 0;
   }
 
-  .navSpacer {
+  .spacer {
     flex-grow: 1;
     height: 100%;
+  }
+
+  .hamburger {
+    height: 32px;
+    width: 32px;
+    fill: white;
+    cursor: pointer;
+
+    &:hover {
+      fill: #bbb;
+    }
+    &:focus {
+      /* remove this block if there's a good way to blur on press */
+    }
   }
 `;
 
 export default function Navbar({ headerRef }) {
-  const router = useRouter();
   const hideLogo = useInView(headerRef, true);
   const [currentBreakpoint, breakpoints] = useThemeBreakpoint();
+  const [openNav, setOpenNav] = useState(false);
+
+  const isMobile =
+    openNav || currentBreakpoint <= breakpoints[hideLogo ? 1 : 2];
+
+  const handleHamburgerPress = () => setOpenNav(state => !state);
 
   return (
-    <nav className={styles.nav}>
-      <div className={styles.logoWrapper}>
-        <img
-          src="/assets/logo3.png"
-          alt="Mitsunee"
-          className={styles.logo}
-          style={{
-            width: hideLogo ? "0px" : "200px",
-            margin: hideLogo ? 0 : ""
-          }}
-        />
-      </div>
-      {currentBreakpoint > breakpoints[hideLogo ? 1 : 2] ? (
-        <ul className={styles.navItemsWrapper}>
-          {navRoutes.map(({ name, path, test }) => (
-            <NavItem
-              key={name}
-              name={name}
-              path={path}
-              isCurrentRoute={test.test(router.asPath)}
+    <>
+      <nav className={styles.nav}>
+        <div className={styles.logoWrapper}>
+          <img
+            src="/assets/logo3.png"
+            alt="Mitsunee"
+            className={styles.logo}
+            style={{
+              width: hideLogo ? "0px" : "200px",
+              margin: hideLogo ? 0 : ""
+            }}
+          />
+        </div>
+        {!isMobile ? (
+          <ul className={styles.itemsWrapper}>
+            {navRoutes.map(navRoute => (
+              <NavItem key={navRoute.name} route={navRoute} />
+            ))}
+          </ul>
+        ) : (
+          <>
+            <div className={styles.spacer} />
+            <IconHamburger
+              className={styles.hamburger}
+              onClick={handleHamburgerPress}
+              open={openNav}
             />
-          ))}
-        </ul>
-      ) : (
-        <>
-          <div className={styles.navSpacer} />
-          <button>PLACEHOLDER BUTTON</button>
-        </>
-      )}
-    </nav>
+          </>
+        )}
+      </nav>
+      {isMobile && <MobileNav open={openNav} />}
+    </>
   );
 }
