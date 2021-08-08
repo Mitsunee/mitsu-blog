@@ -4,6 +4,7 @@ import parsePost from "@utils/blog/parsePost";
 import buildPostData from "@utils/blog/buildPostData";
 
 import Meta from "@components/Meta";
+import MainContent from "@components/MainContent";
 import PostDate from "@components/blog/PostDate";
 
 export default function BlogPost({ data, content }) {
@@ -12,24 +13,21 @@ export default function BlogPost({ data, content }) {
   // TODO: handle optional image and youtube video
 
   return (
-    <>
+    <MainContent>
       <Meta
         title={data.title}
         description={data.description}
         image={data.image}
-        route={`blog/${data.slug}`}
       />
-      <main>
-        <h1>{data.title}</h1>
-        <PostDate date={data.date} hasTime={data.hasTime} />
-        <div dangerouslySetInnerHTML={{ __html: content }} />
-        <h3>Tags (temp)</h3>
-        <p>{JSON.parse(data.tags).join(", ")}</p>
-        <p>
-          <a href={`/blog/${data.slug}/`}>Permalink</a>
-        </p>
-      </main>
-    </>
+      <h1>{data.title}</h1>
+      <PostDate date={data.date} hasTime={data.hasTime} />
+      <div dangerouslySetInnerHTML={{ __html: content }} />
+      <h3>Tags (temp)</h3>
+      <p>{JSON.parse(data.tags).join(", ")}</p>
+      <p>
+        <a href={`/blog/${data.slug}/`}>Permalink</a>
+      </p>
+    </MainContent>
   );
 }
 

@@ -1,0 +1,18 @@
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  background-color: #222;
+  background-image: linear-gradient(to top, #141414d9, transparent),
+    linear-gradient(45deg, #141414ff 25%, transparent 25%),
+    linear-gradient(-45deg, #141414ff 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #141414ff 75%),
+    linear-gradient(-45deg, transparent 75%, #141414ff 75%),
+    radial-gradient(ellipse at top, #232323d9, transparent);
+  background-size: 100% 100vh, 48px 48px, 48px 48px, 48px 48px, 48px 48px,
+    100% 100vh;
+  background-position: 0 0, 0 0, 0 24px, 24px -24px, -24px 0px, 0 0;
+  background-attachment: fixed, scroll, scroll, scroll, scroll, fixed;
+}

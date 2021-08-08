@@ -1,7 +1,7 @@
 import matter from "gray-matter";
 import parseMarkdown from "@utils/parseMarkdown";
 
-async function parseToString(rawContent) {
+export async function parseToString(rawContent) {
   const content = await parseMarkdown(rawContent);
   return content.toString();
 }

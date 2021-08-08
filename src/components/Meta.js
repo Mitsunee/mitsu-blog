@@ -1,20 +1,16 @@
 import Head from "next/head";
+import { useRouter } from "next/router";
 
 const Meta = props => {
   const title = props.title ? `${props.title} | Mitsunee` : "Mitsunee";
   const image = props.image || "assets/avi_small.jpg"; // PLACEHOLDER
   const description = props.description || "Mitsunee";
+  const { asPath: route } = useRouter();
   // TODO favicon
   // TODO default image
 
   return (
     <Head>
-      <link rel="shortcut icon" href="/favicon.ico" />
-      <meta
-        property="og:site_name"
-        content="Mitsunee.com"
-        key={"og:site_name"}
-      />
       <title>{title}</title>
       <meta property="og:title" content={title} key={"og:title"} />
       <meta
@@ -33,7 +29,7 @@ const Meta = props => {
       <meta property="og:type" content="website" key={"og:type"} />
       <link
         rel="canonical"
-        href={`https://www.mitsunee.com/${props.route}/`}
+        href={`https://www.mitsunee.com${route === "/" ? "" : route}`}
         key={"canonical"}
       />
     </Head>

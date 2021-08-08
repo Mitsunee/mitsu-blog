@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="24"
+   height="24"
+   viewBox="0 0 24 24"
+   version="1.1"
+   id="svg4"
+   sodipodi:docname="iconmonstr-menu-3-edited.svg"
+   inkscape:version="1.1 (1:1.1+202105261517+ce6663b3b7)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs8">
+    <inkscape:path-effect
+       effect="fillet_chamfer"
+       id="path-effect10"
+       is_visible="true"
+       lpeversion="1"
+       satellites_param="F,0,0,1,0,2,0,1 @ F,0,0,1,0,2,0,1 @ F,0,0,1,0,2,0,1 @ F,0,0,1,0,2,0,1 | F,0,0,1,0,2,0,1 @ F,0,0,1,0,2,0,1 @ F,0,0,1,0,2,0,1 @ F,0,0,1,0,2,0,1 | F,0,0,1,0,2,0,1 @ F,0,0,1,0,2,0,1 @ F,0,0,1,0,2,0,1 @ F,0,0,1,0,2,0,1 | F,0,1,1,0,0.83581278,0,1 @ F,0,0,1,0,0.83581278,0,1 @ F,0,1,1,0,0.83581278,0,1"
+       unit="px"
+       method="auto"
+       mode="F"
+       radius="2"
+       chamfer_steps="1"
+       flexible="false"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false" />
+  </defs>
+  <sodipodi:namedview
+     id="namedview6"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     inkscape:zoom="256"
+     inkscape:cx="22.455078"
+     inkscape:cy="18.757812"
+     inkscape:window-width="1920"
+     inkscape:window-height="1049"
+     inkscape:window-x="1920"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg4">
+    <sodipodi:guide
+       position="44.319018,14.981595"
+       orientation="1,0"
+       id="guide248" />
+    <sodipodi:guide
+       position="23.484663,13.131902"
+       orientation="1,0"
+       id="guide250" />
+    <sodipodi:guide
+       position="23.320312,22"
+       orientation="0,-1"
+       id="guide252" />
+    <sodipodi:guide
+       position="11.671875,18.003906"
+       orientation="0,-1"
+       id="guide254" />
+    <sodipodi:guide
+       position="13.972656,2"
+       orientation="0,-1"
+       id="guide370" />
+    <sodipodi:guide
+       position="11.894531,6.0039062"
+       orientation="0,-1"
+       id="guide372" />
+  </sodipodi:namedview>
+  <path
+     d="M 21.998726,5.9964195 2,5.9996745 A 1.9996745,1.9996745 44.995337 0 1 0,4 2,2 135 0 1 2,2 h 19.998726 a 2,2 45 0 1 2,2 1.9983732,1.9983732 135.05133 0 1 -2,1.9964195 z M 11,10 H 2 a 2,2 135 0 0 -2,2 2,2 45 0 0 2,2 h 9 a 2,2 135 0 0 2,-2 2,2 45 0 0 -2,-2 z M 21.998725,17.99642 2,17.999674 A 2.0003255,2.0003255 134.99534 0 0 0,20 2,2 45 0 0 2,22 h 19.998726 a 1.9999995,1.9999995 134.99999 0 0 2,-2 l -1e-6,-0.0039 a 1.999675,1.999675 44.99533 0 0 -2,-1.999674 z m -5.380832,-7.333101 2.873589,3.748362 a 0.64075549,0.64075549 0 0 0 1.017036,0 l 2.873589,-3.748362 A 0.4124067,0.4124067 63.737349 0 0 23.054812,10 l -6.109624,0 a 0.4124067,0.4124067 116.26265 0 0 -0.327295,0.663319 z"
+     id="path2"
+     inkscape:path-effect="#path-effect10"
+     inkscape:original-d="M 23.998726,5.996094 0,6 V 2 H 23.998726 Z M 13,10 H 0 v 4 H 13 Z M 23.998725,17.996094 0,18 v 4 H 23.998726 Z M 16.109375,10 20,15.075 23.890625,10 Z"
+     sodipodi:nodetypes="ccccccccccccccccccc" />
+</svg>

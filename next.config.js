@@ -1,19 +1,26 @@
+const withTM = require("next-transpile-modules")(["nanostores"]);
 const chalk = require("chalk");
 
 console.log(`${chalk.cyan("info")}  - Using astroturf-loader`);
 console.log(`${chalk.cyan("info")}  - React StrictMode is enabled`);
 
-module.exports = () => ({
+module.exports = withTM({
   webpack: config => {
     config.module.rules.push({
       test: /\.js$/,
-      use: ["astroturf/loader"]
+      use: [
+        {
+          loader: "astroturf/loader",
+          options: {
+            useAltLoader: true
+          }
+        }
+      ]
     });
 
     return config;
   },
   trailingSlash: true,
   reactStrictMode: true,
-  poweredByHeader: false,
-  future: { webpack5: true }
+  poweredByHeader: false
 });
