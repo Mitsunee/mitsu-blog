@@ -8,10 +8,17 @@
   height: 7.5vh;
   padding: 0.75vh [15px, 20px, 40px, 40px];
   background-color: accent;
-  background-image:
-    radial-gradient(circle at center left, theme(colors.accent-yellow), transparent 33%),
-    radial-gradient(circle at center right, theme(colors.accent-pink), transparent 33%);
-  box-shadow: 0px 3px 12px 4px #121212CC;
+  background-image: radial-gradient(
+      circle at center left,
+      theme(colors.accent-yellow),
+      transparent 33%
+    ),
+    radial-gradient(
+      circle at center right,
+      theme(colors.accent-pink),
+      transparent 33%
+    );
+  box-shadow: 0px 3px 12px 4px #121212cc;
   user-select: none;
 }
 

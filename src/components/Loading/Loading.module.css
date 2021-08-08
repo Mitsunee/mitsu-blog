@@ -20,8 +20,9 @@
   animation-iteration-count: infinite;
   animation-timing-function: linear;
 
-  &:after,&:before {
-    content: '';
+  &:after,
+  &:before {
+    content: "";
     position: absolute;
     top: 0px;
     left: 0px;
@@ -46,6 +47,10 @@
 }
 
 @keyframes spinnerAnimation {
-  0% {transform: rotate(0deg)}
-  100% {transform: rotate(360deg)}
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

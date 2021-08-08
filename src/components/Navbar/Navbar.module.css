@@ -10,7 +10,7 @@
   color: primary;
   background-color: background-black;
   backdrop-filter: blur(5px);
-  box-shadow: 0px 3px 12px 4px #121212CC;
+  box-shadow: 0px 3px 12px 4px #121212cc;
   user-select: none;
   font-family: title;
 }

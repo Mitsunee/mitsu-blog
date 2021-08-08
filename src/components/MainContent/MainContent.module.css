@@ -4,19 +4,22 @@
   margin: 1.5rem auto 3rem;
   padding-bottom: 3rem;
   color: primary;
-  background: linear-gradient(to bottom, #28282875, #1B1B1B75);
+  background: linear-gradient(to bottom, #28282875, #1b1b1b75);
   border: 1px solid black;
   border-radius: 0.5rem;
   backdrop-filter: blur(5px);
-  box-shadow: 3px 3px 12px 4px #121212CC;
+  box-shadow: 3px 3px 12px 4px #121212cc;
   color: primary;
   font-family: sans;
   font-size: 1rem;
   line-height: normal;
 
   p,
-  h1, h2, h3,
-  & > img, & figure > figcaption {
+  h1,
+  h2,
+  h3,
+  & > img,
+  & figure > figcaption {
     margin-right: 2rem;
     margin-left: 2rem;
     margin-top: 0.75em;
@@ -31,7 +34,8 @@
       color: inherit;
     }
 
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
       color: accent;
     }
 
@@ -45,7 +49,9 @@
     line-height: 1.2em;
   }
 
-  h1, h2, h3 {
+  h1,
+  h2,
+  h3 {
     font-family: title;
   }
 
@@ -58,12 +64,15 @@
     opacity: 0.25;
   }
 
-  figure, & > img, div[class="remark-highlight"] {
+  figure,
+  & > img,
+  div[class="remark-highlight"] {
     width: 90%;
     margin: 1.5rem auto;
   }
 
-  & > img, & figure > img {
+  & > img,
+  & figure > img {
     height: auto;
   }
 
@@ -82,17 +91,19 @@
     }
   }
 
-  ul, ol {
+  ul,
+  ol {
     margin: 0.75em 2rem;
     padding: 0px;
-
   }
 
-  :not(li) > ul, :not(li) > ol {
+  :not(li) > ul,
+  :not(li) > ol {
     margin-left: 3rem;
   }
 
-  li > ul, li > ol {
+  li > ul,
+  li > ol {
     margin: 0.1em 1.5em;
   }
 }
