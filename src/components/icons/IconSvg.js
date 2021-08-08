@@ -1,22 +1,4 @@
-import { stylesheet } from "astroturf";
-
-const styles = stylesheet`
-  .icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    svg {
-      width: auto;
-      height: 100%;
-    }
-  }
-
-  .cleanButton {
-    background: transparent;
-    border: 0px;
-    padding: 0px;
-  }
-`;
+import styles from "./IconSvg.module.css";
 
 export default function IconSvg({
   children,

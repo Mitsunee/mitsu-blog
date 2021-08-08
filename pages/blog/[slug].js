@@ -3,8 +3,8 @@ import getPost from "@utils/blog/getPost";
 import parsePost from "@utils/blog/parsePost";
 import buildPostData from "@utils/blog/buildPostData";
 
-import Meta from "@components/Meta";
-import MainContent from "@components/MainContent";
+import Meta from "@components/Meta/Meta";
+import MainContent from "@components/MainContent/MainContent";
 import PostDate from "@components/blog/PostDate";
 
 export default function BlogPost({ data, content }) {
