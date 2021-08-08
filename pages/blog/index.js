@@ -1,9 +1,8 @@
 import { useState } from "react";
-//import { stylesheet, css } from "astroturf";
 import Link from "next/link";
 
-import Meta from "@components/Meta";
-import MainContent from "@components/MainContent";
+import Meta from "@components/Meta/Meta";
+import MainContent from "@components/MainContent/MainContent";
 import PostDate from "@components/blog/PostDate";
 import getPostList from "@utils/blog/getPostList";
 import filterUnique from "@utils/filter.unique";

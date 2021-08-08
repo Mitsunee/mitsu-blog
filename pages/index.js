@@ -1,17 +1,9 @@
-import { stylesheet } from "astroturf";
-
 import theme from "@styles/theme";
+import styles from "@styles/page-styles/index.module.css";
 import { parseToString } from "@utils/blog/parsePost";
 
-import Meta from "@components/Meta";
-import MainContent from "@components/MainContent";
-
-// TEMP test astroturf-loader
-const styles = stylesheet`
-  .main {
-    min-height: 150vh;
-  }
-`;
+import Meta from "@components/Meta/Meta";
+import MainContent from "@components/MainContent/MainContent";
 
 export default function Index({ themeDebug }) {
   return (

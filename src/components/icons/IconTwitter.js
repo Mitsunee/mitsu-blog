@@ -1,4 +1,4 @@
-import IconSvg from "@components/icons/IconSvg";
+import IconSvg from "./IconSvg";
 
 export default function IconTwitter(props) {
   return (
