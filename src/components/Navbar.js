@@ -36,10 +36,15 @@ const styles = stylesheet`
   .logo {
     display: block;
     margin: 0px [15px, 20px, 40px, 40px] 0px 0px;
-    width: 100%;
+    width: 200px;
     max-width: 25vw;
     height: auto;
-    transition: width 0.25s ease-in-out;
+    transition: width 0.25s ease-in-out, opacity 0.25s ease-in-out;
+
+    &.logoHidden {
+      width: 0px;
+      opacity: 0;
+    }
   }
 
   .itemsWrapper {
@@ -79,7 +84,30 @@ export default function Navbar({ headerRef }) {
   const isMobile =
     openNav || currentBreakpoint <= breakpoints[hideLogo ? 1 : 2];
 
-  const handleHamburgerPress = () => setOpenNav(state => !state);
+  const handleHamburgerPress = () => {
+    setOpenNav(state => {
+      if (state) {
+        // restore scroll and close nav
+        document.body.style.overflow = "";
+        return false;
+      }
+
+      // lock scrolling
+      document.body.style.overflow = "hidden";
+
+      // scroll past header
+      const navPos = Math.ceil(window.innerHeight * 0.075) + 1;
+      if (navPos > document.documentElement.scrollTop) {
+        setTimeout(
+          () => window.scrollTo({ top: navPos, behaviour: "smooth" }),
+          1
+        );
+      }
+
+      // open nav
+      return true;
+    });
+  };
 
   return (
     <>
@@ -88,11 +116,9 @@ export default function Navbar({ headerRef }) {
           <img
             src="/assets/logo3.png"
             alt="Mitsunee"
-            className={styles.logo}
-            style={{
-              width: hideLogo ? "0px" : "200px",
-              margin: hideLogo ? 0 : ""
-            }}
+            className={
+              hideLogo ? `${styles.logo} ${styles.logoHidden}` : styles.logo
+            }
           />
         </div>
         {!isMobile ? (

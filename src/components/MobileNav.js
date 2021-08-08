@@ -5,6 +5,9 @@ import NavItem from "@components/NavItem";
 
 const styles = stylesheet`
   .nav {
+    position: fixed;
+    top: 50px;
+    z-index: 1001;
     padding: 0px 18px;
     width: 100%;
     color: primary;
@@ -19,6 +22,16 @@ const styles = stylesheet`
     animation-duration: 250ms;
     transform-origin: left top;
     overflow: hidden;
+  }
+
+  @media (max-height: 500px) {
+    .nav {
+      overflow-y: auto;
+      max-height: calc(100vh - 50px);
+    }
+    .navItemsWrapper {
+      height: 500px;
+    }
   }
 
   @keyframes slideDown {
