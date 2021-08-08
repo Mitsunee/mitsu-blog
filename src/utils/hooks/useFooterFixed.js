@@ -1,16 +1,20 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useStore } from "nanostores/react";
 
-import { useClientOnlyEffect } from "@utils/hooks/clientOnly";
+import { useIsClient } from "@utils/hooks/clientOnly";
 import { clientStore } from "@stores/client";
 
 export const useFooterFixed = () => {
   const [footerFixed, setFooterFixed] = useState(false);
   const { height } = useStore(clientStore);
+  const isClient = useIsClient();
 
-  useClientOnlyEffect(() => {
-    const [el] = document.getElementById("__next").getClientRects();
-    setFooterFixed(el.height < height);
+  /* eslint-disable react-hooks/exhaustive-deps */
+  useEffect(() => {
+    if (isClient) {
+      const [el] = document.getElementById("__next").getClientRects();
+      setFooterFixed(el.height < height);
+    }
   });
 
   return footerFixed;

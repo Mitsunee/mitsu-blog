@@ -1,15 +1,10 @@
-import { useState, useEffect, useLayoutEffect } from "react";
-
-export const useClientOnlyEffect =
-  typeof window !== "undefined"
-    ? useLayoutEffect // layout effects are not rendered in serverside rendering
-    : useEffect;
+import { useState, useEffect } from "react";
 
 export function useIsClient() {
   const [isClient, setIsClient] = useState(false);
 
-  useClientOnlyEffect(() => {
-    setIsClient(true);
+  useEffect(() => {
+    if (typeof window !== "undefined") setIsClient(true);
   }, []);
 
   return isClient;
