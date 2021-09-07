@@ -5,7 +5,6 @@
     "es6": true
   },
   "extends": ["next", "next/core-web-vitals", "eslint:recommended"],
-  "plugins": ["prettier"],
   "rules": {
     "@next/next/no-img-element": "off",
     "no-unused-vars": "warn",
