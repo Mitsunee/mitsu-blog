@@ -1,11 +1,9 @@
-import theme from "@styles/theme";
 import styles from "@styles/page-styles/index.module.css";
-import { parseToString } from "@utils/blog/parsePost";
 
 import Meta from "@components/Meta/Meta";
 import MainContent from "@components/MainContent/MainContent";
 
-export default function Index({ themeDebug }) {
+export default function IndexPage() {
   return (
     <MainContent className={styles.main}>
       <Meta
@@ -30,19 +28,6 @@ export default function Index({ themeDebug }) {
         nisi porta. Tortor aliquam nulla facilisi cras fermentum. Vitae proin
         sagittis nisl rhoncus mattis rhoncus urna.
       </p>
-      <hr />
-      <div dangerouslySetInnerHTML={{ __html: themeDebug }} />
     </MainContent>
   );
-}
-
-export async function getStaticProps() {
-  const content = await parseToString(
-    "```json\n" + JSON.stringify(theme, null, 2) + "\n```"
-  );
-  return {
-    props: {
-      themeDebug: content
-    }
-  };
 }

@@ -8,11 +8,6 @@ export const navRoutes = [
     test: /^\/$/
   },
   {
-    name: "Blog",
-    path: "/blog/",
-    test: /^\/blog\/.*/
-  },
-  {
     name: "Projects",
     path: "/projects/",
     test: /^\/projects\/$/
