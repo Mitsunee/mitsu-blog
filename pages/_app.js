@@ -1,6 +1,6 @@
 import "modern-normalize/modern-normalize.css";
+
 import "@styles/globals.css";
-import "@styles/syntax.css";
 import { useRouterLoading } from "@utils/hooks/useRouterLoading";
 import Header from "@components/Header/Header";
 import Loading from "@components/Loading/Loading";

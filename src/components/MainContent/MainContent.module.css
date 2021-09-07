@@ -2,7 +2,7 @@
   width: [95%, 95%, 90%];
   max-width: [450px, 600px, 800px, 1200px];
   margin: 1.5rem auto 3rem;
-  padding-bottom: 3rem;
+  padding: 3rem 2rem;
   color: primary;
   background: linear-gradient(to bottom, #28282875, #1b1b1b75);
   border: 1px solid black;
@@ -20,10 +20,7 @@
   h3,
   & > img,
   & figure > figcaption {
-    margin-right: 2rem;
-    margin-left: 2rem;
-    margin-top: 0.75em;
-    margin-bottom: 0.75em;
+    margin: 0.75em 0px;
   }
 
   a {
