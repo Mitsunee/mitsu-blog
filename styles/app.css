@@ -1,0 +1,126 @@
+:root {
+  --dark: #1c1e21;
+  --grey: #363230;
+  --highlight: #373a43;
+  --primary: #fbeff0;
+  --accent: #ffbb5c;
+  --hover: #e05281;
+  --font-sans: "Atkinson Hyperlegible";
+  --font-title: "Lexend";
+  --speed: 250ms;
+  --ease: ease-out;
+  --hover-scale: 1.075;
+  --bar-height: 4rem;
+  --icon-size: 3rem;
+  --content-width: min(90vw, 1480px);
+}
+
+html,
+body {
+  min-height: 100vh;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--grey);
+  color: var(--primary);
+  font-family: var(--font-sans), sans-serif;
+  line-height: 1.3em;
+}
+
+#__next > header {
+  background-color: var(--dark);
+  width: 100%;
+  height: var(--bar-height);
+  display: flex;
+  align-items: center;
+  padding: 0px 1rem;
+
+  & a {
+    display: block;
+    width: var(--icon-size);
+    height: var(--icon-size);
+
+    & img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+}
+
+#__next > main {
+  display: flex;
+  flex-flow: column nowrap;
+  margin: auto;
+  padding-top: 1rem;
+  padding-bottom: 3rem;
+  min-height: calc(100vh - var(--bar-height));
+  width: 100%;
+}
+
+* {
+  box-sizing: border-box;
+  line-height: 1.3em;
+}
+
+a {
+  text-decoration: underline;
+  color: var(--primary);
+  transition: color var(--speed) var(--ease);
+  &:hover {
+    color: var(--hover);
+  }
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-title);
+  font-weight: 700;
+}
+
+h1 {
+  font-size: 1.5em;
+}
+h2 {
+  font-size: 1.25em;
+}
+
+button,
+input {
+  font-family: inherit;
+}
+
+.content-section {
+  width: 100%;
+  max-width: var(--content-width);
+  margin: 1rem auto;
+}
+
+.content-columns {
+  width: 100%;
+  max-width: var(--content-width);
+  margin: auto;
+
+  @media (--mq-large) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: auto;
+    gap: 1rem;
+  }
+}
+
+.headline {
+  width: max-content;
+  max-width: 100%;
+  background-color: var(--dark);
+  margin: 0.5rem 0px;
+  padding: 0.25rem 0.75rem;
+}
+
+p {
+  text-align: justify;
+}

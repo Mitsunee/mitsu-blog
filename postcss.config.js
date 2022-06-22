@@ -1,3 +1,5 @@
+console.log("using postcss");
+
 module.exports = {
   plugins: {
     "postcss-preset-env": {
