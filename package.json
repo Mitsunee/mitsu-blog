@@ -3,18 +3,49 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "prepare": "simple-git-hooks",
+    "lint": "eslint .",
+    "format": "prettier -w .",
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "start": "next start"
   },
+  "simple-git-hooks": {
+    "pre-commit": "yarn nano-staged"
+  },
+  "nano-staged": {
+    "**/*.{js,jsx,mjs,cjs}": [
+      "eslint",
+      "prettier -w"
+    ],
+    "**/*.{css,json,md,yml}": [
+      "prettier -w"
+    ]
+  },
+  "browserslist": [
+    "last 2 versions",
+    ">1%",
+    "not dead"
+  ],
   "dependencies": {
+    "@foxkit/node-util": "^0.3.0",
+    "classcat": "^5.0.3",
     "next": "12.1.6",
+    "postcss": "^8.4.14",
+    "postcss-preset-env": "^7.7.1",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
   "devDependencies": {
-    "eslint": "8.18.0",
-    "eslint-config-next": "12.1.6"
+    "@types/node": "^18.0.0",
+    "confusing-browser-globals": "^1.0.11",
+    "eslint": "^8.18.0",
+    "eslint-config-foxkit": "^1.1.1",
+    "eslint-config-next": "12.1.6",
+    "eslint-config-prettier": "^8.5.0",
+    "nano-staged": "^0.8.0",
+    "prettier": "^2.7.1",
+    "simple-git-hooks": "^2.8.0",
+    "typescript": "^4.7.4"
   }
 }
