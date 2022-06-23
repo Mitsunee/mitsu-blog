@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import styles from "styles/Home.module.css";
 import { Meta } from "lib/Meta";
 
@@ -14,6 +15,12 @@ export default function Home() {
 
         <p className={styles.description}>
           This website is currently in development
+        </p>
+
+        <p className={styles.description}>
+          <Link href="/post/test">
+            <a>Test post</a>
+          </Link>
         </p>
 
         <div className={styles.grid}>

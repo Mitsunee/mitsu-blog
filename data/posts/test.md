@@ -1,7 +1,6 @@
 ---
-# BUG: prettier interferes with frontmatter :\
-
 title: Test
+date: 2022-06-22 21:02 UTC+2
 description: >-
   Multi-line thingy test
   pls work
@@ -14,10 +13,12 @@ tags:
 
 # This is a test post
 
+I am testing different remark features here. The goal is to support Github Flavoured Markdown with twemoji (using shortcodes similar to github and discord, as well as unicode characters) and prism code blocks
+
 ## gfm tables
 
 | lorem | ipsum |
-| :---- | ----- |
+| :---- | :---: |
 | gfm   | works |
 | I     | hope  |
 
