@@ -94,6 +94,10 @@ input {
   font-family: inherit;
 }
 
+pre {
+  white-space: pre-wrap;
+}
+
 .content-section {
   width: 100%;
   max-width: var(--content-width);
