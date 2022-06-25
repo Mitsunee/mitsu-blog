@@ -2,10 +2,14 @@ import { readdir } from "fs/promises";
 import { resolvePath, getFileName } from "@foxkit/node-util/path";
 import { readFile } from "@foxkit/node-util/fs";
 import { processor } from "lib/processor";
+
+import styles from "styles/BlogPost.module.css";
 import { renderer } from "lib/renderer";
 import { Meta } from "lib/Meta";
+import { Section } from "lib/Section";
+import { Headline } from "lib/Headline";
 
-export default function PostPage({ data, content }) {
+export default function BlogPost({ data, content }) {
   const Content = renderer(content);
   return (
     <>
@@ -14,10 +18,13 @@ export default function PostPage({ data, content }) {
         description={data.description}
         isError={true} // PLACEHOLDER: just in case google comes by early :)
       />
-      <code>
-        <pre>{JSON.stringify(data, null, 2)}</pre>
-      </code>
-      {Content}
+      <Section>
+        <Headline>Debug: Metadata</Headline>
+        <code>
+          <pre>{JSON.stringify(data, null, 2)}</pre>
+        </code>
+      </Section>
+      <Section id={styles.body}>{Content}</Section>
     </>
   );
 }

@@ -1,0 +1,45 @@
+#body {
+  /* base sizes block elements */
+  & table,
+  & pre[class*="language-"] {
+    max-width: 100%;
+    min-width: 60%;
+    margin: 1.5rem auto;
+  }
+
+  /* Headlines */
+  & h1,
+  & h2 {
+    width: max-content;
+    max-width: 100%;
+    background-color: var(--dark);
+    margin: 1rem 0px;
+    padding: 0.25rem 0.75rem;
+  }
+  & h2 {
+    margin-top: 3rem;
+  }
+
+  /* Tables */
+  & table {
+    border-collapse: collapse;
+
+    & thead th,
+    & tbody td {
+      padding: 0.3em;
+    }
+
+    & thead > tr,
+    & tbody > tr:nth-of-type(2n) {
+      & td,
+      & th {
+        background: var(--dark);
+      }
+    }
+
+    & thead th {
+      font-weight: bold;
+      font-size: 1.1em;
+    }
+  }
+}

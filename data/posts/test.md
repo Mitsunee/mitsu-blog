@@ -13,7 +13,14 @@ tags:
 
 # This is a test post
 
-I am testing different remark features here. The goal is to support Github Flavoured Markdown with twemoji (using shortcodes similar to github and discord, as well as unicode characters) and prism code blocks
+I am testing different remark features here. The goal is to support:
+
+- [x] Github Flavoured Markdown
+- twemoji
+  - using shortcodes similar to discord
+  - as unicode characters
+- prism code blocks
+- frontmatter
 
 ## gfm tables
 
@@ -56,7 +63,7 @@ const _regex_test = /\d+\.\d+\.\d+(?:-pre-\d+)?/;
 
 Also styled `inline code blocks` 🦊
 
-## breaks
+## line breaks
 
 Lorem ipsum dolor sit amet,
 consectetur adipisicing elit,
