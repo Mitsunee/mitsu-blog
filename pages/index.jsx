@@ -1,7 +1,7 @@
 import Image from "next/image";
-import Link from "next/link";
 import styles from "styles/Home.module.css";
 import { Meta } from "lib/Meta";
+import { AutoLink } from "lib/AutoLink";
 
 export default function Home() {
   return (
@@ -18,9 +18,7 @@ export default function Home() {
         </p>
 
         <p className={styles.description}>
-          <Link href="/post/test">
-            <a>Test post</a>
-          </Link>
+          <AutoLink href="/post/test">Test post</AutoLink>
         </p>
 
         <div className={styles.grid}>
