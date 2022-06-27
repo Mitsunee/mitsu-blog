@@ -24,7 +24,7 @@ export default function BlogPost({ data, content }) {
           <pre>{JSON.stringify(data, null, 2)}</pre>
         </code>
       </Section>
-      <Section id={styles.body}>{Content}</Section>
+      <article id={styles.body}>{Content}</article>
     </>
   );
 }
