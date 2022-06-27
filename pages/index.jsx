@@ -1,9 +1,13 @@
+import { readFileJson } from "@foxkit/node-util/fs";
+
 import Image from "next/image";
 import styles from "styles/Home.module.css";
 import { Meta } from "lib/Meta";
+import { Section } from "lib/Section";
+import { Headline } from "lib/Headline";
 import { AutoLink } from "lib/AutoLink";
 
-export default function Home() {
+export default function Home({ tags, posts }) {
   return (
     <div className={styles.container}>
       <Meta />
@@ -13,13 +17,18 @@ export default function Home() {
           Welcome to a <a href="https://nextjs.org">Next.js</a> Template :)
         </h1>
 
-        <p className={styles.description}>
-          This website is currently in development
-        </p>
-
-        <p className={styles.description}>
-          <AutoLink href="/post/test">Test post</AutoLink>
-        </p>
+        <Section>
+          <p className={styles.description}>
+            This website is currently in development
+          </p>
+          <p className={styles.description}>
+            <AutoLink href="/post/test">Test post</AutoLink>
+          </p>
+          <Headline>Debug</Headline>
+          <pre>
+            <code>{JSON.stringify({ tags, posts }, null, 2)}</code>
+          </pre>
+        </Section>
 
         <div className={styles.grid}>
           <a href="https://nextjs.org/docs" className={styles.card}>
@@ -65,4 +74,10 @@ export default function Home() {
       </footer>
     </div>
   );
+}
+
+export async function getStaticProps() {
+  // PLACEHOLDER: temporarily output everything here until api route is done
+  const props = await readFileJson("posts.json");
+  return { props };
 }
