@@ -1,7 +1,9 @@
 import { readdir } from "fs/promises";
 import { resolvePath, getFileName } from "@foxkit/node-util/path";
 import { readFile } from "@foxkit/node-util/fs";
+import { slugify } from "modern-diacritics";
 import { processor } from "lib/processor";
+import { dateToEpoch } from "lib/time";
 
 import styles from "styles/BlogPost.module.css";
 import { renderer } from "lib/renderer";
@@ -42,7 +44,19 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const fileContent = await readFile(`data/posts/${params.slug}.md`);
   const processed = await processor.process(fileContent);
-  const data = { ...processed.data, slug: params.slug };
+
+  // process metadata
+  const data = {
+    ...processed.data,
+    slug: params.slug,
+    date: dateToEpoch(processed.data.date),
+    tags: Object.fromEntries(
+      (processed.data.tags || []).map(text => [slugify(text), text])
+    )
+  };
+  if (data.editedAt) {
+    data.editedAt = dateToEpoch(data.editedAt);
+  }
 
   return {
     props: {

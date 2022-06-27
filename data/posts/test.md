@@ -1,6 +1,7 @@
 ---
 title: Test
 date: 2022-06-22 21:02 UTC+2
+editedAt: 2022-06-27 14:06 UTC+2
 description: >-
   Multi-line thingy test
   pls work
@@ -58,7 +59,8 @@ export function renderer(content) {
 }
 
 // other tests
-const _regex_test = /\d+\.\d+\.\d+(?:-pre-\d+)?/;
+const _regex_dates =
+  /^(?<date>\d{4}-\d{2}-\d{2}) (?<time>\d{2}:\d{2}) (?<timezone>UTC(?:\+|-)\d{1,2}(?::\d{2})?)$/i;
 ```
 
 Also styled `inline code blocks` 🦊
