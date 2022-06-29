@@ -29,14 +29,15 @@
     "not dead"
   ],
   "dependencies": {
-    "@foxkit/node-util": "^0.3.0",
+    "@foxkit/node-util": "^0.3.1",
+    "@types/node": "^18.0.0",
     "@types/react": "^18.0.14",
     "classcat": "^5.0.3",
     "globby": "^13.1.2",
     "modern-diacritics": "^2.3.0",
-    "next": "12.1.6",
+    "next": "12.2.0",
     "postcss": "^8.4.14",
-    "postcss-preset-env": "^7.7.1",
+    "postcss-preset-env": "^7.7.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "rehype": "^12.0.1",
@@ -56,19 +57,20 @@
     "remark-twemoji": "^0.1.1",
     "spacetime": "^7.1.4",
     "twemoji": "^14.0.2",
+    "typescript": "^4.7.4",
     "unified": "^10.1.2",
     "yaml": "^2.1.1"
   },
   "devDependencies": {
-    "@types/node": "^18.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.30.0",
+    "@typescript-eslint/parser": "^5.30.0",
     "confusing-browser-globals": "^1.0.11",
     "eslint": "^8.18.0",
     "eslint-config-foxkit": "^1.1.1",
-    "eslint-config-next": "12.1.6",
+    "eslint-config-next": "12.2.0",
     "eslint-config-prettier": "^8.5.0",
     "nano-staged": "^0.8.0",
     "prettier": "^2.7.1",
-    "simple-git-hooks": "^2.8.0",
-    "typescript": "^4.7.4"
+    "simple-git-hooks": "^2.8.0"
   }
 }
