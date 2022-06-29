@@ -7,7 +7,12 @@ import { Section } from "lib/Section";
 import { Headline } from "lib/Headline";
 import { AutoLink } from "lib/AutoLink";
 
-export default function Home({ tags, posts }) {
+interface PageProps {
+  tags: TagMap;
+  posts: PostMeta[];
+}
+
+export default function Home({ tags, posts }: PageProps) {
   return (
     <div className={styles.container}>
       <Meta />
@@ -76,8 +81,11 @@ export default function Home({ tags, posts }) {
   );
 }
 
-export async function getStaticProps() {
+export async function getStaticProps(): Promise<{ props: PageProps }> {
   // PLACEHOLDER: temporarily output everything here until api route is done
-  const props = await readFileJson("posts.json");
+  const props = await readFileJson<PageProps>("posts.json");
+
+  if (!props) throw new Error("Could not read posts.json");
+
   return { props };
 }

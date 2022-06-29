@@ -11,6 +11,11 @@ import { Meta } from "lib/Meta";
 import { Section } from "lib/Section";
 import { Headline } from "lib/Headline";
 
+interface PageProps {
+  data: PostMetaWithTagMap;
+  content: string;
+}
+
 export default function BlogPost({ data, content }) {
   const Content = renderer(content);
   return (
@@ -41,21 +46,29 @@ export async function getStaticPaths() {
   };
 }
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps({
+  params
+}): Promise<{ props: PageProps }> {
   const fileContent = await readFile(`data/posts/${params.slug}.md`);
-  const processed = await processor.process(fileContent);
+  const processed = await processor.process(fileContent as string);
+  const processedData = processed.data as any as MetaRaw;
 
   // process metadata
-  const data = {
-    ...processed.data,
+  const data: PostMetaWithTagMap = {
+    title: processedData.title,
     slug: params.slug,
-    date: dateToEpoch(processed.data.date),
+    date: dateToEpoch(processedData.date),
     tags: Object.fromEntries(
-      (processed.data.tags || []).map(text => [slugify(text), text])
+      (processedData.tags || []).map(text => [slugify(text), text])
     )
   };
-  if (data.editedAt) {
-    data.editedAt = dateToEpoch(data.editedAt);
+
+  if (processedData.description) {
+    data.description = processedData.description;
+  }
+
+  if (processedData.editedAt) {
+    data.editedAt = dateToEpoch(processedData.editedAt);
   }
 
   return {

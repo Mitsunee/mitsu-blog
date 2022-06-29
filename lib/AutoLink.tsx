@@ -1,6 +1,7 @@
 import Link from "next/link";
+import { ComponentProps } from "react";
 
-export function AutoLink({ children, href, ...props }) {
+export function AutoLink({ children, href, ...props }: ComponentProps<"a">) {
   if (href.startsWith("/")) {
     return (
       <Link href={href}>

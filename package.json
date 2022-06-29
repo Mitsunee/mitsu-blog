@@ -7,6 +7,8 @@
     "lint": "eslint .",
     "format": "prettier -w .",
     "dev": "next dev",
+    "dev:types": "tsc --noEmit --watch",
+    "typecheck": "tsc --noEmit",
     "prebuild": "node prebuild.mjs",
     "build": "next build",
     "start": "next start"
@@ -15,7 +17,7 @@
     "pre-commit": "yarn nano-staged"
   },
   "nano-staged": {
-    "**/*.{js,jsx,mjs,cjs}": [
+    "**/*.{js,jsx,mjs,cjs,ts,tsx}": [
       "eslint",
       "prettier -w"
     ],

@@ -1,6 +1,7 @@
 import Link from "next/link";
+import { PropsWithChildren } from "react";
 
-export function Layout({ children }) {
+export function Layout({ children }: PropsWithChildren) {
   return (
     <>
       <header>

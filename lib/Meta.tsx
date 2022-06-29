@@ -3,13 +3,21 @@ import { useRouter } from "next/router";
 
 const publicDomain = "blog.mitsunee.com";
 
+interface MetaProps {
+  title?: string;
+  description?: string;
+  image?: string;
+  imageLarge?: boolean;
+  isError?: boolean;
+}
+
 export function Meta({
   title = "Mitsunee | Blog",
   description = "Web Developer, music-addict and Linux user (Fedora/KDE) who plays FGO and watches entirely too much YouTube",
   image = "/assets/icons/icon-192.png",
   imageLarge = false,
   isError = false
-}) {
+}: MetaProps) {
   const router = useRouter();
   const imagePath = `${image.startsWith("/") ? "" : "/"}${image}`;
   const imageUrl = `${
