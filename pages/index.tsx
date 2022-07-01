@@ -7,9 +7,10 @@ import { Section } from "lib/Section";
 import { Headline } from "lib/Headline";
 import { AutoLink } from "lib/AutoLink";
 
+type PagePropsPost = PostMeta & { tags: string[] };
 interface PageProps {
   tags: TagMap;
-  posts: PostMeta[];
+  posts: PagePropsPost[];
 }
 
 export default function Home({ tags, posts }: PageProps) {

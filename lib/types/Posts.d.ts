@@ -6,7 +6,7 @@ interface MetaRaw {
   tags: string[];
 }
 
-interface MetaBase {
+interface PostMeta {
   title: string;
   date: number;
   editedAt?: number;
@@ -14,14 +14,6 @@ interface MetaBase {
   slug: string;
 }
 
-declare interface PostMeta extends MetaBase {
-  tags: string[];
-}
-
 declare interface TagMap {
   [key: string]: string;
-}
-
-declare interface PostMetaWithTagMap extends MetaBase {
-  tags: TagMap;
 }

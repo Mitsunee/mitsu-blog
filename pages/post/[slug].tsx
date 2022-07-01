@@ -11,8 +11,9 @@ import { Meta } from "lib/Meta";
 import { Section } from "lib/Section";
 import { Headline } from "lib/Headline";
 
+type PagePropsData = PostMeta & { tags: TagMap };
 interface PageProps {
-  data: PostMetaWithTagMap;
+  data: PagePropsData;
   content: string;
 }
 
@@ -54,7 +55,7 @@ export async function getStaticProps({
   const processedData = processed.data as any as MetaRaw;
 
   // process metadata
-  const data: PostMetaWithTagMap = {
+  const data: PagePropsData = {
     title: processedData.title,
     slug: params.slug,
     date: dateToEpoch(processedData.date),
