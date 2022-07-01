@@ -1,0 +1,25 @@
+.list {
+  margin: 0.5rem;
+  padding: 0px;
+  display: flex;
+  flex-flow: row wrap;
+  gap: 1.2em 1.2ch;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.tag {
+  display: block;
+  padding: 0.5em 1.25ch;
+  width: fit-content;
+  max-width: 100%;
+  font-size: 0.8em;
+  border-radius: 1rem;
+  text-align: center;
+  background-color: var(--highlight);
+  box-shadow: 1px 1px 3px var(--dark);
+
+  @media (--mq-small) {
+    min-width: max-content;
+  }
+}

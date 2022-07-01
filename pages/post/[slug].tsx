@@ -10,6 +10,7 @@ import { renderer } from "lib/renderer";
 import { Meta } from "lib/Meta";
 import { Section } from "lib/Section";
 import { Headline } from "lib/Headline";
+import { Tag, TagList } from "lib/Tags";
 
 type PagePropsData = PostMeta & { tags: TagMap };
 interface PageProps {
@@ -17,7 +18,7 @@ interface PageProps {
   content: string;
 }
 
-export default function BlogPost({ data, content }) {
+export default function BlogPost({ data, content }: PageProps) {
   const Content = renderer(content);
   return (
     <>
@@ -26,13 +27,16 @@ export default function BlogPost({ data, content }) {
         description={data.description}
         isError={true} // PLACEHOLDER: just in case google comes by early :)
       />
-      <Section>
-        <Headline>Debug: Metadata</Headline>
-        <code>
-          <pre>{JSON.stringify(data, null, 2)}</pre>
-        </code>
-      </Section>
       <article id={styles.body}>{Content}</article>
+      <Section>
+        <hr />
+        <h3>Tags</h3>
+        <TagList>
+          {Object.entries(data.tags).map(([slug, text]) => (
+            <Tag slug={slug} key={slug} text={text} />
+          ))}
+        </TagList>
+      </Section>
     </>
   );
 }
