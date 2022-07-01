@@ -89,6 +89,12 @@ h2 {
   font-size: 1.25em;
 }
 
+hr {
+  border-width: 0px;
+  border-top: 1px solid var(--primary);
+  margin: 0.5em 0px;
+}
+
 button,
 input {
   font-family: inherit;
