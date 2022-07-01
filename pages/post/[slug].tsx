@@ -9,8 +9,8 @@ import styles from "styles/BlogPost.module.css";
 import { renderer } from "lib/renderer";
 import { Meta } from "lib/Meta";
 import { Section } from "lib/Section";
-import { Headline } from "lib/Headline";
 import { Tag, TagList } from "lib/Tags";
+import { TimeDisplay } from "lib/TimeDisplay";
 
 type PagePropsData = PostMeta & { tags: TagMap };
 interface PageProps {
@@ -30,6 +30,13 @@ export default function BlogPost({ data, content }: PageProps) {
       <article id={styles.body}>{Content}</article>
       <Section>
         <hr />
+        Published: <TimeDisplay time={data.date} />
+        {data.editedAt && (
+          <>
+            <br />
+            Last Edited: <TimeDisplay time={data.editedAt} />
+          </>
+        )}
         <h3>Tags</h3>
         <TagList>
           {Object.entries(data.tags).map(([slug, text]) => (
