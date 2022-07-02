@@ -51,4 +51,4 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile --ignore-scripts
       - name: Check Types
-        run: yarn tsc --noEmit
+        run: yarn prebuild && yarn tsc --noEmit
