@@ -129,6 +129,11 @@
   resolved "https://registry.yarnpkg.com/@foxkit/node-util/-/node-util-0.3.1.tgz#18f06d7c60af91e1f76eb3decf1ed8c0ae4a3bd4"
   integrity sha512-XLWQKp/4t3O8iXy8yy4Yy2k05lqBjzxC8mi7OBQLNxK70agZNhUstn3jUznYGYZsNkLWM8/ArtVg3bpKPi6bzA==
 
+"@foxkit/util@^0.5.1":
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/@foxkit/util/-/util-0.5.1.tgz#93df9360fd8b3ce803c15238fba224ae7e9975ed"
+  integrity sha512-OeTn52TTBfnjL/3fIDfoR6x/7cH9z6sTGcUjlcTHqiewaQc/BA+XB2VR2oosvn384SDQOWBcpttyPXv25kX8fA==
+
 "@humanwhocodes/config-array@^0.9.2":
   version "0.9.5"
   resolved "https://registry.yarnpkg.com/@humanwhocodes/config-array/-/config-array-0.9.5.tgz#2cbaf9a89460da24b5ca6531b8bbfc23e1df50c7"

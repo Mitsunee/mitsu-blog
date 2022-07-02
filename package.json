@@ -32,6 +32,7 @@
   ],
   "dependencies": {
     "@foxkit/node-util": "^0.3.1",
+    "@foxkit/util": "^0.5.1",
     "@types/node": "^18.0.0",
     "@types/react": "^18.0.14",
     "classcat": "^5.0.3",

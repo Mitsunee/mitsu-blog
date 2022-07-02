@@ -15,3 +15,12 @@ declare module "@foxkit/node-util/path" {
   function joinPath(...pieces: string[]): string;
   function toRelativePath(filePath: string): string;
 }
+
+declare module "@foxkit/util/clamp" {
+  function clamp(args: { min?: number; value: number; max?: number }): number;
+  function isClamped(args: {
+    min?: number;
+    value: number;
+    max?: number;
+  }): boolean;
+}
