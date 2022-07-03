@@ -37,6 +37,7 @@
     "@types/react": "^18.0.14",
     "classcat": "^5.0.3",
     "globby": "^13.1.2",
+    "iconoir": "^5.0.0",
     "modern-diacritics": "^2.3.0",
     "next": "12.2.0",
     "postcss": "^8.4.14",

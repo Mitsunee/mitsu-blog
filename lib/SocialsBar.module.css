@@ -1,0 +1,47 @@
+#socials {
+  width: 100%;
+  min-height: var(--bar-height);
+  padding: 1rem var(--bar-height);
+  margin: 1rem 0px;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem 1rem;
+  background-color: var(--dark);
+}
+
+.item {
+  display: block;
+  position: relative;
+  width: var(--icon-size);
+  height: var(--icon-size);
+  transition: transform var(--speed) var(--ease);
+
+  &:hover {
+    transform: scale(var(--hover-scale));
+    & .inner {
+      background-color: var(--hover);
+    }
+  }
+
+  &:before {
+    display: block;
+    background-color: #373a43;
+    position: absolute;
+    inset: 2px;
+    z-index: 1;
+    border-radius: 3px;
+    content: "";
+  }
+
+  & .inner {
+    position: absolute;
+    inset: 8px;
+    z-index: 2;
+    mask-image: var(--bg);
+    mask-size: cover;
+    background-color: var(--primary);
+    transition: background-color var(--speed) ease-out;
+  }
+}

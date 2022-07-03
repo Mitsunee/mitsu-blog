@@ -1704,6 +1704,11 @@ https-proxy-agent@^5.0.0:
     agent-base "6"
     debug "4"
 
+iconoir@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/iconoir/-/iconoir-5.0.0.tgz#79cdcd338a503a5c05943fcd9418dacd0aa75342"
+  integrity sha512-PhCQB4Hw/cmLQaqkiJxZT1OyLvwb4Sur7v6CHqoiCIby+hLHa7rAFD6g1SkZuwTr4R8CQFAa1OA0Q+O6iJsuhA==
+
 iconv-lite@0.4.24:
   version "0.4.24"
   resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.24.tgz#2022b4b25fbddc21d2f524974a474aafe733908b"
