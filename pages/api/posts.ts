@@ -4,23 +4,24 @@ import staticData from "../../posts.json";
 
 type Post = PostMeta & { tags?: string[] };
 type ApiResponse = { posts: Post[]; tags: TagMap; page: number; pages: number };
-interface ReqBody {
+export interface ReqBody {
   ps?: number;
   page?: number;
   tag?: string;
+  sort?: "desc" | "asc";
 }
 
 const staticPosts: Post[] = staticData.posts;
 const staticTags: TagMap = staticData.tags;
 
-// TODO: Sorting? (default: date descending)
 // TODO: text search?
 
 export default function GetPostList(req: NextApiRequest, res: NextApiResponse) {
   const body: ReqBody = req.body;
   const pageSize: number = clamp({ min: 3, value: body.ps || 10, max: 50 });
   const page: number = clamp({ min: 1, value: body.page || 1 });
-  const responseBody: ApiResponse = { posts: [], tags: {}, page, pages: 0 };
+  const responseBody: ApiResponse = { posts: [], tags: {}, page, pages: 1 };
+  const sortAsc = body.sort == "asc" ? true : false;
 
   // Tags
   const includedTags = new Set<string>();
@@ -28,7 +29,11 @@ export default function GetPostList(req: NextApiRequest, res: NextApiResponse) {
 
   // Filter list
   const results = new Array<Post>();
-  for (let i = 0; i < staticPosts.length; i++) {
+  for (
+    let i = sortAsc ? staticPosts.length - 1 : 0;
+    sortAsc ? i >= 0 : i < staticPosts.length;
+    sortAsc ? i-- : i++
+  ) {
     const post = staticPosts[i];
 
     // filter by searched tag
