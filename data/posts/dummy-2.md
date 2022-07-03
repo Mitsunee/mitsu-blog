@@ -6,6 +6,7 @@ description: >-
 tags:
   - Testing
   - Lorem Ipsum
+  - Copied Demo Post
 ---
 
 # Lorem Ipsum dolor sit amet

@@ -15,21 +15,16 @@ const staticTags: TagMap = staticData.tags;
 
 // TODO: Sorting? (default: date descending)
 // TODO: text search?
-// BUG: some tags fail to show up in results and don't work as search filter
 
 export default function GetPostList(req: NextApiRequest, res: NextApiResponse) {
   const body: ReqBody = req.body;
-  console.log(Date.now(), body);
   const pageSize: number = clamp({ min: 3, value: body.ps || 10, max: 50 });
   const page: number = clamp({ min: 1, value: body.page || 1 });
   const responseBody: ApiResponse = { posts: [], tags: {}, page, pages: 0 };
 
   // Tags
   const includedTags = new Set<string>();
-  const searchedTags = new Array<string>();
-  if (body.tag) {
-    body.tag.split(",").forEach(tag => searchedTags.push(String(tag)));
-  }
+  const searchedTags: string[] = body.tag ? body.tag.split(",") : [];
 
   // Filter list
   const results = new Array<Post>();
@@ -37,17 +32,16 @@ export default function GetPostList(req: NextApiRequest, res: NextApiResponse) {
     const post = staticPosts[i];
 
     // filter by searched tag
-    // BUG: some tags don't work (example: 'pls-ignore')
     if (
       searchedTags.length &&
       !searchedTags.every(tag => post.tags?.includes(tag))
     ) {
-      break;
+      continue;
     }
 
     // include tags in response
     for (const tag of post.tags) {
-      if (includedTags.has(tag)) break;
+      if (includedTags.has(tag)) continue;
       includedTags.add(tag);
       responseBody.tags[tag] = staticTags[tag];
     }
