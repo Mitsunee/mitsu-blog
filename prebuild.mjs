@@ -20,6 +20,7 @@ const processor = unified()
   .use(rehypeStringify, { allowDangerousHtml: true });
 
 const tagMap = new Map();
+const filePathMap = new Map();
 
 async function processData(filePath) {
   // readFile and rerun unified processor
@@ -29,6 +30,18 @@ async function processData(filePath) {
   // process frontmatter
   const slug = getFileName(filePath, false);
   const data = { ...processed.data, slug };
+
+  // check for slug collision
+  if (filePathMap.has(slug)) {
+    throw new Error(
+      `Slug collision for '${filePath}' and ${filePathMap.get(slug)}`
+    );
+  }
+  filePathMap.set(slug, filePath);
+
+  // check required types
+  if (!data.title) throw new Error(`Missing Title in ${slug}`);
+  if (!data.description) throw new Error(`Missing Description in ${slug}`);
 
   // transform dates
   if (!data.date) throw new Error(`Missing Date in ${slug}`);
@@ -57,7 +70,9 @@ async function processData(filePath) {
 
 (async function main() {
   const postPaths = await globby("data/posts/**/*.md");
-  const posts = await Promise.all(postPaths.map(processData));
+  const posts = (await Promise.all(postPaths.map(processData))).sort(
+    (a, b) => b.date - a.date
+  );
   const tags = Object.fromEntries(tagMap.entries());
 
   await writeFile("posts.json", { posts, tags });

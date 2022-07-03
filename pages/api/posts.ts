@@ -13,9 +13,9 @@ interface ReqBody {
 const staticPosts: Post[] = staticData.posts;
 const staticTags: TagMap = staticData.tags;
 
-// what is default sorting? date descending?
-// TODO: Sorting?
+// TODO: Sorting? (default: date descending)
 // TODO: text search?
+// BUG: some tags fail to show up in results and don't work as search filter
 
 export default function GetPostList(req: NextApiRequest, res: NextApiResponse) {
   const body: ReqBody = req.body;
@@ -37,6 +37,7 @@ export default function GetPostList(req: NextApiRequest, res: NextApiResponse) {
     const post = staticPosts[i];
 
     // filter by searched tag
+    // BUG: some tags don't work (example: 'pls-ignore')
     if (
       searchedTags.length &&
       !searchedTags.every(tag => post.tags?.includes(tag))
