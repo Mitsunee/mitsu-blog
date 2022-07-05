@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { PropsWithChildren } from "react";
 
+// TODO: implement navbar with text link to Home and a search bar when /search page is implemented
+
 export function Layout({ children }: PropsWithChildren) {
   return (
     <>

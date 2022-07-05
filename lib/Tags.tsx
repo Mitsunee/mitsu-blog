@@ -9,8 +9,10 @@ interface TagProps {
   isList?: boolean;
 }
 
+// TODO: Link tags to /category/[slug] route when ready
+
 export function Tag({ text, slug, isList = false }: TagProps) {
-  slug; // PLACEHOLDER: unused until /tag/[slug] route is made
+  slug; // PLACEHOLDER: unused until /category/[slug] route is made
   return isList ? (
     <li title={text} className={styles.tag}>
       {text}

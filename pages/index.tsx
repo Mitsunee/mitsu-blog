@@ -3,9 +3,8 @@ import { readFileJson } from "@foxkit/node-util/fs";
 //import styles from "styles/Home.module.css";
 import { Meta } from "lib/Meta";
 import { Hero } from "lib/Hero";
+import { PostCard, PostCardList } from "lib/PostCard";
 import { Section } from "lib/Section";
-import { Headline } from "lib/Headline";
-import { AutoLink } from "lib/AutoLink";
 
 type PagePropsPost = PostMeta & { tags: string[] };
 interface PageProps {
@@ -24,14 +23,20 @@ export default function Home({ tags, posts }: PageProps) {
         <p style={{ textAlign: "center", fontSize: "2em" }}>
           This website is currently in development
         </p>
-        <Headline>Debug</Headline>
-        <p>
-          <AutoLink href="/post/test">Test post</AutoLink>
-        </p>
-        <pre>
-          <code>{JSON.stringify({ tags, posts }, null, 2)}</code>
-        </pre>
       </Section>
+      <PostCardList title="Latest Posts">
+        {posts.map(post => (
+          <PostCard
+            title={post.title}
+            description={post.description}
+            date={post.date}
+            slug={post.slug}
+            key={post.slug}
+            tags={Object.fromEntries(post.tags.map(key => [key, tags[key]]))}
+          />
+        ))}
+      </PostCardList>
+      {/* TODO: Add 'More Posts' button at bottom linking to /search route */}
     </>
   );
 }
