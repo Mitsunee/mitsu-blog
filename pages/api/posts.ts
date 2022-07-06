@@ -3,12 +3,17 @@ import { clamp } from "@foxkit/util/clamp";
 import staticData from "../../posts.json";
 
 type Post = PostMeta & { tags?: string[] };
-type ApiResponse = { posts: Post[]; tags: TagMap; page: number; pages: number };
 export interface ReqBody {
   ps?: number;
   page?: number;
   tag?: string;
   sort?: "desc" | "asc";
+}
+export interface ResBody {
+  posts: Post[];
+  tags: TagMap;
+  page: number;
+  pages: number;
 }
 
 const staticPosts: Post[] = (staticData.posts as Post[]).filter(
@@ -22,7 +27,7 @@ export default function GetPostList(req: NextApiRequest, res: NextApiResponse) {
   const body: ReqBody = req.body;
   const pageSize: number = clamp({ min: 3, value: body.ps || 10, max: 50 });
   const page: number = clamp({ min: 1, value: body.page || 1 });
-  const responseBody: ApiResponse = { posts: [], tags: {}, page, pages: 1 };
+  const responseBody: ResBody = { posts: [], tags: {}, page, pages: 1 };
   const sortAsc = body.sort == "asc" ? true : false;
 
   // Tags
