@@ -49,6 +49,8 @@ async function processData(filePath) {
   if (data.editedAt) {
     data.editedAt = dateToEpoch(data.editedAt);
   }
+
+  // transform tags
   data.tags = (data.tags || []).map(text => {
     const tagSlug = slugify(text);
     const existingText = tagMap.get(tagSlug);

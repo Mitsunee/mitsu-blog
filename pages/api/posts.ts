@@ -11,7 +11,9 @@ export interface ReqBody {
   sort?: "desc" | "asc";
 }
 
-const staticPosts: Post[] = staticData.posts;
+const staticPosts: Post[] = (staticData.posts as Post[]).filter(
+  post => !post.unpublished
+);
 const staticTags: TagMap = staticData.tags;
 
 // TODO: text search?

@@ -26,11 +26,13 @@ export default function BlogPost({ data, content }: PageProps) {
         title={`${data.title} | Mitsunee | Blog`}
         description={data.description}
         isError={true} // PLACEHOLDER: just in case google comes by early :)
+        // isError={data.unpublished||undefined}
       />
       <article id={styles.body}>{Content}</article>
       <Section>
         <hr />
-        Published: <TimeDisplay time={data.date} />
+        {data.unpublished ? "Date (TBD): " : "Published: "}
+        <TimeDisplay time={data.date} />
         {data.editedAt && (
           <>
             <br />
@@ -68,6 +70,7 @@ export async function getStaticProps({
   // process metadata
   const data: PagePropsData = {
     title: processedData.title,
+    description: processedData.description,
     slug: params.slug,
     date: dateToEpoch(processedData.date),
     tags: Object.fromEntries(
@@ -75,12 +78,12 @@ export async function getStaticProps({
     )
   };
 
-  if (processedData.description) {
-    data.description = processedData.description;
-  }
-
   if (processedData.editedAt) {
     data.editedAt = dateToEpoch(processedData.editedAt);
+  }
+
+  if (processedData.unpublished) {
+    data.unpublished = true;
   }
 
   return {

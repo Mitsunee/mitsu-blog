@@ -46,7 +46,7 @@ export async function getStaticProps(): Promise<{ props: PageProps }> {
   if (!staticData) throw new Error("Could not read posts.json");
 
   // include newest 6 posts
-  const posts = staticData.posts.slice(0, 6);
+  const posts = staticData.posts.filter(post => !post.unpublished).slice(0, 6);
 
   // map tag slugs in posts
   const tagsSeen = new Set(posts.flatMap(post => post.tags));
