@@ -5,6 +5,7 @@ import { Meta } from "lib/Meta";
 import { Hero } from "lib/Hero";
 import { PostCard, PostCardList } from "lib/PostCard";
 import { Section } from "lib/Section";
+import { AutoLink } from "lib/AutoLink";
 
 type PagePropsPost = PostMeta & { tags: string[] };
 interface PageProps {
@@ -22,6 +23,9 @@ export default function Home({ tags, posts }: PageProps) {
       <Section>
         <p style={{ textAlign: "center", fontSize: "2em" }}>
           This website is currently in development
+        </p>
+        <p>
+          WIP: <AutoLink href="/search">SearchPage</AutoLink>
         </p>
       </Section>
       <PostCardList title="Latest Posts">
