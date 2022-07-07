@@ -6,6 +6,7 @@ import { Hero } from "lib/Hero";
 import { PostCard, PostCardList } from "lib/PostCard";
 import { Section } from "lib/Section";
 import { AutoLink } from "lib/AutoLink";
+import { ActionButton } from "lib/ActionButton";
 
 type PagePropsPost = PostMeta & { tags: string[] };
 interface PageProps {
@@ -26,6 +27,26 @@ export default function Home({ tags, posts }: PageProps) {
         </p>
         <p>
           WIP: <AutoLink href="/search">SearchPage</AutoLink>
+        </p>
+        <h2>Button Test</h2>
+        <p>
+          <ActionButton>Text</ActionButton>
+          <ActionButton
+            icon="/assets/icons/icon.svg"
+            title="Mitsu"></ActionButton>
+          <ActionButton icon="/assets/icons/icon.svg" title="Mitsu">
+            Mitsu
+          </ActionButton>
+          <ActionButton
+            icon="/assets/icons/steam.svg"
+            title="Steam"
+            mode="mask"></ActionButton>
+          <ActionButton
+            icon="/assets/icons/steam.svg"
+            title="Steam"
+            mode="mask">
+            Steam
+          </ActionButton>
         </p>
       </Section>
       <PostCardList title="Latest Posts">

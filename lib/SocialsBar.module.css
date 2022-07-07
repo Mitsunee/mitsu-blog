@@ -42,6 +42,6 @@
     mask-image: var(--bg);
     mask-size: cover;
     background-color: var(--primary);
-    transition: background-color var(--speed) ease-out;
+    transition: background-color var(--speed) var(--ease);
   }
 }

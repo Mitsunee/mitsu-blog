@@ -1,0 +1,50 @@
+:where(.button) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%;
+  padding: 0.33em 1ch;
+  margin: 0px 0.25ch;
+  background-color: var(--dark);
+  border: 1px solid var(--highlight);
+  border-radius: 0.5em;
+  box-shadow: 1px 1px 3px var(--dark);
+  color: inherit;
+  font-size: 1.1em;
+  transition: transform var(--speed) var(--ease);
+
+  &:hover {
+    transform: scale(var(--hover-scale));
+    & .inner {
+      color: var(--hover);
+    }
+  }
+  &:focus .inner {
+    color: var(--accent);
+  }
+}
+
+.inner {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  gap: 0.2em 0.5ch;
+  font-size: 1em;
+  min-height: 1.3em; /* this must be equal to line-height for things to line up correctly! */
+  transition: color var(--speed) var(--ease);
+  color: inherit;
+
+  & .img {
+    height: 1.2em;
+    width: auto;
+  }
+
+  & .mask {
+    width: 1.2em;
+    height: 1.2em;
+    mask-image: var(--bg);
+    mask-size: cover;
+    background-color: currentColor;
+    transition: background-color var(--speed) var(--ease);
+  }
+}
