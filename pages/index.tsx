@@ -8,15 +8,9 @@ import { Section } from "lib/Section";
 import { AutoLink } from "lib/AutoLink";
 import { ActionButton } from "lib/ActionButton";
 
-type PagePropsPost = PostMeta & { tags: string[] };
-interface PageProps {
-  tags: TagMap;
-  posts: PagePropsPost[];
-}
-
 const description = "Guides and Rants about Linux, Tech, Coding and Games";
 
-export default function Home({ tags, posts }: PageProps) {
+export default function Home({ tags, posts }: StaticData) {
   return (
     <>
       <Meta title={`Home | Mitsunee | Blog`} description={description} />
@@ -66,8 +60,8 @@ export default function Home({ tags, posts }: PageProps) {
   );
 }
 
-export async function getStaticProps(): Promise<{ props: PageProps }> {
-  const staticData = await readFileJson<PageProps>("posts.json");
+export async function getStaticProps(): Promise<{ props: StaticData }> {
+  const staticData = await readFileJson<StaticData>("posts.json");
   if (!staticData) throw new Error("Could not read posts.json");
 
   // include newest 6 posts

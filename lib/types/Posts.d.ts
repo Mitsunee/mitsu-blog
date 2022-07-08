@@ -19,3 +19,11 @@ interface PostMeta {
 declare interface TagMap {
   [key: string]: string;
 }
+
+// posts.json
+type StaticPost = PostMeta & { tags: string[] };
+
+interface StaticData {
+  posts: StaticPost[];
+  tags: TagMap;
+}

@@ -158,7 +158,7 @@ export default function SearchPage({ tags }: PageProps) {
 }
 
 export async function getStaticProps(): Promise<{ props: PageProps }> {
-  const staticData = await readFileJson<PageProps>("posts.json");
+  const staticData = await readFileJson<StaticData>("posts.json");
   if (!staticData) throw new Error("Could not read posts.json");
 
   return { props: { tags: staticData.tags } };

@@ -2,7 +2,6 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { clamp } from "@foxkit/util/clamp";
 import staticData from "../../posts.json";
 
-type Post = PostMeta & { tags?: string[] };
 export interface ReqBody {
   ps?: number;
   page?: number;
@@ -10,13 +9,13 @@ export interface ReqBody {
   sort?: "desc" | "asc";
 }
 export interface ResBody {
-  posts: Post[];
+  posts: StaticPost[];
   tags: TagMap;
   page: number;
   pages: number;
 }
 
-const staticPosts: Post[] = (staticData.posts as Post[]).filter(
+const staticPosts: StaticPost[] = (staticData.posts as StaticPost[]).filter(
   post => !post.unpublished
 );
 const staticTags: TagMap = staticData.tags;
@@ -35,7 +34,7 @@ export default function GetPostList(req: NextApiRequest, res: NextApiResponse) {
   const searchedTags: string[] = body.tag ? body.tag.split(",") : [];
 
   // Filter list
-  const results = new Array<Post>();
+  const results = new Array<StaticPost>();
   for (
     let i = sortAsc ? staticPosts.length - 1 : 0;
     sortAsc ? i >= 0 : i < staticPosts.length;
