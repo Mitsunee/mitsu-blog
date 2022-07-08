@@ -4,8 +4,9 @@ import styles from "./ActionButton.module.css";
 
 interface PropsBase {
   className?: string;
-  onClick?: MouseEventHandler;
+  onClick?: MouseEventHandler<HTMLElement>;
   style?: CSSProperties & { "--hover": string };
+  disabled?: boolean;
 }
 interface PropsNoIcon extends PropsBase {
   // This is probably a dumb hack, but it sure beats a type error lol
@@ -26,6 +27,7 @@ export function ActionButton({
   onClick,
   className,
   style,
+  disabled = false,
   icon,
   title,
   mode
@@ -33,8 +35,9 @@ export function ActionButton({
   return (
     <button
       onClick={onClick}
-      className={cc([styles.button, className])}
-      style={style}>
+      className={cc([styles.button, disabled && styles.disabled, className])}
+      style={style}
+      aria-disabled={disabled}>
       <div className={styles.inner}>
         {icon &&
           (mode == "mask" ? (

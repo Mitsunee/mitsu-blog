@@ -13,7 +13,7 @@
   font-size: 1.1em;
   transition: transform var(--speed) var(--ease);
 
-  &:hover {
+  &:not(.disabled):hover {
     transform: scale(var(--hover-scale));
     & .inner {
       color: var(--hover);
@@ -21,6 +21,13 @@
   }
   &:focus .inner {
     color: var(--accent);
+  }
+
+  &.disabled {
+    opacity: 0.5;
+    &:hover {
+      cursor: not-allowed;
+    }
   }
 }
 
