@@ -1,0 +1,20 @@
+.wrapper {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  gap: 1ch;
+}
+
+.btnCurr {
+  color: var(--hover);
+}
+
+.btnBlank {
+  background-color: transparent;
+  border-color: transparent;
+  color: var(--primary);
+  --hover: --primary;
+  --hover-scale: 1;
+  --accent: --primary;
+  box-shadow: none;
+}
