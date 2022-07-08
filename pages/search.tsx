@@ -14,6 +14,8 @@ interface TagFilterMap {
   [key: string]: boolean;
 }
 
+const PAGE_SIZE = 10;
+
 function tagsFilterReducer(state: TagFilterMap, action: string): TagFilterMap {
   return { ...state, [action]: state[action] ? !state[action] : true };
 }
@@ -55,7 +57,7 @@ export default function SearchPage({ tags }: PageProps) {
       .join(",");
 
     const body: ReqBody = {
-      ps: 10,
+      ps: PAGE_SIZE,
       page,
       tag: filter,
       sort: sortAsc ? "asc" : "desc"

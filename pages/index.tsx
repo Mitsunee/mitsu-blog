@@ -8,6 +8,7 @@ import { Section } from "lib/Section";
 import { AutoLink } from "lib/AutoLink";
 import { ActionButton } from "lib/ActionButton";
 
+const PAGE_SIZE = 10;
 const description = "Guides and Rants about Linux, Tech, Coding and Games";
 
 export default function Home({ tags, posts }: StaticData) {
@@ -64,8 +65,10 @@ export async function getStaticProps(): Promise<{ props: StaticData }> {
   const staticData = await readFileJson<StaticData>("posts.json");
   if (!staticData) throw new Error("Could not read posts.json");
 
-  // include newest 6 posts
-  const posts = staticData.posts.filter(post => !post.unpublished).slice(0, 6);
+  // include newest posts
+  const posts = staticData.posts
+    .filter(post => !post.unpublished)
+    .slice(0, PAGE_SIZE);
 
   // map tag slugs in posts
   const tagsSeen = new Set(posts.flatMap(post => post.tags));
