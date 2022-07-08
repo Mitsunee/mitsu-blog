@@ -1,5 +1,6 @@
 //import cc from "classcat";
 import { cloneElement } from "react";
+import { AutoLink } from "./AutoLink";
 
 import styles from "./Tags.module.css";
 
@@ -12,14 +13,17 @@ interface TagProps {
 // TODO: Link tags to /category/[slug] route when ready
 
 export function Tag({ text, slug, isList = false }: TagProps) {
-  slug; // PLACEHOLDER: unused until /category/[slug] route is made
   return isList ? (
-    <li title={text} className={styles.tag}>
-      {text}
+    <li title={text} className={styles.item}>
+      <AutoLink href={`/category/${slug}`} className={styles.tag}>
+        {text}
+      </AutoLink>
     </li>
   ) : (
-    <div title={text} className={styles.tag}>
-      {text}
+    <div title={text}>
+      <AutoLink href={`/category/${slug}`} className={styles.tag}>
+        {text}
+      </AutoLink>
     </div>
   );
 }
