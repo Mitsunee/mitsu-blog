@@ -56,7 +56,7 @@ export function ActionButton({
               data-button-icon-type="img"
             />
           ))}
-        {children}
+        <span>{children}</span>
       </div>
     </button>
   );
