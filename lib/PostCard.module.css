@@ -1,11 +1,16 @@
 .grid {
   display: grid;
   width: 100%;
-  grid-template-columns: repeat(auto-fill, minmax(45%, 400px));
+  grid-template-columns: minmax(90%, 400px);
   grid-auto-rows: auto;
-  justify-content: space-around;
+  justify-content: center;
   gap: 1.5rem;
   margin: 1rem 0px;
+
+  @media (--mq-medium) {
+    grid-template-columns: repeat(2, 47.5%);
+    justify-content: space-around;
+  }
 }
 
 .card {
