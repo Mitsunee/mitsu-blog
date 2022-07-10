@@ -31,7 +31,8 @@ export default function GetPostList(req: NextApiRequest, res: NextApiResponse) {
 
   // Tags
   const includedTags = new Set<string>();
-  const searchedTags: string[] = body.tag ? body.tag.split(",") : [];
+  const searchedTags: string[] =
+    typeof body.tag == "string" ? body.tag.split(",") : [];
 
   // Filter list
   const results = new Array<StaticPost>();
