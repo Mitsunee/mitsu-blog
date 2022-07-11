@@ -23,9 +23,9 @@ function tagsFilterReducer(state: TagFilterMap, action: string): TagFilterMap {
 type Post = PostMeta & { tags?: string[] };
 
 // TODO: pagination
-// TODO: possibly handle url query params?
+// TODO: possibly handle url query params? (redo with serverside props?)
 // TODO: implement text search field
-// TODO: responsive layouts
+// TODO: responsive layouts (possibly turn the form into a sidebar in large layouts?)
 
 export default function SearchPage({ tags }: PageProps) {
   const [loading, setLoading] = useState<boolean>(false);

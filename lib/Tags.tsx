@@ -1,4 +1,3 @@
-//import cc from "classcat";
 import { cloneElement } from "react";
 import { AutoLink } from "./AutoLink";
 
@@ -10,18 +9,16 @@ interface TagProps {
   isList?: boolean;
 }
 
-// TODO: Link tags to /category/[slug] route when ready
-
 export function Tag({ text, slug, isList = false }: TagProps) {
   return isList ? (
     <li title={text} className={styles.item}>
-      <AutoLink href={`/category/${slug}`} className={styles.tag}>
+      <AutoLink href={`/category/${slug}/1`} className={styles.tag}>
         {text}
       </AutoLink>
     </li>
   ) : (
     <div title={text}>
-      <AutoLink href={`/category/${slug}`} className={styles.tag}>
+      <AutoLink href={`/category/${slug}/1`} className={styles.tag}>
         {text}
       </AutoLink>
     </div>
