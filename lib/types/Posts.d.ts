@@ -27,3 +27,15 @@ interface StaticData {
   posts: StaticPost[];
   tags: TagMap;
 }
+
+interface PostListInfo {
+  current: {
+    page: number;
+    from: number;
+    to: number;
+  };
+  total: {
+    pages: number;
+    posts: number;
+  };
+}

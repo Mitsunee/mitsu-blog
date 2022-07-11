@@ -7,13 +7,25 @@ import { Section } from "./Section";
 import { Tag, TagList } from "./Tags";
 import { TimeDisplay } from "./TimeDisplay";
 
-type PostCardListProps = PropsWithChildren & { title: string };
+type PostCardListProps = PropsWithChildren<{
+  title: string;
+  pageInfo?: PostListInfo | false;
+}>;
 type PostCardProps = PostMeta & { tags: TagMap };
 
-export function PostCardList({ title, children }: PostCardListProps) {
+export function PostCardList({
+  children,
+  title,
+  pageInfo = false
+}: PostCardListProps) {
   return (
     <Section>
       <Headline>{title}</Headline>
+      {pageInfo && (
+        <p>
+          {`Post ${pageInfo.current.from} - ${pageInfo.current.to} (of ${pageInfo.total.posts})`}
+        </p>
+      )}
       <div className={styles.grid}>{children}</div>
     </Section>
   );
