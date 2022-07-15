@@ -61,3 +61,12 @@
     transition: background-color var(--speed) var(--ease);
   }
 }
+
+.link {
+  text-decoration: none;
+  width: max-content;
+  max-width: 100%;
+  /* repeated for higher specificity */
+  color: inherit;
+  transition: transform var(--speed) var(--ease);
+}

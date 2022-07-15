@@ -4,7 +4,7 @@ import iconRight from "iconoir/icons/nav-arrow-right.svg";
 import { clamp } from "@foxkit/util/clamp";
 import { MouseEvent, PropsWithChildren } from "react";
 
-import { ActionButton } from "./ActionButton";
+import { ActionButton } from "./Button";
 import styles from "./Pagination.module.css";
 
 interface PaginationProps {
