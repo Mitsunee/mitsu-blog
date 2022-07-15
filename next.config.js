@@ -10,6 +10,11 @@ const nextConfig = {
         source: `/category/:slug`,
         destination: `/category/:slug/1`,
         permanent: false
+      },
+      {
+        source: `/posts/`,
+        destination: `/posts/1`,
+        permanent: false
       }
     ];
   }

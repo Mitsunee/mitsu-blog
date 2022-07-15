@@ -9,33 +9,27 @@ interface PageProps {
   pageInfo: PostListInfo;
   posts: StaticPost[];
   tags: TagMap;
-  slug: string;
 }
 
 interface StaticPath {
-  params: { slug: string; page: string };
+  params: { page: string };
 }
 
 const PAGE_SIZE = 10;
 
-export default function CategoryPage({
-  pageInfo,
-  posts,
-  tags,
-  slug
-}: PageProps) {
+export default function PostIndexPage({ pageInfo, posts, tags }: PageProps) {
   const router = useRouter();
   const setPage = (n: number) => {
-    router.push(`/category/${slug}/${n}`);
+    router.push(`/posts/${n}`);
   };
 
   return (
     <>
       <Meta
-        title={`${tags[slug]} | Mitsunee | Blog`}
-        description={`All Posts in the "${tags[slug]}" category`}
+        title={`All Posts | Page ${pageInfo.current.page} | Mitsunee | Blog`}
+        description={`Browse all Posts`} // PLACEHOLDER: Idk how to write good descriptions, pls help
       />
-      <PostCardList title={tags[slug]} pageInfo={pageInfo}>
+      <PostCardList title={`Page ${pageInfo.current.page}`} pageInfo={pageInfo}>
         {posts.map(post => (
           <PostCard
             title={post.title}
@@ -68,17 +62,10 @@ export async function getStaticPaths(): Promise<{
   if (!staticData) throw new Error("Could not read posts.json");
 
   const paths = new Array<StaticPath>();
-  const tags = Array.from(Object.keys(staticData.tags));
-  for (const tag of tags) {
-    // NOTE: optional route params not supported yet :c
-    //paths.push({ params: { slug: tag } });
-    const posts = staticData.posts.filter(
-      post => !post.unpublished && post.tags && post.tags.includes(tag)
-    );
-    const pages = Math.ceil(posts.length / PAGE_SIZE);
-    for (let i = 1; i <= pages; i++) {
-      paths.push({ params: { slug: tag, page: i.toString() } });
-    }
+  const posts = staticData.posts.filter(post => !post.unpublished);
+  const pages = Math.ceil(posts.length / PAGE_SIZE);
+  for (let i = 1; i <= pages; i++) {
+    paths.push({ params: { page: i.toString() } });
   }
 
   return { paths, fallback: false };
@@ -91,10 +78,7 @@ export async function getStaticProps(
   const staticData = await readFileJson<StaticData>("posts.json");
   if (!staticData) throw new Error("Could not read posts.json");
 
-  const allPosts = staticData.posts.filter(
-    post =>
-      !post.unpublished && post.tags && post.tags.includes(context.params.slug)
-  );
+  const allPosts = staticData.posts.filter(post => !post.unpublished);
   const pages = Math.ceil(allPosts.length / PAGE_SIZE);
   const pageStart = (page - 1) * PAGE_SIZE;
   const pageEnd = page * PAGE_SIZE;
@@ -120,8 +104,7 @@ export async function getStaticProps(
         }
       },
       posts,
-      tags,
-      slug: context.params.slug
+      tags
     }
   };
 }
