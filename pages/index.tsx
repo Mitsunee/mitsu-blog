@@ -1,12 +1,12 @@
 import { readFileJson } from "@foxkit/node-util/fs";
+import showMoreIconUrl from "iconoir/icons/report-columns.svg";
 
 //import styles from "styles/Home.module.css";
 import { Meta } from "lib/Meta";
 import { Hero } from "lib/Hero";
 import { PostCard, PostCardList } from "lib/PostCard";
 import { Section } from "lib/Section";
-import { AutoLink } from "lib/AutoLink";
-import { ActionButton } from "lib/ActionButton";
+import { ActionButton, LinkButton } from "lib/Button";
 
 const PAGE_SIZE = 10;
 const description = "Guides and Rants about Linux, Tech, Coding and Games";
@@ -19,9 +19,6 @@ export default function Home({ tags, posts }: StaticData) {
       <Section>
         <p style={{ textAlign: "center", fontSize: "2em" }}>
           This website is currently in development
-        </p>
-        <p>
-          WIP: <AutoLink href="/search">SearchPage</AutoLink>
         </p>
         <h2>Button Test</h2>
         <p>
@@ -42,6 +39,13 @@ export default function Home({ tags, posts }: StaticData) {
             mode="mask">
             Steam
           </ActionButton>
+          <LinkButton
+            href="/"
+            icon="/assets/icons/steam.svg"
+            title="Steam"
+            mode="mask">
+            Steam
+          </LinkButton>
         </p>
       </Section>
       <PostCardList title="Latest Posts">
@@ -56,7 +60,14 @@ export default function Home({ tags, posts }: StaticData) {
           />
         ))}
       </PostCardList>
-      {/* TODO: Add 'More Posts' button at bottom linking to /search route */}
+      <LinkButton
+        href="/posts/1"
+        icon={showMoreIconUrl.src as string}
+        mode="mask"
+        title="Show all Posts"
+        style={{ marginLeft: "auto", marginRight: "auto" }}>
+        Show all Posts
+      </LinkButton>
     </>
   );
 }
