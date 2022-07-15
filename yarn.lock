@@ -2525,9 +2525,9 @@ minimist@^1.2.0, minimist@^1.2.6:
   integrity sha512-Jsjnk4bw3YJqYzbdyBiNsPWHPfO++UGG749Cxs6peCu5Xg4nrena6OVxOYxrQTqww0Jmwt+Ref8rggumkTLz9Q==
 
 modern-diacritics@^2.3.0:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/modern-diacritics/-/modern-diacritics-2.3.0.tgz#b529c9894a303f35c8f4517d0c21999c5441ce5c"
-  integrity sha512-twdG5pdgDdqPEu7yTxCgqtgS2kHACwd7/LH/ZkfMBNYvtu6iKLCiWt79QIHBEDX0ZW1T3ZJvRtn0d4H8gqeiYg==
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/modern-diacritics/-/modern-diacritics-2.3.1.tgz#a0c0462a28c4f3bc8272add6f36985e4b14bb038"
+  integrity sha512-jOI0qtelWfGZ4HTB/7pKTOzAA5miXgfbMl0RYirYA5CRuNY4JYTXER+BUiH9JCxqX1gIHs6GaVTwFhvUV8MPWg==
 
 mri@^1.1.0:
   version "1.2.0"
