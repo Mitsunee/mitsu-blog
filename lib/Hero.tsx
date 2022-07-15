@@ -1,3 +1,4 @@
+import webIconUrl from "iconoir/icons/internet.svg";
 import githubIconUrl from "iconoir/icons/github.svg";
 import twitterIconUrl from "iconoir/icons/twitter.svg";
 import youtubeIconUrl from "iconoir/icons/youtube.svg";
@@ -17,6 +18,11 @@ export function Hero({ description }: { description: string }) {
         <p>{description}</p>
       </Section>
       <SocialsBar>
+        <SocialsBarItem
+          src={webIconUrl}
+          title="Website"
+          href="https://www.mitsunee.com"
+        />
         <SocialsBarItem
           src={githubIconUrl}
           title="Github"
