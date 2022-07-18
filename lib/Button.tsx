@@ -4,7 +4,7 @@ import { AutoLink } from "./AutoLink";
 import styles from "./Button.module.css";
 
 interface PropsBase {
-  className?: string;
+  className?: string | string[];
   style?: CSSProperties & { "--hover"?: string };
   disabled?: boolean;
 }

@@ -1,11 +1,13 @@
 import cc from "classcat";
-import { ComponentProps } from "react";
+import { ComponentProps, PropsWithChildren } from "react";
 
-export function Section({
-  children,
-  className,
-  ...props
-}: ComponentProps<"section">) {
+type SectionProps = PropsWithChildren<
+  Omit<ComponentProps<"section">, "className"> & {
+    className?: string | string[];
+  }
+>;
+
+export function Section({ children, className, ...props }: SectionProps) {
   return (
     <section className={cc([className, "content-section"])} {...props}>
       {children}
@@ -13,6 +15,6 @@ export function Section({
   );
 }
 
-export function Columns({ children }: ComponentProps<"div">) {
+export function Columns({ children }: PropsWithChildren) {
   return <div className={"content-columns"}>{children}</div>;
 }

@@ -1,11 +1,13 @@
 import cc from "classcat";
-import { ComponentProps } from "react";
+import { PropsWithChildren, ComponentProps } from "react";
 
-export function Headline({
-  children,
-  className,
-  ...props
-}: ComponentProps<"h1">) {
+type HeadlineProps = PropsWithChildren<
+  Omit<ComponentProps<"h1">, "className"> & {
+    className?: string | string[];
+  }
+>;
+
+export function Headline({ children, className, ...props }: HeadlineProps) {
   return (
     <h1 className={cc([className, "headline"])} {...props}>
       {children}

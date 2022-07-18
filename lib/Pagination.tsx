@@ -11,7 +11,7 @@ interface PaginationProps {
   page: number;
   length: number;
   setPage: (n: number) => void;
-  className?: string;
+  className?: string | string[];
 }
 
 export function Pagination({
