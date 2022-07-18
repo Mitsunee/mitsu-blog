@@ -72,10 +72,10 @@ export function ActionButton({
       className={cc([styles.button, disabled && styles.disabled, className])}
       style={style}
       aria-disabled={disabled}>
-      <div className={styles.inner}>
+      <span className={styles.inner}>
         {icon && <ButtonIcon icon={icon} mode={mode} title={title} />}
         {children && <span>{children}</span>}
-      </div>
+      </span>
     </button>
   );
 }
@@ -103,10 +103,10 @@ export function LinkButton({
       ])}
       style={style}
       aria-disabled={disabled}>
-      <div className={styles.inner}>
+      <span className={styles.inner}>
         {icon && <ButtonIcon icon={icon} mode={mode} title={title} />}
         {children && <span>{children}</span>}
-      </div>
+      </span>
     </AutoLink>
   );
 }
