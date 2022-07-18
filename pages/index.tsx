@@ -5,10 +5,9 @@ import showMoreIconUrl from "iconoir/icons/report-columns.svg";
 import { Meta } from "lib/Meta";
 import { Hero } from "lib/Hero";
 import { PostCard, PostCardList } from "lib/PostCard";
-import { Section } from "lib/Section";
-import { ActionButton, LinkButton } from "lib/Button";
+import { LinkButton } from "lib/Button";
 
-const PAGE_SIZE = 10;
+const PAGE_SIZE = 6;
 const description = "Guides and Rants about Linux, Tech, Coding and Games";
 
 export default function Home({ tags, posts }: StaticData) {
@@ -16,38 +15,6 @@ export default function Home({ tags, posts }: StaticData) {
     <>
       <Meta title={`Home | Mitsunee | Blog`} description={description} />
       <Hero description={description} />
-      <Section>
-        <p style={{ textAlign: "center", fontSize: "2em" }}>
-          This website is currently in development
-        </p>
-        <h2>Button Test</h2>
-        <p>
-          <ActionButton>Text</ActionButton>
-          <ActionButton
-            icon="/assets/icons/icon.svg"
-            title="Mitsu"></ActionButton>
-          <ActionButton icon="/assets/icons/icon.svg" title="Mitsu">
-            Mitsu
-          </ActionButton>
-          <ActionButton
-            icon="/assets/icons/steam.svg"
-            title="Steam"
-            mode="mask"></ActionButton>
-          <ActionButton
-            icon="/assets/icons/steam.svg"
-            title="Steam"
-            mode="mask">
-            Steam
-          </ActionButton>
-          <LinkButton
-            href="/"
-            icon="/assets/icons/steam.svg"
-            title="Steam"
-            mode="mask">
-            Steam
-          </LinkButton>
-        </p>
-      </Section>
       <PostCardList title="Latest Posts">
         {posts.map(post => (
           <PostCard
