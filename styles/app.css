@@ -30,27 +30,6 @@ body {
   line-height: 1.3em;
 }
 
-#__next > header {
-  background-color: var(--dark);
-  width: 100%;
-  height: var(--bar-height);
-  display: flex;
-  align-items: center;
-  padding: 0px 1rem;
-
-  & a {
-    display: block;
-    width: var(--icon-size);
-    height: var(--icon-size);
-
-    & img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
-  }
-}
-
 #__next > main {
   display: flex;
   flex-flow: column nowrap;
