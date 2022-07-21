@@ -17,12 +17,19 @@ interface PageProps {
   data: StaticPost;
   content: string;
   more: StaticPost[];
+  moreIs: "latest" | "similar";
   tags: TagMap;
 }
 
 const PAGE_SIZE = 2;
 
-export default function BlogPost({ data, content, tags, more }: PageProps) {
+export default function BlogPost({
+  data,
+  content,
+  tags,
+  more,
+  moreIs
+}: PageProps) {
   const Content = renderer(content);
   return (
     <>
@@ -50,18 +57,21 @@ export default function BlogPost({ data, content, tags, more }: PageProps) {
           ))}
         </TagList>
       </Section>
-      <PostCardList title="Similar Posts">
-        {more.map(post => (
-          <PostCard
-            title={post.title}
-            description={post.description}
-            date={post.date}
-            slug={post.slug}
-            key={post.slug}
-            tags={Object.fromEntries(post.tags.map(key => [key, tags[key]]))}
-          />
-        ))}
-      </PostCardList>
+      {more.length > 0 && (
+        <PostCardList
+          title={moreIs == "similar" ? "Similar Posts" : "Latest Posts"}>
+          {more.map(post => (
+            <PostCard
+              title={post.title}
+              description={post.description}
+              date={post.date}
+              slug={post.slug}
+              key={post.slug}
+              tags={Object.fromEntries(post.tags.map(key => [key, tags[key]]))}
+            />
+          ))}
+        </PostCardList>
+      )}
     </>
   );
 }
@@ -110,9 +120,15 @@ export async function getStaticProps({
       post.tags.reduce((sum, tag) => sum + (data.tags.includes(tag) ? 1 : 0), 0)
     ])
   );
-  const more = staticData.posts
+  let moreIs: "latest" | "similar" = "similar";
+  let more = staticData.posts
     // filter self and unpublished posts out
-    .filter(post => post.slug != data.slug && !post.unpublished)
+    .filter(
+      post =>
+        post.slug != data.slug &&
+        !post.unpublished &&
+        similarityMap.get(post.slug) > 0
+    )
     // sort by similarity
     .sort((a, b) => {
       const similarTagsA = similarityMap.get(a.slug);
@@ -127,6 +143,14 @@ export async function getStaticProps({
     })
     .slice(0, PAGE_SIZE);
 
+  if (more.length < 1) {
+    moreIs = "latest";
+    more = staticData.posts
+      .filter(post => post.slug != data.slug && !post.unpublished)
+      .sort((a, b) => b.date - a.date)
+      .slice(0, PAGE_SIZE);
+  }
+
   // map tag slugs in posts
   const tagsSeen = new Set(data.tags.concat(more.flatMap(post => post.tags)));
   const tags = Object.fromEntries(
@@ -138,6 +162,7 @@ export async function getStaticProps({
       data,
       content: String(processed),
       more,
+      moreIs,
       tags
     }
   };
