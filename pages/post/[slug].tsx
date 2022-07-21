@@ -12,6 +12,8 @@ import { Tag, TagList } from "lib/Tags";
 import { TimeDisplay } from "lib/TimeDisplay";
 import { slugify } from "modern-diacritics";
 import { PostCard, PostCardList } from "lib/PostCard";
+import { AutoLink } from "lib/AutoLink";
+import { useRouter } from "next/router";
 
 interface PageProps {
   data: StaticPost;
@@ -30,6 +32,7 @@ export default function BlogPost({
   more,
   moreIs
 }: PageProps) {
+  const router = useRouter();
   const Content = renderer(content);
   return (
     <>
@@ -50,6 +53,8 @@ export default function BlogPost({
             Last Edited: <TimeDisplay time={data.editedAt} />
           </>
         )}
+        <br />
+        <AutoLink href={router.asPath}>Permalink</AutoLink>
         <h3>Tags</h3>
         <TagList>
           {data.tags.map(slug => (
