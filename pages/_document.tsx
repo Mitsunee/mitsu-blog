@@ -13,7 +13,7 @@ class MyDocument extends Document {
           />
           <link rel="manifest" href="/manifest.webmanifest" />
           <link
-            href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible&#x26;family=Lexend:wght@700&#x26;display=swap"
+            href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono&family=Lexend:wght@700&display=swap"
             rel="stylesheet"
           />
         </Head>

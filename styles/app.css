@@ -5,8 +5,9 @@
   --primary: #fbeff0;
   --accent: #ffbb5c;
   --hover: #e05281;
-  --font-sans: "Atkinson Hyperlegible";
-  --font-title: "Lexend";
+  --font-sans: "Atkinson Hyperlegible", sans-serif;
+  --font-title: "Lexend", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
   --speed: 250ms;
   --ease: ease-out;
   --hover-scale: 1.075;
@@ -164,6 +165,7 @@ pre[class*="language-"] {
 }
 
 p code {
+  font-size: 0.9em;
   padding: 0.1em;
   border-radius: 0.3em;
 }
