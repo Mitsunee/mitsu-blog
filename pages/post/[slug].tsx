@@ -39,8 +39,7 @@ export default function BlogPost({
       <Meta
         title={`${data.title} | Mitsunee | Blog`}
         description={data.description}
-        isError={true} // PLACEHOLDER: just in case google comes by early :)
-        // isError={data.unpublished||undefined}
+        isError={data.unpublished || undefined}
       />
       <article id={styles.body}>{Content}</article>
       <Section>
