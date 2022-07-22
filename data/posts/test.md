@@ -1,42 +1,39 @@
 ---
 title: Test
 date: 2022-06-22 21:02 UTC+2
-editedAt: 2022-07-01 12:56 UTC+2
+editedAt: 2022-07-22 12:08 UTC+2
 description: >-
-  Multi-line thingy test
-  pls work
-
-  linebreaks?
+  Testing ground for remark/rehype features
 tags:
   - Testing
-  - pls ignore
+unpublished: true
 ---
 
 # This is a test post
 
-I am testing different remark features here. The goal is to support:
+I am testing different remark/rehype features here. The goal is to support:
 
 - [x] Github Flavoured Markdown
 - twemoji
   - using shortcodes similar to discord
   - as unicode characters
 - prism code blocks
-- frontmatter
+- frontmatter (yaml)
 
-## gfm tables
+## gfm Tables
 
 | lorem | ipsum |
 | :---- | :---: |
 | gfm   | works |
 | I     | hope  |
 
-## emojis
+## Emojis
 
 :+1:
 
 orange heart 🧡 :)
 
-## prism
+## Prism Syntax Highlighting
 
 ```bash
 #!/usr/bin/env bash
@@ -65,7 +62,7 @@ const _regex_dates =
 
 Also styled `inline code blocks` 🦊
 
-## line breaks
+## Line breaks
 
 Lorem ipsum dolor sit amet,
 consectetur adipisicing elit,
