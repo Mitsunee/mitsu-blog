@@ -9,7 +9,7 @@ tags:
 
 # Hello, World!
 
-Hello, World and welcome to my new blog. I'm a gacha gamer, web developer, music enthusiast and Linux user (currently Fedora 36) from Germany :flag_de:
+Hello, World and welcome to my new blog. I'm a gacha gamer, web developer, music enthusiast and Linux user (currently Fedora 36) from Germany 🇩🇪
 
 ## About Me
 
