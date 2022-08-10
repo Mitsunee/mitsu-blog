@@ -1,11 +1,12 @@
 import { readFileJson } from "@foxkit/node-util/fs";
-import showMoreIconUrl from "iconoir/icons/report-columns.svg";
-
-//import styles from "styles/Home.module.css";
+import postsIconUrl from "iconoir/icons/multiple-pages.svg";
+import categoriesIconUrl from "iconoir/icons/archive.svg";
+import styles from "styles/Home.module.css";
 import { Meta } from "lib/Meta";
 import { Hero } from "lib/Hero";
 import { PostCard, PostCardList } from "lib/PostCard";
 import { LinkButton } from "lib/Button";
+import { Section } from "lib/Section";
 
 interface PageProps {
   tags: TagMap;
@@ -32,14 +33,22 @@ export default function Home({ tags, posts }: PageProps) {
           />
         ))}
       </PostCardList>
-      <LinkButton
-        href="/posts/1"
-        icon={showMoreIconUrl.src as string}
-        mode="mask"
-        title="Show all Posts"
-        style={{ marginLeft: "auto", marginRight: "auto" }}>
-        Show all Posts
-      </LinkButton>
+      <Section className={styles.buttons}>
+        <LinkButton
+          href="/posts/1"
+          icon={postsIconUrl.src as string}
+          mode="mask"
+          title="Show all Posts">
+          Show all Posts
+        </LinkButton>
+        <LinkButton
+          href="/categories"
+          icon={categoriesIconUrl.src as string}
+          mode="mask"
+          title="Browse Categories">
+          Browse Categories
+        </LinkButton>
+      </Section>
     </>
   );
 }

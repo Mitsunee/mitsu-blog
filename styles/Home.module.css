@@ -1,0 +1,6 @@
+.buttons {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  gap: 1em 0.5ch;
+}
