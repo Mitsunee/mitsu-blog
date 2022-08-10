@@ -16,8 +16,12 @@ interface PostMeta {
   unpublished?: true;
 }
 
-declare interface TagMap {
+interface TagMap {
   [key: string]: string;
+}
+
+interface TagInfoMap {
+  [key: string]: { title: string; description?: string };
 }
 
 // posts.json
@@ -25,7 +29,7 @@ type StaticPost = PostMeta & { tags: string[] };
 
 interface StaticData {
   posts: StaticPost[];
-  tags: TagMap;
+  tags: TagInfoMap;
 }
 
 interface PostListInfo {

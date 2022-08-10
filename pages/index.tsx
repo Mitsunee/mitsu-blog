@@ -7,10 +7,15 @@ import { Hero } from "lib/Hero";
 import { PostCard, PostCardList } from "lib/PostCard";
 import { LinkButton } from "lib/Button";
 
+interface PageProps {
+  tags: TagMap;
+  posts: StaticPost[];
+}
+
 const PAGE_SIZE = 6;
 const description = "Guides and Rants about Linux, Tech, Coding and Games";
 
-export default function Home({ tags, posts }: StaticData) {
+export default function Home({ tags, posts }: PageProps) {
   return (
     <>
       <Meta title={`Home | Mitsunee | Blog`} description={description} />
@@ -39,7 +44,7 @@ export default function Home({ tags, posts }: StaticData) {
   );
 }
 
-export async function getStaticProps(): Promise<{ props: StaticData }> {
+export async function getStaticProps(): Promise<{ props: PageProps }> {
   const staticData = await readFileJson<StaticData>("posts.json");
   if (!staticData) throw new Error("Could not read posts.json");
 
@@ -51,7 +56,7 @@ export async function getStaticProps(): Promise<{ props: StaticData }> {
   // map tag slugs in posts
   const tagsSeen = new Set(posts.flatMap(post => post.tags));
   const tags = Object.fromEntries(
-    Array.from(tagsSeen.values()).map(key => [key, staticData.tags[key]])
+    Array.from(tagsSeen.values()).map(key => [key, staticData.tags[key].title])
   );
 
   return { props: { posts, tags } };

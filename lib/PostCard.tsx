@@ -9,6 +9,7 @@ import { TimeDisplay } from "./TimeDisplay";
 
 type PostCardListProps = PropsWithChildren<{
   title: string;
+  description?: string;
   pageInfo?: PostListInfo | false;
 }>;
 type PostCardProps = PostMeta & { tags: TagMap };
@@ -16,11 +17,13 @@ type PostCardProps = PostMeta & { tags: TagMap };
 export function PostCardList({
   children,
   title,
+  description,
   pageInfo = false
 }: PostCardListProps) {
   return (
     <Section>
       <Headline>{title}</Headline>
+      {description && <p>{description}</p>}
       {pageInfo && (
         <p>
           {`Post ${pageInfo.current.from} - ${pageInfo.current.to} (of ${pageInfo.total.posts})`}

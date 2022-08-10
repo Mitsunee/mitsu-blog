@@ -6,6 +6,7 @@ import YAML from "yaml";
 import remarkRehype from "remark-rehype";
 import rehypeStringify from "rehype-stringify";
 import { readFile, writeFile } from "@foxkit/node-util/fs";
+import { readFileYaml } from "@foxkit/node-util/fs-yaml";
 import { getFileName } from "@foxkit/node-util/path";
 import { slugify } from "modern-diacritics";
 import { globby } from "globby";
@@ -19,8 +20,17 @@ const processor = unified()
   .use(remarkRehype, { allowDangerousHtml: true })
   .use(rehypeStringify, { allowDangerousHtml: true });
 
-const tagMap = new Map();
+const tagTitleMap = new Map();
+const tagDescriptionMap = new Map();
 const filePathMap = new Map();
+
+async function readTagsData() {
+  const data = await readFileYaml("data/tags.yml");
+  for (const [slug, { title, description }] of Object.entries(data)) {
+    tagTitleMap.set(slug, title);
+    tagDescriptionMap.set(slug, description);
+  }
+}
 
 async function processData(filePath) {
   // readFile and rerun unified processor
@@ -53,7 +63,7 @@ async function processData(filePath) {
   // transform tags
   data.tags = (data.tags || []).map(text => {
     const tagSlug = slugify(text);
-    const existingText = tagMap.get(tagSlug);
+    const existingText = tagTitleMap.get(tagSlug);
     if (existingText) {
       if (existingText != text) {
         throw new Error(
@@ -61,7 +71,7 @@ async function processData(filePath) {
         );
       }
     } else {
-      tagMap.set(tagSlug, text);
+      tagTitleMap.set(tagSlug, text);
     }
 
     return tagSlug;
@@ -71,11 +81,19 @@ async function processData(filePath) {
 }
 
 (async function main() {
+  await readTagsData();
   const postPaths = await globby("data/posts/**/*.md");
   const posts = (await Promise.all(postPaths.map(processData))).sort(
     (a, b) => b.date - a.date
   );
-  const tags = Object.fromEntries(tagMap.entries());
+  const tags = Object.fromEntries(
+    Array.from(tagTitleMap.entries()).map(([slug, title]) => {
+      if (tagDescriptionMap.has(slug)) {
+        return [slug, { title, description: tagDescriptionMap.get(slug) }];
+      }
+      return [slug, { title }];
+    })
+  );
 
   await writeFile("posts.json", { posts, tags });
 })();

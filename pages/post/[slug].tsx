@@ -158,7 +158,7 @@ export async function getStaticProps({
   // map tag slugs in posts
   const tagsSeen = new Set(data.tags.concat(more.flatMap(post => post.tags)));
   const tags = Object.fromEntries(
-    Array.from(tagsSeen.values()).map(key => [key, staticData.tags[key]])
+    Array.from(tagsSeen.values()).map(key => [key, staticData.tags[key].title])
   );
 
   return {

@@ -10,6 +10,7 @@ interface PageProps {
   posts: StaticPost[];
   tags: TagMap;
   slug: string;
+  description: string | false;
 }
 
 interface StaticPath {
@@ -22,7 +23,8 @@ export default function CategoryPage({
   pageInfo,
   posts,
   tags,
-  slug
+  slug,
+  description
 }: PageProps) {
   const router = useRouter();
   const setPage = (n: number) => {
@@ -33,9 +35,12 @@ export default function CategoryPage({
     <>
       <Meta
         title={`${tags[slug]} | Mitsunee | Blog`}
-        description={`All Posts in the "${tags[slug]}" category`}
+        description={description || `All Posts in the "${tags[slug]}" category`}
       />
-      <PostCardList title={tags[slug]} pageInfo={pageInfo}>
+      <PostCardList
+        title={tags[slug]}
+        description={description || undefined}
+        pageInfo={pageInfo}>
         {posts.map(post => (
           <PostCard
             title={post.title}
@@ -70,8 +75,6 @@ export async function getStaticPaths(): Promise<{
   const paths = new Array<StaticPath>();
   const tags = Array.from(Object.keys(staticData.tags));
   for (const tag of tags) {
-    // NOTE: optional route params not supported yet :c
-    //paths.push({ params: { slug: tag } });
     const posts = staticData.posts.filter(
       post => !post.unpublished && post.tags && post.tags.includes(tag)
     );
@@ -103,8 +106,14 @@ export async function getStaticProps(
   // map tag slugs in posts
   const tagsSeen = new Set(posts.flatMap(post => post.tags));
   const tags = Object.fromEntries(
-    Array.from(tagsSeen.values()).map(key => [key, staticData.tags[key]])
+    Array.from(tagsSeen.values()).map(key => [key, staticData.tags[key].title])
   );
+
+  // category info
+  const slug = context.params.slug;
+  const description = staticData.tags[slug]?.description
+    ? staticData.tags[slug]?.description
+    : false; // I'd use null here, but it doesn't want to accept string|null as a type today. No clue why.
 
   return {
     props: {
@@ -121,7 +130,8 @@ export async function getStaticProps(
       },
       posts,
       tags,
-      slug: context.params.slug
+      slug,
+      description
     }
   };
 }
