@@ -1,0 +1,28 @@
+.card {
+  border: 2px solid var(--highlight);
+  background-color: var(--dark);
+  padding: 1rem;
+  transition: transform var(--speed) var(--ease);
+
+  &:hover {
+    transform: scale(var(--hover-scale));
+  }
+
+  & h1 {
+    margin: 0.5rem 0px;
+
+    & a {
+      text-decoration: none;
+      color: var(--accent);
+      transition: color var(--speed) var(--ease);
+
+      &:hover {
+        color: var(--hover);
+      }
+    }
+  }
+
+  & p.info {
+    font-size: 0.8em;
+  }
+}
