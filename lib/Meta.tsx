@@ -20,21 +20,27 @@ export function Meta({
 }: MetaProps) {
   const router = useRouter();
   const imagePath = `${image.startsWith("/") ? "" : "/"}${image}`;
-  const imageUrl = `${
-    process.env.NEXT_PUBLIC_DOMAIN
-      ? `https://${process.env.NEXT_PUBLIC_DOMAIN}`
-      : ""
-  }${imagePath}`;
+  const imageUrl = `https://${publicDomain}${imagePath}`;
 
   return (
     <Head>
-      <title>{title}</title>
       <meta name="application-name" content="Mitsunee | Blog" />
+      <meta property="og:site_name" content="Mitsunee | Blog" />
+
+      <title>{title}</title>
       <meta property="og:title" content={title} />
+      <meta name="twitter:title" content={title} />
+
+      <meta name="description" content={description} />
       <meta property="og:description" content={description} />
+      <meta name="twitter:description" content={description} />
+
+      <meta name="twitter:image" content={imageUrl} />
       <meta property="og:image" content={imageUrl} />
+
       {imageLarge && <meta name="twitter:card" content="summary_large_image" />}
       <meta name="twitter:author" content="@Mitsunee" />
+
       <meta name="theme-color" content="#ffbb5c" />
       {isError && <meta name="robots" content="noindex,noarchive,none" />}
       <link rel="canonical" href={`https://${publicDomain}${router.asPath}`} />
