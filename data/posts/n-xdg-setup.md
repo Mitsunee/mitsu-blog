@@ -1,6 +1,7 @@
 ---
 title: Install Node.js/NPM with no sudo on Linux
 date: 2022-07-23 12:26 UTC+2
+editedAt: 2022-08-22 21:58 UTC+2
 description: >-
   This guide will showcase how to use environment variables,
   XDG user dirs and the version manager n to install Node.js
@@ -49,6 +50,7 @@ export N_CACHE_PREFIX="$XDG_CACHE_HOME"
 export N_PRESERVE_NPM=1
 export N_PRESERVE_COREPACK=1
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
+export COREPACK_HOME="$XDG_DATA_HOME/corepack"
 export NODE_REPL_HISTORY="$XDG_STATE_HOME/node_repl/history"
 
 # Add Node.js to PATH
@@ -84,14 +86,15 @@ As `n` is a bash script we can download the latest build to a temporary location
 ```bash
 curl -L https://raw.githubusercontent.com/tj/n/master/bin/n -o /tmp/n
 bash /tmp/n --no-preserve lts
-npm install -g n@latest npm@latest
+npm install -g n@latest npm@latest corepack@latest
 ```
 
 Out of the box our setup preserves both `npm` and `corepack` versions instead of replacing them with the versions found in the tarball of the `node` version we are installing. As we're doing a fresh install we do not yet have these packages and thus need to use `--no-preserve` to get an initial install with `npm` included.
 
 ## Corepack/Yarn/PNPM
 
-If you'd like to use corepack run `corepack enable`. Note that this will eventually create a `~/.node` directory containing the versions of package managers Corepack provides!
+If you'd like to use corepack run `corepack enable`. ~~Note that this will eventually create a `~/.node` directory containing the versions of package managers Corepack provides!~~
+**Edit**: This was fixed in [insert version here]. Corepack now uses `$XDG_CACHE_HOME/node/corepack` (or `$HOME/.cache/node/corepack` as a fallback). You can override this location with the `COREPACK_HOME` env variable as seen above.
 
 If you do not want to use Corepack you can uninstall it and install Yarn and PNPM manually:
 
@@ -106,4 +109,4 @@ To switch between node versions you can simply use `n`. See its [Documentation](
 
 You do not need to worry about NPM as it is preserved by `n` thanks to the enviroment variable `N_PRESERVE_NPM` (same for corepack and `N_PRESERVE_COREPACK`).
 
-To manage globally installed packages (such as your package managers, vercel/snyk cli and such) I recommend using the `npm-check-updates` (see [Documentation](https://www.npmjs.com/package/npm-check-updates) here) with the `-g` flag. It will check for updated versions of your packages and provide a command to run to update all of them.
+To manage globally installed packages (such as your package managers, vercel/snyk cli and such) I recommend using the `npm-check-updates` package (see [Documentation](https://www.npmjs.com/package/npm-check-updates) here) with the `-g` flag. It will check for updated versions of your packages and provide a command to run to update all of them.

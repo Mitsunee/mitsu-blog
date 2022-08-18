@@ -30,5 +30,5 @@ export const processor = unified()
   .use(rehypeSlug)
   .use(rehypeMinify)
   .data("settings", { quote: '"', preferUnquoted: false })
-  .use(rehypeLinks, { target: false, rel: ["noopener", "noreferrer"] })
+  .use(rehypeLinks, { rel: ["noopener", "noreferrer"] })
   .use(rehypeStringify, { allowDangerousHtml: true });
