@@ -1,5 +1,6 @@
 import webIconUrl from "iconoir/icons/internet.svg";
 import githubIconUrl from "iconoir/icons/github.svg";
+import npmIconUrl from "iconoir/icons/npm.svg";
 import twitterIconUrl from "iconoir/icons/twitter.svg";
 import youtubeIconUrl from "iconoir/icons/youtube.svg";
 import discordIconUrl from "iconoir/icons/discord.svg";
@@ -27,6 +28,11 @@ export function Hero({ description }: { description: string }) {
           src={githubIconUrl}
           title="Github"
           href="https://github.com/Mitsunee"
+        />
+        <SocialsBarItem
+          src={npmIconUrl}
+          title="npm"
+          href="https://www.npmjs.com/~mitsunee"
         />
         <SocialsBarItem
           src={twitterIconUrl}
