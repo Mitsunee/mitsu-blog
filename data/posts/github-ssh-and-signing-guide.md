@@ -1,6 +1,7 @@
 ---
 title: Quick Guide to GitHub SSH and GPG Signing
 date: 2022-09-13 11:15 UTC+2
+editedAt: 2022-10-05 20:36 UTC+2
 description: >-
   Setup Guide for GitHub SSH and Git commit and tag signing using GPG.
 tags:
@@ -122,3 +123,8 @@ First copy the `[user]` section of your git config into a separate file (`.gitco
 [includeif "gitdir:~/Work/"]
         path = ~/.gitconfig_work
 ```
+
+## Sources
+
+- [GitHub Docs](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/about-ssh)
+- [How (and why) to sign Git commits](https://withblue.ink/2020/05/17/how-and-why-to-sign-git-commits.html)
