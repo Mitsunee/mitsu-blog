@@ -56,9 +56,7 @@ async function processData(filePath) {
   // transform dates
   if (!data.date) throw new Error(`Missing Date in ${slug}`);
   data.date = dateToEpoch(data.date);
-  if (data.editedAt) {
-    data.editedAt = dateToEpoch(data.editedAt);
-  }
+  data.editedAt &&= dateToEpoch(data.editedAt);
 
   // transform tags
   data.tags = (data.tags || []).map(text => {
