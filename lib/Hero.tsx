@@ -4,6 +4,8 @@ import npmIconUrl from "iconoir/icons/npm.svg";
 import twitterIconUrl from "iconoir/icons/twitter.svg";
 import youtubeIconUrl from "iconoir/icons/youtube.svg";
 import discordIconUrl from "iconoir/icons/discord.svg";
+// TEMP: waiting for iconoir to have a proper mastodon icon
+import mastodonIconUrl from "iconoir/icons/chat-bubble-check.svg";
 import { Section } from "./Section";
 import { SocialsBar, SocialsBarItem } from "./SocialsBar";
 import styles from "./Hero.module.css";
@@ -33,6 +35,13 @@ export function Hero({ description }: { description: string }) {
           src={npmIconUrl}
           title="npm"
           href="https://www.npmjs.com/~mitsunee"
+        />
+        <SocialsBarItem
+          src={mastodonIconUrl}
+          hover="#6364FF"
+          title="Mastodon"
+          href="https://ieji.de/@mitsunee"
+          rel="me"
         />
         <SocialsBarItem
           src={twitterIconUrl}

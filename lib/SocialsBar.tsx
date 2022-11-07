@@ -1,11 +1,13 @@
-import type { CSSProperties, PropsWithChildren } from "react";
+import cc from "classcat";
+import type { ComponentProps, CSSProperties, PropsWithChildren } from "react";
 import styles from "./SocialsBar.module.css";
 
-interface SocialsBarItemProps {
+interface SocialsBarItemProps extends Omit<ComponentProps<"a">, "className"> {
   src: string | { src: string; width: number; height: number };
+  className?: string | string[];
   href: string;
-  title?: string;
-  hover?: false | string;
+  title: string;
+  hover?: string;
 }
 
 interface SocialsBarItemJSXStyle extends CSSProperties {
@@ -19,18 +21,20 @@ export function SocialsBar({ children }: PropsWithChildren) {
 
 export function SocialsBarItem({
   src,
-  href,
-  title,
-  hover = false
+  hover,
+  style = {},
+  className,
+  ...props
 }: SocialsBarItemProps) {
-  const style: SocialsBarItemJSXStyle = {
+  const aStyle: SocialsBarItemJSXStyle = {
+    ...style,
     "--bg": `url("${typeof src == "string" ? src : src.src}")`
   };
 
-  if (hover) style["--hover"] = hover;
+  if (hover) aStyle["--hover"] = hover;
 
   return (
-    <a href={href} title={title} className={styles.item} style={style}>
+    <a {...props} className={cc([styles.item, className])} style={aStyle}>
       <div className={styles.inner}></div>
     </a>
   );
