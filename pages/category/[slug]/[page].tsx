@@ -10,7 +10,7 @@ interface PageProps {
   posts: StaticPost[];
   tags: TagMap;
   slug: string;
-  description: string | false;
+  description?: string;
 }
 
 interface StaticPath {
@@ -111,27 +111,26 @@ export async function getStaticProps(
 
   // category info
   const slug = context.params.slug;
-  const description = staticData.tags[slug]?.description
-    ? staticData.tags[slug]?.description
-    : false; // I'd use null here, but it doesn't want to accept string|null as a type today. No clue why.
+  const description = staticData.tags[slug].description;
 
-  return {
-    props: {
-      pageInfo: {
-        current: {
-          page,
-          from: pageStart + 1,
-          to: pageStart + posts.length
-        },
-        total: {
-          pages,
-          posts: allPosts.length
-        }
+  const props: PageProps = {
+    pageInfo: {
+      current: {
+        page,
+        from: pageStart + 1,
+        to: pageStart + posts.length
       },
-      posts,
-      tags,
-      slug,
-      description
-    }
+      total: {
+        pages,
+        posts: allPosts.length
+      }
+    },
+    posts,
+    tags,
+    slug
   };
+
+  if (description) props.description = description;
+
+  return { props };
 }

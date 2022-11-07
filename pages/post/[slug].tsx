@@ -1,8 +1,9 @@
 import { readdir } from "fs/promises";
 import { resolvePath, getFileName } from "@foxkit/node-util/path";
 import { readFile, readFileJson } from "@foxkit/node-util/fs";
-import { processor } from "lib/processor";
-import { dateToEpoch } from "lib/time";
+import type { GetStaticProps } from "next";
+import type { ParsedUrlQuery } from "querystring";
+import { useRouter } from "next/router";
 
 import styles from "styles/BlogPost.module.css";
 import { renderer } from "lib/renderer";
@@ -13,7 +14,8 @@ import { TimeDisplay } from "lib/TimeDisplay";
 import { slugify } from "modern-diacritics";
 import { PostCard, PostCardList } from "lib/PostCard";
 import { AutoLink } from "lib/AutoLink";
-import { useRouter } from "next/router";
+import { PostFrontmatterSchema } from "lib/schema/PostFrontmatter";
+import { processor } from "lib/processor";
 
 interface PageProps {
   data: StaticPost;
@@ -21,6 +23,10 @@ interface PageProps {
   more: StaticPost[];
   moreIs: "latest" | "similar";
   tags: TagMap;
+}
+
+interface PageContext extends ParsedUrlQuery {
+  slug: string;
 }
 
 const PAGE_SIZE = 2;
@@ -90,84 +96,88 @@ export async function getStaticPaths() {
   };
 }
 
-export async function getStaticProps({
-  params
-}): Promise<{ props: PageProps }> {
-  const staticData = await readFileJson<StaticData>("posts.json");
-  if (!staticData) throw new Error("Could not read posts.json");
-  const fileContent = await readFile(`data/posts/${params.slug}.md`);
-  const processed = await processor.process(fileContent as string);
-  const processedData = processed.data as any as MetaRaw;
-
-  // process metadata
-  const data: StaticPost = {
-    title: processedData.title,
-    description: processedData.description,
-    slug: params.slug,
-    date: dateToEpoch(processedData.date),
-    tags: processedData.tags.map(tag => slugify(tag))
-  };
-
-  if (processedData.editedAt) {
-    data.editedAt = dateToEpoch(processedData.editedAt);
-  }
-
-  if (processedData.unpublished) {
-    data.unpublished = true;
-  }
-
-  // find similar posts
-  const similarityMap = new Map<string, number>(
-    staticData.posts.map(post => [
-      post.slug,
-      // reduce tags of post to sum of tags shared with data.tags
-      post.tags.reduce((sum, tag) => sum + (data.tags.includes(tag) ? 1 : 0), 0)
-    ])
-  );
-  let moreIs: "latest" | "similar" = "similar";
-  let more = staticData.posts
-    // filter self and unpublished posts out
-    .filter(
-      post =>
-        post.slug != data.slug &&
-        !post.unpublished &&
-        similarityMap.get(post.slug) > 0
-    )
-    // sort by similarity
-    .sort((a, b) => {
-      const similarTagsA = similarityMap.get(a.slug);
-      const similarTagsB = similarityMap.get(b.slug);
-
-      // if equal similarity sort by date (newest->oldest)
-      if (similarTagsA == similarTagsB) {
-        return b.date - a.date;
-      }
-
-      return similarTagsB - similarTagsA;
-    })
-    .slice(0, PAGE_SIZE);
-
-  if (more.length < 1) {
-    moreIs = "latest";
-    more = staticData.posts
-      .filter(post => post.slug != data.slug && !post.unpublished)
-      .sort((a, b) => b.date - a.date)
-      .slice(0, PAGE_SIZE);
-  }
-
-  // map tag slugs in posts
-  const tagsSeen = new Set(data.tags.concat(more.flatMap(post => post.tags)));
-  const tags = Object.fromEntries(
-    Array.from(tagsSeen.values()).map(key => [key, staticData.tags[key].title])
-  );
-
-  return {
-    props: {
-      data,
-      content: String(processed),
-      more,
-      moreIs,
-      tags
+export const getStaticProps: GetStaticProps<PageProps, PageContext> =
+  async function ({ params }) {
+    const slug = params!.slug;
+    const staticData = await readFileJson<StaticData>("posts.json");
+    if (!staticData) throw new Error("Could not read posts.json");
+    const fileContent = await readFile(`data/posts/${slug}.md`);
+    if (!fileContent) throw new Error(`Could not read 'data/posts/${slug}.md'`);
+    const processed = await processor.process(fileContent);
+    const check = PostFrontmatterSchema.safeParse(processed.data);
+    if (!check.success) {
+      check.error.errors.forEach(error =>
+        console.error(`${error.path}: ${error.message}`)
+      );
+      throw new Error("Stopping due to Schema validation error");
     }
+    const frontmatter = check.data;
+
+    // process metadata
+    const data: StaticPost = {
+      ...frontmatter,
+      slug,
+      tags: frontmatter.tags.map(tag => slugify(tag))
+    };
+
+    // find similar posts
+    const similarityMap = new Map<string, number>(
+      staticData.posts.map(post => [
+        post.slug,
+        // reduce tags of post to sum of tags shared with data.tags
+        post.tags.reduce(
+          (sum, tag) => sum + (data.tags.includes(tag) ? 1 : 0),
+          0
+        )
+      ])
+    );
+    let moreIs: "latest" | "similar" = "similar";
+    let more = staticData.posts
+      // filter self and unpublished posts out
+      .filter(
+        post =>
+          post.slug != data.slug &&
+          !post.unpublished &&
+          similarityMap.get(post.slug)! > 0
+      )
+      // sort by similarity
+      .sort((a, b) => {
+        const similarTagsA = similarityMap.get(a.slug);
+        const similarTagsB = similarityMap.get(b.slug);
+
+        // if equal similarity sort by date (newest->oldest)
+        if (similarTagsA == similarTagsB) {
+          return b.date - a.date;
+        }
+
+        return similarTagsB! - similarTagsA!;
+      })
+      .slice(0, PAGE_SIZE);
+
+    if (more.length < 1) {
+      moreIs = "latest";
+      more = staticData.posts
+        .filter(post => post.slug != data.slug && !post.unpublished)
+        .sort((a, b) => b.date - a.date)
+        .slice(0, PAGE_SIZE);
+    }
+
+    // map tag slugs in posts
+    const tagsSeen = new Set(data.tags.concat(more.flatMap(post => post.tags)));
+    const tags = Object.fromEntries(
+      Array.from(tagsSeen.values()).map(key => [
+        key,
+        staticData.tags[key].title
+      ])
+    );
+
+    return {
+      props: {
+        data,
+        content: String(processed),
+        more,
+        moreIs,
+        tags
+      }
+    };
   };
-}

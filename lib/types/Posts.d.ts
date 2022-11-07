@@ -1,12 +1,3 @@
-interface MetaRaw {
-  title: string;
-  date: string;
-  editedAt?: string;
-  description: string;
-  tags: string[];
-  unpublished?: any;
-}
-
 interface PostMeta {
   title: string;
   date: number;
@@ -16,13 +7,9 @@ interface PostMeta {
   unpublished?: true;
 }
 
-interface TagMap {
-  [key: string]: string;
-}
+type TagMap = Record<string, string>;
 
-interface TagInfoMap {
-  [key: string]: { title: string; description?: string };
-}
+type TagInfoMap = Record<string, { title: string; description?: string }>;
 
 // posts.json
 type StaticPost = PostMeta & { tags: string[] };

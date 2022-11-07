@@ -1,4 +1,4 @@
-import { cloneElement } from "react";
+import { cloneElement, ReactElement } from "react";
 import { AutoLink } from "./AutoLink";
 
 import styles from "./Tags.module.css";
@@ -25,8 +25,12 @@ export function Tag({ text, slug, isList = false }: TagProps) {
   );
 }
 
-export function TagList({ children }) {
-  function forceIsList(child) {
+export function TagList({
+  children
+}: {
+  children: ReactElement<TagProps> | ReactElement<TagProps>[];
+}) {
+  function forceIsList(child: ReactElement<TagProps>) {
     return cloneElement(child, { isList: true });
   }
 

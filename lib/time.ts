@@ -1,12 +1,12 @@
 import spacetime from "spacetime";
 import { useState, useEffect } from "react";
 
-export function padTimezone(str) {
+export function padTimezone(str: string): string {
   // match input
   const match = str.match(
     /^UTC(?<sign>\+|-)(?<hours>\d{1,2})(?::(?<minutes>\d{2}))?$/i
   );
-  if (!match) throw new Error();
+  if (!match || !match.groups) throw new Error();
 
   // extract params
   const { sign, hours } = match.groups;
@@ -15,13 +15,13 @@ export function padTimezone(str) {
   return `${sign}${hours}:${minutes}`;
 }
 
-export function dateToEpoch(str) {
+export function dateToEpoch(str: string): number {
   try {
     // match input
     const match = str.match(
       /^(?<date>\d{4}-\d{2}-\d{2}) (?<time>\d{2}:\d{2}) (?<timezone>UTC(?:\+|-)\d{1,2}(?::\d{2})?)$/i
     );
-    if (!match) throw new Error();
+    if (!match || !match.groups) throw new Error();
 
     // extract params
     const { date, time } = match.groups;
@@ -33,7 +33,7 @@ export function dateToEpoch(str) {
   }
 }
 
-export function useFormattedDate(epoch) {
+export function useFormattedDate(epoch: number): string {
   const [str, setStr] = useState(
     spacetime(epoch, "Europe/Berlin").format("nice-full-24")
   );
@@ -46,6 +46,6 @@ export function useFormattedDate(epoch) {
   return str;
 }
 
-export function epochToDateTime(epoch) {
+export function epochToDateTime(epoch: number): string {
   return spacetime(epoch).format("iso-utc");
 }

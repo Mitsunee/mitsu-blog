@@ -11,7 +11,8 @@ import { getFileName } from "@foxkit/node-util/path";
 import { slugify } from "modern-diacritics";
 import { globby } from "globby";
 
-import { dateToEpoch } from "./lib/time.mjs";
+import { TagsInfo, TagsInfoSchema } from "lib/schema/TagsInfo";
+import { PostFrontmatterSchema } from "lib/schema/PostFrontmatter";
 
 const processor = unified()
   .use(remarkParse)
@@ -20,26 +21,49 @@ const processor = unified()
   .use(remarkRehype, { allowDangerousHtml: true })
   .use(rehypeStringify, { allowDangerousHtml: true });
 
-const tagTitleMap = new Map();
-const tagDescriptionMap = new Map();
-const filePathMap = new Map();
+const tagTitleMap = new Map<string, string>();
+const tagDescriptionMap = new Map<string, string>();
+const filePathMap = new Map<string, string>();
 
 async function readTagsData() {
-  const data = await readFileYaml("data/tags.yml");
+  const data = await readFileYaml<TagsInfo>("data/tags.yml");
+  if (!data) {
+    throw new Error("Could not read 'data/tags.yml'");
+  }
+
+  const check = TagsInfoSchema.safeParse(data);
+  if (!check.success) {
+    check.error.errors.forEach(error =>
+      console.error(`${error.path}: ${error.message}`)
+    );
+    throw new Error("Stopping due to Schema validation error");
+  }
+
   for (const [slug, { title, description }] of Object.entries(data)) {
     tagTitleMap.set(slug, title);
     tagDescriptionMap.set(slug, description);
   }
 }
 
-async function processData(filePath) {
+async function processData(filePath: string) {
   // readFile and rerun unified processor
   const content = await readFile(filePath);
+  if (!content) {
+    throw new Error(`Could not read ${filePath}`);
+  }
   const processed = await processor.process(content);
 
   // process frontmatter
   const slug = getFileName(filePath, false);
-  const data = { ...processed.data, slug };
+  const check = PostFrontmatterSchema.safeParse(processed.data);
+  if (!check.success) {
+    check.error.errors.forEach(error =>
+      console.error(`${error.path}: ${error.message}`)
+    );
+    throw new Error("Stopping due to Schema validation error");
+  }
+
+  const data = check.data;
 
   // check for slug collision
   if (filePathMap.has(slug)) {
@@ -48,15 +72,6 @@ async function processData(filePath) {
     );
   }
   filePathMap.set(slug, filePath);
-
-  // check required types
-  if (!data.title) throw new Error(`Missing Title in ${slug}`);
-  if (!data.description) throw new Error(`Missing Description in ${slug}`);
-
-  // transform dates
-  if (!data.date) throw new Error(`Missing Date in ${slug}`);
-  data.date = dateToEpoch(data.date);
-  data.editedAt &&= dateToEpoch(data.editedAt);
 
   // transform tags
   data.tags = (data.tags || []).map(text => {
@@ -75,23 +90,23 @@ async function processData(filePath) {
     return tagSlug;
   });
 
-  return data;
+  return { ...data, slug } as PostMeta;
 }
 
 (async function main() {
   await readTagsData();
   const postPaths = await globby("data/posts/**/*.md");
-  const posts = (await Promise.all(postPaths.map(processData))).sort(
-    (a, b) => b.date - a.date
-  );
+  const posts = await Promise.all(postPaths.map(processData));
   const tags = Object.fromEntries(
-    Array.from(tagTitleMap.entries()).map(([slug, title]) => {
+    Array.from(tagTitleMap.entries(), ([slug, title]) => {
       if (tagDescriptionMap.has(slug)) {
-        return [slug, { title, description: tagDescriptionMap.get(slug) }];
+        return [slug, { title, description: tagDescriptionMap.get(slug)! }];
       }
       return [slug, { title }];
     })
   );
+
+  posts.sort((a, b) => b.date - a.date);
 
   await writeFile("posts.json", { posts, tags });
 })();

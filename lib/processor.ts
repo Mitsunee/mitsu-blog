@@ -5,8 +5,10 @@ import remarkFrontmatter from "remark-frontmatter";
 import remarkExtractFrontmatter from "remark-extract-frontmatter";
 import YAML from "yaml";
 import remarkGemoji from "remark-gemoji";
+// @ts-ignore
 import remarkTwemoji from "remark-twemoji";
 import remarkGfm from "remark-gfm";
+// @ts-ignore
 import remarkPrism from "remark-prism";
 import remarkRehype from "remark-rehype";
 import rehypeSlug from "rehype-slug";

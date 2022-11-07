@@ -9,7 +9,7 @@ interface PageProps {
   tags: Array<{
     slug: string;
     title: string;
-    description?: string;
+    description: string | null;
     posts: number;
     latest: number;
   }>;
