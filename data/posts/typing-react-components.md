@@ -1,25 +1,26 @@
 ---
-title: How to type Function Components in React with TypeScript
+title: Typing Function Components in React with TypeScript
 date: 2022-12-29 11:10 UTC+1
+editedAt: 2023-01-16 11:44 UTC+1
 description: >-
   One of TypeScript's biggest strengths is providing autocompletion and
   typechecking in IDEs. Properly typing components makes writing JSX a lot easier
-  and can avoid many common errors.
+  and can avoid many common errors. (updated to also include Preact!)
 tags:
   - TypeScript
   - React
   - Guide
 ---
 
-# How to type Function Components in React with TypeScript
+# Typing Function Components in React with TypeScript
 
-One of TypeScript's biggest strengths is providing autocompletion and typechecking in IDEs. Properly typing components makes writing JSX a lot easier and can avoid many common errors.
+One of TypeScript's biggest strengths is providing autocompletion and typechecking in IDEs. Properly typing components makes writing JSX a lot easier and can avoid many common errors. The `@types/react` package provides many utility types on the `"react"` import (and `React` namespace) that make typing your components easy to integrate with HTML attributes, props of other components and typechecking styles and CSS Custom Properties.
 
 ## What is a component?
 
-In React a function component is any function that takes a single parameter - an object containing properties - and returns either ReactNodes or null. If your IDE displays the inferred return type you will often see `Element | null`.
+In React a function component is any function that takes a single parameter - an object containing properties - and returns either ReactNodes or null. If your IDE displays the inferred return type you will often see `Element` or `Element | null`.
 
-To attach a type you can either use `React.FC` (or `import type { FC } from "react"` if the React namespace is not available) or simply attach your Props type directly.
+To attach a type you can either use `React.FC` (or `import type { FC } from "react"` if the React namespace is not available globally) or simply attach your Props type directly.
 
 ```tsx
 const Columns: React.FC<MyProps> = function ({ children }) {
@@ -51,10 +52,12 @@ type MyProps = { someProp: string } & React.PropsWithChildren;
 If your Component requires children to be present you can make yourself a utility type based on `PropsWithChildren` and use it in your props type:
 
 ```ts
-type RequiredChildren = Exclude<
+type RequiredChild = Exclude<
   React.PropsWithChildren["children"],
-  undefined | boolean | null
+  undefined | boolean | null | Iterable<any>
 >;
+
+type RequiredChildren = RequiredChild | RequiredChild[];
 
 interface MyProps {
   children: RequiredChildren;
@@ -81,7 +84,7 @@ const StyledLink: React.FC<React.ComponentProps<"a">> = ({
 };
 ```
 
-You can also use [Pick](https://www.typescriptlang.org/docs/handbook/utility-types.html#picktype-keys) and [Omit](https://www.typescriptlang.org/docs/handbook/utility-types.html#omittype-keys) to further narrow the types you want to be available on your Component or replace properties with different types:
+You can also use [Pick] and [Omit] to further narrow the types you want to be available on your Component or replace properties with different types:
 
 ```tsx
 interface StyledLinkProps extends Omit<React.ComponentProps<"a">, "className"> {
@@ -115,14 +118,48 @@ If you would like to build a utility type based on `ComponentProps` you will nee
 import type { Class } from "classcat";
 
 export type CC = { className?: Class };
-export type ComponentPropsCC<
-  T extends keyof JSX.IntrinsicElements | React.JSXElementConstructor<any>
-> = Omit<React.ComponentProps<T>, "className"> & CC;
+type HTMLTag = keyof JSX.IntrinsicElements;
+export type HTMLPropsCC<T extends HTMLTag> = CC &
+  Omit<React.ComponentProps<T>, "className">;
+```
+
+If you would like your utility type to also allow passing other React components you can change the generic to also allow extending `React.JSXElementConstructor<any>`.
+
+## Representing Props of other Components
+
+`ComponentProps` also allows for accessing the props of another component. You can use this to build a utility type to extend a picked selection of properties from other components:
+
+```ts
+type PickProp<
+  C extends React.JSXElementConstructor<any>,
+  P extends keyof React.ComponentProps<C>
+> = Pick<React.ComponentProps<C>, P>;
+
+// Example:
+interface CloseButtonProps extends PickProp<typeof Button, "onClick"> {
+  // includes onClick from Button
+}
+
+// same as:
+interface CloseButtonProps {
+  onClick?: React.ComponentProps<typeof Button>["onClick"];
+}
+```
+
+Note: You can also combine this with [Omit] or [Partial] or use different property names on each component. Use [Exclude] to turn optional properties into required ones:
+
+```ts
+interface CloseButtonProps {
+  handleClose: Exclude<
+    React.ComponentProps<typeof Button>["onClick"],
+    undefined
+  >;
+}
 ```
 
 ## Properties to represent CSS Custom Properties
 
-Using the `CSSProperties` type there are two approaches to using [Custom Properties]: The `as` keyword to override typechecks or extending the type.
+Using the `CSSProperties` type there are two approaches to using [Custom Properties]: The `as` keyword to override typechecks or extending the type. Generally it is recommend to extend the CSSProperties with your variables to let TypeScript properly typecheck everything. If you are sure that you are only setting values to string you can simply use `as React.CSSProperties` on the object declaration. Here is an example with proper typechecking on a required and an optional CSS Custom Property:
 
 ```tsx
 interface ColoredLinkProps extends React.PropsWithChildren {
@@ -151,40 +188,49 @@ function ColoredLink({ children, href, hover, color }: ColoredLinkProps) {
 }
 ```
 
-Generally it is recommend to extend the CSSProperties with your variables to let TypeScript properly typecheck everything. If you are sure that you are only setting values to string you can simply use `as React.CSSProperties` on the object declaration.
+## Preact
 
-## Representing Props of other Components
-
-TypeScript's [Parameters] utility type allows you to represent properties of other components. You can build a custom utility type to pick a property or use Parameters directly:
+Since Preact started out as a direct React replacement many of its types behave the same. Here are some of the above types modified to work with Preact:
 
 ```ts
+import type { Class } from "classcat";
+import type {
+  ComponentChild,
+  ComponentChildren,
+  ComponentProps,
+  ComponentType
+} from "preact";
+import type { JSX } from "preact/jsx-runtime";
+
+// children
+type RequiredChild = Exclude<ComponentChild, null | undefined | false>;
+export type RequiredChildren = RequiredChild | RequiredChild[];
+export type PropsWithChildren = { children?: ComponentChildren }; // preact doesn't seem to have this
+
+// ComponentProps on HTML Tags
+export type CC = { className?: Class };
+type HTMLTag = keyof JSX.IntrinsicElements;
+export type HTMLProps<T extends HTMLTag> = ComponentProps<T>;
+export type HTMLPropsCC<T extends HTMLTag> = CC &
+  Omit<HTMLProps<T>, "className">;
+
+// ComponentProps on Components
 type PickProp<
-  C extends (props: {}) => any,
-  P extends keyof Parameters<C>[0]
-> = Pick<Parameters<C>[0], P>;
-
-// Example:
-interface CloseButtonProps extends PickProp<typeof Button, "onClick"> {
-  // includes onClick from Button
-}
-
-// same as:
-interface CloseButtonProps {
-  onClick?: Parameters<typeof Button>[0]["onClick"];
-}
+  C extends ComponentType<any>,
+  P extends keyof ComponentProps<C>
+> = Pick<ComponentProps<C>, P>;
 ```
 
-Note: You can also combine [Parameters] with [Omit] or [Partial] or use different property names on each component. Use [Exclude] to turn optional properties into required ones:
+Also note that `CSSProperties` is on the `JSX` namespace, not Preact's! You can easily export it like this if you prefer:
 
 ```ts
-interface CloseButtonProps {
-  handleClose: Exclude<Parameters<typeof Button>[0]["onClick"], undefined>;
-}
+import type { JSX } from "preact/jsx-runtime";
+
+export type CSSProperties = JSX.CSSProperties;
 ```
 
 [custom properties]: https://developer.mozilla.org/en-US/docs/Web/CSS/--*
 [pick]: https://www.typescriptlang.org/docs/handbook/utility-types.html#picktype-keys
 [omit]: https://www.typescriptlang.org/docs/handbook/utility-types.html#omittype-keys
 [partial]: https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype
-[parameters]: https://www.typescriptlang.org/docs/handbook/utility-types.html#parameterstype
 [exclude]: https://www.typescriptlang.org/docs/handbook/utility-types.html#excludeuniontype-excludedmembers
