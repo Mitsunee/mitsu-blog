@@ -1,15 +1,14 @@
 import Link from "next/link";
-import { ComponentProps } from "react";
 
-interface AutoLinkProps extends ComponentProps<"a"> {
+interface AutoLinkProps extends React.ComponentPropsWithRef<"a"> {
   href: string;
 }
 
 export function AutoLink({ children, href, ...props }: AutoLinkProps) {
   if (href.startsWith("/")) {
     return (
-      <Link href={href}>
-        <a {...props}>{children}</a>
+      <Link href={href} {...props}>
+        {children}
       </Link>
     );
   }

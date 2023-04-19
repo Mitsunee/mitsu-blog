@@ -23,16 +23,14 @@ interface IconStyles extends CSSProperties {
 function NavigationItem({ icon, title, href, current }: NavigationItemProps) {
   return (
     <li>
-      <Link href={href}>
-        <a className={cc([current && styles.curr])}>
-          {icon && (
-            <span
-              className={styles.icon}
-              style={{ "--bg": `url("${icon}")` } as IconStyles}
-            />
-          )}
-          {title}
-        </a>
+      <Link href={href} className={cc([current && styles.curr])}>
+        {icon && (
+          <span
+            className={styles.icon}
+            style={{ "--bg": `url("${icon}")` } as IconStyles}
+          />
+        )}
+        {title}
       </Link>
     </li>
   );
@@ -76,10 +74,8 @@ export function Layout({ children }: PropsWithChildren) {
   return (
     <>
       <header className={styles.header}>
-        <Link href="/">
-          <a title="Mitsunee | Blog" className={styles.logo}>
-            <img alt="Mitsunee" src="/assets/icons/icon.svg" />
-          </a>
+        <Link href="/" title="Mitsunee | Blog" className={styles.logo}>
+          <img alt="Mitsunee" src="/assets/icons/icon.svg" />
         </Link>
         <Navigation>
           <NavigationItem
