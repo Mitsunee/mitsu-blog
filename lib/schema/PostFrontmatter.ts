@@ -15,6 +15,7 @@ export const PostFrontmatterSchema = z.object({
     .regex(PostDateReg)
     .transform(val => dateToEpoch(val))
     .optional(),
+  image: z.string().optional(),
   description: z.string(),
   tags: z.array(z.string()),
   unpublished: z.literal(true).optional()

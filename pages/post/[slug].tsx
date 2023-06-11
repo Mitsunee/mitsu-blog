@@ -45,6 +45,8 @@ export default function BlogPost({
       <Meta
         title={`${data.title} | Mitsunee | Blog`}
         description={data.description}
+        image={data.image}
+        imageLarge={data.image ? true : false}
         isError={data.unpublished || undefined}
       />
       <article id={styles.body}>{Content}</article>

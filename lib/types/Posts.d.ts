@@ -4,6 +4,7 @@ interface PostMeta {
   editedAt?: number;
   description: string;
   slug: string;
+  image?: string;
   unpublished?: true;
 }
 
