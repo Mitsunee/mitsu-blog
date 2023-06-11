@@ -17,6 +17,7 @@ import rehypeLinks from "rehype-external-links";
 import rehypeStringify from "rehype-stringify";
 
 import autoSections from "./auto-sections";
+import remarkUnwrapImages from "remark-unwrap-images";
 
 export const processor = unified()
   .use(remarkParse)
@@ -27,6 +28,7 @@ export const processor = unified()
   .use(remarkTwemoji, { ext: ".svg", folder: "svg" })
   .use(remarkGfm)
   .use(remarkPrism)
+  .use(remarkUnwrapImages)
   .use(autoSections)
   .use(remarkRehype, { allowDangerousHtml: true })
   .use(rehypeSlug)

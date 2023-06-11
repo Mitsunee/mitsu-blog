@@ -1,6 +1,9 @@
 #body {
   display: flex;
   flex-flow: column nowrap;
+  max-width: 90%;
+  margin: auto;
+  --content-width: 1280px;
 
   /* base sizes block elements */
   & table,
@@ -18,6 +21,13 @@
     background-color: var(--dark);
     margin: 1rem 0px;
     padding: 0.25rem 0.75rem;
+  }
+
+  /* Unwrapped images */
+  & > section > img:not([class="emoji"]) {
+    display: block;
+    max-width: 80%;
+    margin: auto;
   }
 
   /* Tables */
