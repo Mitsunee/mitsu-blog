@@ -4271,10 +4271,10 @@ space-separated-tokens@^2.0.0:
   resolved "https://registry.yarnpkg.com/space-separated-tokens/-/space-separated-tokens-2.0.1.tgz#43193cec4fb858a2ce934b7f98b7f2c18107098b"
   integrity sha512-ekwEbFp5aqSPKaqeY1PGrlGQxPNaq+Cnx4+bE2D8sciBQrHpbwoBbawqTN2+6jPs9IdWxxiUcN0K2pkczD3zmw==
 
-spacetime@^7.4.5:
-  version "7.4.5"
-  resolved "https://registry.yarnpkg.com/spacetime/-/spacetime-7.4.5.tgz#8d8beab86b278f3b0daaf2305ca1b6ce68463a8b"
-  integrity sha512-HRbjn+/qA8A/Q5Aqsre/R77MTyi9aA5auFmv24PAwkdlCURTnJUEyVCq9iAYlGtuTiDyrbZLpJrVYM+BCS1EhQ==
+spacetime@^7.4.7:
+  version "7.4.7"
+  resolved "https://registry.yarnpkg.com/spacetime/-/spacetime-7.4.7.tgz#58e88c688727ff9b8e7be243404f511c89399828"
+  integrity sha512-5qVgPHUQj9TD4g1Xl68tXXwEi/27Xatvroyj8VU8/E7RgaqLJNaTte5tu3GRowuMqHcNMxs7UfzKeqAlLCo3tQ==
 
 streamsearch@^1.1.0:
   version "1.1.0"

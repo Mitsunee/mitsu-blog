@@ -61,7 +61,7 @@
     "remark-rehype": "^10.1.0",
     "remark-twemoji": "^0.1.1",
     "remark-unwrap-images": "^3.0.1",
-    "spacetime": "^7.4.5",
+    "spacetime": "^7.4.7",
     "tsx": "^3.12.7",
     "twemoji": "^14.0.2",
     "typescript": "^5.1.6",
