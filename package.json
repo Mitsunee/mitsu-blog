@@ -41,7 +41,7 @@
     "iconoir": "^6.10.0",
     "modern-diacritics": "^2.3.0",
     "next": "13.4.12",
-    "postcss": "^8.4.27",
+    "postcss": "^8.4.31",
     "postcss-preset-env": "^9.1.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
