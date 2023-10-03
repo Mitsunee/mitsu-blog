@@ -75,7 +75,7 @@
     "confusing-browser-globals": "^1.0.11",
     "eslint": "^8.46.0",
     "eslint-config-foxkit": "^2.1.1",
-    "eslint-config-next": "13.4.12",
+    "eslint-config-next": "13.5.4",
     "eslint-config-prettier": "^8.9.0",
     "nano-staged": "^0.8.0",
     "prettier": "^3.0.0",
