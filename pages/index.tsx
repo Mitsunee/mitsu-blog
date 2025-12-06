@@ -21,6 +21,10 @@ export default function Home({ tags, posts }: PageProps) {
     <>
       <Meta title={`Home | Mitsunee | Blog`} description={description} />
       <Hero description={description} />
+      <p style={{ textAlign: "center" }}>
+        <b>Note:</b> This blog is not currently maintained and will be moving in
+        the future.
+      </p>
       <PostCardList title="Latest Posts">
         {posts.map(post => (
           <PostCard
